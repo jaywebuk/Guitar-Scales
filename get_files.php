@@ -22,7 +22,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
 }
 else {
   echo "No!";
-  header("Location: http://localhost/jason/guitar");
+  header("Location: ./");
 }
 
 ?>

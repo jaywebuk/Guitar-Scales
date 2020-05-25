@@ -14,7 +14,7 @@ if(filter_has_var(INPUT_GET, 'key') && isset($_SERVER['HTTP_X_REQUESTED_WITH']))
 }
 else {
   echo "No!";
-  header("Location: http://localhost/jason/guitar");
+  header("Location: ./");
 }
 
 ?>
