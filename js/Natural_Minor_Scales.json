@@ -1,0 +1,15 @@
+[{
+"AbNatural_Minor": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "Gb"],
+"ANatural_Minor": ["A", "B", "C", "D", "E", "F", "G"],
+"BbNatural_Minor": ["Bb", "C", "Db", "Eb", "F", "Gb", "Ab"],
+"BNatural_Minor": ["B", "C#", "D", "E", "F#", "G", "A"],
+"CNatural_Minor": ["C", "D", "Eb", "F", "G", "Ab", "Bb"],
+"CsharpNatural_Minor": ["C#", "D#", "E", "F#", "G#", "A", "B"],
+"FsharpNatural_Minor": ["F#", "G#", "A", "B", "C#", "D", "E"],
+"DbNatural_Minor": [""],
+"DNatural_Minor": ["D", "E", "F", "G", "A", "Bb", "C"],
+"EbNatural_Minor": ["Eb", "F", "Gb", "Ab", "Bb", "Cb", "Db"],
+"ENatural_Minor": ["E", "F#", "G", "A", "B", "C", "D"],
+"FNatural_Minor": ["F", "G", "Ab", "Bb", "C", "Db", "Eb"],
+"GNatural_Minor": ["G", "A", "Bb", "C", "D", "Eb", "F"]
+}]

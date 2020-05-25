@@ -1,0 +1,15 @@
+[{
+  "CBlues": ["C", "Eb", "F", "Gb", "G", "Bb"],
+  "CsharpBlues": ["C#", "E", "F#", "G", "G#", "B"],
+  "DbBlues": ["Db", "E", "Gb", "G", "Ab", "B"],
+  "DBlues": ["D", "F", "G", "Ab", "A", "C"],
+  "EbBlues": ["Eb", "Gb", "Ab", "A", "Bb", "Db"],
+  "EBlues": ["E", "G", "A", "Bb", "B", "D"],
+  "FBlues": ["F", "Ab", "Bb", "B", "C", "Eb"],
+  "FsharpBlues": ["F#", "A", "B", "C", "C#", "E"],
+  "GBlues": ["G", "Bb", "C", "Db", "D", "F"],
+  "AbBlues": ["Ab", "B", "Db", "D", "Eb", "Gb"],
+  "ABlues": ["A", "C", "D", "Eb", "E", "G"],
+  "BbBlues": ["Bb", "Db", "Eb", "E", "F", "Ab"],
+  "BBlues": ["B", "D", "E", "F", "F#", "A"]
+}]

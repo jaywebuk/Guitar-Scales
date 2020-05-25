@@ -1,0 +1,15 @@
+[{
+  "AbHarmonic_Minor": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "G"],
+  "AHarmonic_Minor": ["A", "B", "C", "D", "E", "F", "G#"],
+  "BbHarmonic_Minor": ["Bb", "C", "Db", "Eb", "F", "Gb", "A"],
+  "BHarmonic_Minor": ["B", "C#", "D", "E", "F#", "G", "A#"],
+  "CHarmonic_Minor": ["C", "D", "Eb", "F", "G", "Ab", "B"],
+  "CsharpHarmonic_Minor": ["C#", "D#", "E", "F#", "G#", "A", "B#"],
+  "FsharpHarmonic_Minor": ["F#", "G#", "A", "B", "C#", "D", "E#"],
+  "DbHarmonic_Minor": [""],
+  "DHarmonic_Minor": ["D", "E", "F", "G", "A", "Bb", "C#"],
+  "EbHarmonic_Minor": ["Eb", "F", "Gb", "Ab", "Bb", "Cb", "D"],
+  "EHarmonic_Minor": ["E", "F#", "G", "A", "B", "C", "D#"],
+  "FHarmonic_Minor": ["F", "G", "Ab", "Bb", "C", "Db", "E"],
+  "GHarmonic_Minor": ["G", "A", "Bb", "C", "D", "Eb", "F#"]
+}]

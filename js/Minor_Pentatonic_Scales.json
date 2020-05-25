@@ -1,0 +1,15 @@
+[{
+  "CMinor_Pentatonic": ["C", "Eb", "F", "G", "Bb"],
+  "CsharpMinor_Pentatonic": ["C#", "E", "F#", "G#", "B"],
+  "DbMinor_Pentatonic": ["Db", "Fb", "Gb", "Ab", "Cb"],
+  "DMinor_Pentatonic": ["D", "F", "G", "A", "C"],
+  "EbMinor_Pentatonic": ["Eb", "Gb", "Ab", "Bb", "Db"],
+  "EMinor_Pentatonic": ["E", "G", "A", "B", "D"],
+  "FMinor_Pentatonic": ["F", "Ab", "Bb", "C", "Eb"],
+  "FsharpMinor_Pentatonic": ["F#", "A", "B", "C#", "E"],
+  "GMinor_Pentatonic": ["G", "Bb", "C", "D", "F"],
+  "AbMinor_Pentatonic": ["Ab", "Cb", "Db", "Eb", "Gb"],
+  "AMinor_Pentatonic": ["A", "C", "D", "E", "G"],
+  "BbMinor_Pentatonic": ["Bb", "Db", "Eb", "F", "Ab"],
+  "BMinor_Pentatonic": ["B", "D", "E", "F#", "A"]
+}]

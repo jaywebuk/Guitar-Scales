@@ -1,0 +1,15 @@
+[{
+  "AbMajor": ["Ab", "Bb", "C", "Db", "Eb", "F", "G"],
+  "AMajor": ["A", "B", "C#", "D", "E", "F#", "G#"],
+  "BbMajor": ["Bb", "C", "D", "Eb", "F", "G", "A"],
+  "BMajor": ["B", "C#", "D#", "E", "F#", "G#", "A#"],
+  "CMajor": ["C", "D", "E", "F", "G", "A", "B"],
+  "CsharpMajor": ["C#", "D#", "E#", "F#", "G#", "A#", "B#"],
+  "DbMajor": ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"],
+  "DMajor": ["D", "E", "F#", "G", "A", "B", "C#"],
+  "EbMajor": ["Eb", "F", "G", "Ab", "Bb", "C", "D"],
+  "EMajor": ["E", "F#", "G#", "A", "B", "C#", "D#"],
+  "FMajor": ["F", "G", "A", "Bb", "C", "D", "E"],
+  "FsharpMajor": ["F#", "G#", "A#", "B", "C#", "D#", "E#"],
+  "GMajor": ["G", "A", "B", "C", "D", "E", "F#"]
+}]
