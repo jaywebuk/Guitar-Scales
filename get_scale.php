@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 if(filter_has_var(INPUT_GET, 'key') && isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
   $mode = filter_input(INPUT_GET, 'mode', FILTER_SANITIZE_STRING);
   $url = 'js/'.$mode.'_Scales.json';

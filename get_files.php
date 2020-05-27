@@ -5,6 +5,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
   if(filter_has_var(INPUT_GET, 'mode')) :
     $mode = filter_input(INPUT_GET, 'mode', FILTER_SANITIZE_STRING);
     $folderPath = getcwd()."/images/Chords/$key/$mode/";
+
   else :
     $folderPath = getcwd()."/images/Chords/$key/";
   endif;
@@ -21,7 +22,6 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
   
 }
 else {
-  echo "No!";
   header("Location: ./");
 }
 
