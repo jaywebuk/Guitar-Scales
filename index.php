@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- This project was created in the hope that it will be useful, and took a lot of hard work. Please at least credit me. -->
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="description" content="Free Guitar scale tool">
@@ -41,29 +39,21 @@
 		<img src="images/loading.gif" alt="">
 	</div>
 	<div id="wrapper" class="wrapper">
-		<header class="main-header d-flex justify-content-between">
-			<section class="main-title">
+		<header class="main-header">
 				<div>
-					<h1 id="poo" class="display-4">jrwebdev</h1>
-					<p class="tagline lead">Helping to create your world online.</p>
+					<h1>Guitar Scales</h1>
 				</div>
-			</section>
-			<section class="app-title">
-				<h2>Guitar Scales</h2>
-			</section>
-			<section class="social">
-				<div>
-					<a class="" href="#" title="My Projects" data-link="jnrwebdev" target="_blank">
-						<img src="header-images/site_logo_32.png" alt="Projects">
-					</a>
-					<a class="" href="https://twitter.com/jayuk79" target="_blank">
-						<img src="header-images/twitter_32.png" alt="Twitter" title="Twitter">
-					</a>
-					<a class="" href="https://github.com/jayuk79" target="_blank">
-						<img src="header-images/GitHub_32.png" alt="Twitter" title="Twitter">
-					</a>
-				</div>
-			</section>
+			<ul class="social">
+					<li><a class="" href="#" title="My Projects" data-link="jnrwebdev" target="_blank">
+							<img src="header-images/site_logo_32.png" alt="Projects">
+						</a></li>
+					<li><a class="" href="https://twitter.com/jayuk79" target="_blank">
+							<img src="header-images/twitter_32.png" alt="Twitter" title="Twitter">
+						</a></li>
+					<li><a class="" href="https://github.com/jayuk79" target="_blank">
+							<img src="header-images/GitHub_32.png" alt="Twitter" title="Twitter">
+						</a></li>
+			</ul>
 
 		</header>
 

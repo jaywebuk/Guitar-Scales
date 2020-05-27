@@ -4,6 +4,10 @@
   border: solid 1px #234;
 }
 
+:root {
+  font-size: 16px;
+}
+
 html,
 body {
   height: 100%;
@@ -44,48 +48,31 @@ header.main-header {
   color: #fff;
   display: flex;
   justify-content: space-between;
-
-  section {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-  }
+  align-items: flex-start;
+  padding: 0 15px;
+  box-sizing: border-box;
 
   h1 {
-    font-size: 3.5rem;
+    font-size: 2rem;
     margin-top: 0;
     margin-bottom: 0;
   }
 
-  h2 {
-    flex-shrink: 0;
-    font-size: 2.3rem;
-    align-items: flex-end;
-  }
+  ul.social {
+    height: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 
-  .social {
-    width: 180px;
-    padding-top: 20px;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding-right: 15px;
-
-    div {
-      width: 180px;
-      display: flex;
-      justify-content: space-between;
+    li img{
+      width: 30px;
     }
+
   }
-}
-.tagline {
-  position: relative;
-  left: 15px;
-  bottom: 20px;
-  font-size: 1.2rem;
-  margin-bottom: 0;
-  margin-top: 0;
-  font-weight: 300;
 }
 
 .chords-title h1 {
@@ -164,19 +151,13 @@ header.main-header {
   align-self: center;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   position: relative;
 }
 .form-div {
   position: relative;
   margin-bottom: 20px;
-
-  &::after {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    font-size: 0.8em;
-  }
 }
 
 .chords-title {
@@ -204,7 +185,6 @@ header.main-header {
 .chord-container,
 .more-chord-container {
   margin: 5px;
-  padding: 5px;
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
@@ -232,8 +212,8 @@ header.main-header {
 }
 .more-chords {
   position: fixed;
-  max-width: 800px;
-  min-width: 350px;
+  width: 95vw;
+  max-width: 31rem;
   background: white;
   @include border();
   left: 50%;
@@ -257,7 +237,8 @@ header.main-header {
 .more-chords-body {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+
 }
 .more-key-chords {
   text-align: center;
@@ -283,7 +264,8 @@ header.main-header {
   display: none;
 
   img {
-    width: 350px;
+    height: 95vh;
+    max-height: 350px;
   }
 }
 .fret-num {
@@ -304,10 +286,6 @@ select {
   margin-right: 5px;
   padding-bottom: 1px;
   max-width: 170px;
-}
-.keySelect {
-  padding: 0;
-  box-sizing: border-box;
 }
 
 .notes {
@@ -354,20 +332,10 @@ select {
   margin: 0;
   margin-right: 1px;
 
-  & img {
-    width: 17px;
-    height: 17px;
-  }
 }
 .finger0 {
   left: -20px;
   z-index: 2;
-}
-.hidden {
-  visibility: hidden;
-}
-.visible {
-  visibility: visible;
 }
 .fretNote {
   font-weight: bold;
@@ -553,11 +521,7 @@ button {
     margin-right: 6px;
   }
 }
-.lh {
-  transform: scaleX(-1) translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
+
 .more-chords-close {
   color: white;
   position: absolute;
@@ -594,183 +558,23 @@ button {
   color: #fff3e6;
 
   p {
-    font-size: 1em;
+    font-size: .8rem;
     text-align: center;
     margin: 0;
   }
-
-  .links {
-    flex: 1;
-
-    ul {
-      margin: 0px;
-      margin-left: 10px;
-      padding: 0;
-      list-style: none;
-    }
-
-    li {
-      font-size: 0.9em;
-
-      a {
-        &:hover {
-          color: grey;
-        }
-      }
-    }
-
-    .donate::after {
-      content: " - To keep ad free";
-      font-size: 0.8em;
-    }
-  }
-
-  .social-media {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    &::before {
-      content: "Found Mistakes? Drop me a tweet";
-      bottom: 0;
-      font-size: 0.8em;
-      margin-right: 10px;
-    }
-
-    img {
-      width: 30px;
-      margin-left: 7px;
-      margin-right: 7px;
-    }
-  }
 }
 
-@media screen and (max-width: 1100px) {
-  header.main-header {
-    .tagline {
-      font-size: 1rem;
-    }
-  }
-}
-
-@media screen and (max-width: 375px) {
-  section.main-title {
-    h1 {
-      position: absolute;
-      top: 0;
-      left: 5px;
-      font-size: 2rem !important;
-    }
-  }
-}
-@media only screen and (max-width: 768px) {
-  .chord-container {
-    img {
-      width: 130px;
-    }
-  }
-  .neck-container {
-    padding-right: 6px;
-  }
-}
-@media only screen and (max-height: 375px) {
-  .more-chords {
-    height: 350px;
-    overflow: auto;
-  }
-  .chords-zoom {
-    height: 350px;
-
-    img {
-      max-height: 340px;
-      width: auto;
-    }
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .app-title h2 {
-    font-size: 2rem !important;
-    position: absolute;
-    left: 5px;
-  }
-
-  .tagline {
-    visibility: hidden;
-  }
-  section.social {
-    margin-right: 10px;
+@media screen and (min-width: 600px) {
+  header.main-header ul.social {
+    flex-direction: row;
     justify-content: space-between;
-    align-items: space-between;
-
-    padding-top: 5px !important;
-    img {
-      height: 25px;
-    }
-
-    div {
-      flex-direction: column;
-      height: 100%;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding-right: 0;
-    }
-  }
-  section.main-title {
-    h1 {
-      font-size: 2.5rem;
-      position: absolute;
-      top: 0;
-      left: 10px;
-    }
-  }
-
-  .wrapper {
-    grid-template-rows: 120px auto 160px repeat(3, auto) 75px;
-  }
-  #footer {
-    p {
-      font-size: 0.8em;
-    }
-    .social-media::before {
-      content: "";
-    }
-    .links {
-      li {
-        font-size: 0.8em;
-      }
-      .donate::after {
-        content: "";
-      }
-    }
-  }
-
-  button {
-    top: -0px;
-    bottom: 0px;
-    margin-bottom: 5px;
-  }
-
-  .formContainer {
     align-items: flex-start;
-    flex-direction: column;
-  }
-  .form-div {
-    margin-bottom: 5px;
-  }
-  .chord-container {
-    img {
-      width: 120px;
-    }
-  }
+    margin-top: 10px;
+    width: 160px;
 
-  .chords-title {
-    h1::after {
-      font-size: 0.5em;
-      text-align: center;
-      display: block;
-      font-weight: normal;
+    li img{
+      height: 30px;
+      width: auto;
     }
   }
 }
