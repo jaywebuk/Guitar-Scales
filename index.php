@@ -15,6 +15,7 @@
 	<script defer src="js/guitar_scales.min.js"></script>
 	<link rel="icon" type="image/png" href="favicon.png">
 	<title>Guitar Scales</title>
+
 	<noscript>
 		<p class="nojs">Your browser either doesn't support javascript, which is required for this website to work, or it is
 			turned off.</p>
@@ -734,8 +735,15 @@
 			<img id="chord-zoom-image">
 		</div>
 		<div id="footer">
+			<?php 
+				$year = date("Y");
+				$yearString = "";
+				if ($year > 2016) {
+					$yearString = " - $year";
+				}
+				?>
 			<div>
-				<p class="copyright">&copy; 2020 Jason Robinson. All rights reserved</p>
+				<p class="copyright">&copy; 2016 <?=$yearString ?> Jason Robinson. All rights reserved</p>
 			</div>
 		</div>
 
