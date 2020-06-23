@@ -193,9 +193,10 @@ const getScale = (keyV, modeV, tuningV) => {
             break;
     }
 
+    // NEEDS IMPROVING
     var xhr = new XMLHttpRequest();
     xhr.open("GET", `get_scale.php?key=${key.replace("#", "sharp")}&mode=Major`, true);
-
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.onload = () => {
         if (xhr.readyState === 4) {
             document.querySelector("#loading").style.display = "none";
@@ -209,6 +210,7 @@ const getScale = (keyV, modeV, tuningV) => {
                 if (scaleMode !== "Major") {
                     xhr = new XMLHttpRequest();
                     xhr.open("GET", "get_scale.php?key=" + key.replace("#", "sharp") + "&mode=" + mode, true);
+                    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
                     xhr.onload = () => {
                         if (xhr.readyState === 4) {
                             if (xhr.status === 200) {
@@ -497,6 +499,7 @@ chord_click = function () {
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "get_files.php?key=" + key.replace("#", "sharp").replace("b", "flat") + "&mode=" + mode, true);
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.onload = () => {
         if (xhr.readyState === 4) {
             document.querySelector("#loading").style.display = "none";
@@ -527,7 +530,7 @@ chord_click = function () {
     xhr.onerror = () => {
         console.error(xhr.statusText);
     };
-    xhr.send(null);
+    xhr.send();
 };
 
 const zoom = img => {

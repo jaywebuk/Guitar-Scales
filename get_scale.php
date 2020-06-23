@@ -1,6 +1,6 @@
 <?php
 
-if(filter_has_var(INPUT_GET, 'key')) {// && isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+if(filter_has_var(INPUT_GET, 'key') && (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')) {
   require "chromePhP.php";
   $mode = filter_input(INPUT_GET, 'mode', FILTER_SANITIZE_STRING);
   $url = 'js/'.$mode.'_Scales.json';
@@ -8,12 +8,8 @@ if(filter_has_var(INPUT_GET, 'key')) {// && isset($_SERVER['HTTP_X_REQUESTED_WIT
   $scale = json_decode($data);
   $key = filter_input(INPUT_GET, 'key', FILTER_SANITIZE_STRING);
   $scale2 = $key.$mode;
-  // ChromePhp::log(json_encode($scale[0]->$scale2));
   echo json_encode($scale[0]->$scale2);
 }
 else {
-  echo "No!";
   header("Location: ./");
 }
-
-?>
