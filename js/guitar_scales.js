@@ -464,7 +464,7 @@ const displayScale = (majorScale, scale, scaleMode, tuning) => {
                 scale[ii].replace("#", "sharp").replace("b", "flat") +
                 "_" +
                 chords[ii].replace("#", "sharp").replace("b", "flat") +
-                '1.png">';
+                '1.png" alt="'+scale[ii] + ' ' + chords[ii]+'">';
         }
     }
 

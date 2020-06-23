@@ -561,7 +561,7 @@ button {
   background: white;
   border: solid 1px #234;
   padding: 1px;
-  top: -10px;
+  top: 2px;
   bottom: 1px;
   box-shadow: 1px 1px grey;
   outline: none;

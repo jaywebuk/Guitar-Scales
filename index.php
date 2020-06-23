@@ -35,7 +35,7 @@
 <body onload='docReady()'>
 
 	<div id="loading">
-		<img src="images/loading.gif" alt="">
+		<img src="images/loading.gif" alt="loading">
 	</div>
 	<div id="wrapper" class="wrapper">
 		<header class="main-header">
@@ -47,10 +47,10 @@
 							<img src="header-images/site_logo_32.png" alt="Projects">
 						</a></li>
 					<li><a class="" href="https://twitter.com/jayuk79" target="_blank">
-							<img src="header-images/twitter_32.png" alt="Twitter" title="Twitter">
+							<img src="header-images/twitter_32.png" alt="Twitter" title="Twitter" alt="Twitter">
 						</a></li>
 					<li><a class="" href="https://github.com/jayuk79" target="_blank">
-							<img src="header-images/GitHub_32.png" alt="Twitter" title="Twitter">
+							<img src="header-images/GitHub_32.png" alt="Twitter" title="GitHub" alt="GitHub">
 						</a></li>
 			</ul>
 
@@ -639,6 +639,7 @@
 		<div id="formContainer" class="formContainer">
 			<div id="keySelectDiv" class="form-div">
 				<form id="keySelectForm">
+				<label for="keySelect">key</label><br>
 					<select name="key" id="keySelect" size=""
 						onChange="javascript:getScale(document.getElementById('keySelect'), document.getElementById('modeSelect'), document.getElementById('tuningSelect'))">
 						<!-- for the sake of compatibility &sharp; and &flat; are not used here-->
@@ -660,6 +661,7 @@
 			</div>
 			<div id="modeSelectDiv" class="form-div">
 				<form id="modeSelectForm">
+					<label for="modeSelect">mode</label><br>
 					<select name="mode" id="modeSelect" size=""
 						onChange="javascript:getScale(document.getElementById('keySelect'), document.getElementById('modeSelect'), document.getElementById('tuningSelect'))">
 						<option id="Major" value="Major" class="modeTitle" selected="selected">Major</option>
@@ -677,12 +679,10 @@
 					</select>
 				</form>
 			</div>
-			<div id="PentaPatternSelectDiv" class="form-div">
-				<form id="PentaPatternSelectForm">
-				</form>
-			</div>
+			
 			<div id="tuningSelectDiv" class="form-div">
 				<form id="tuningSelectForm">
+				<label for="tuningSelect">tuning</label><br>
 					<select name="tuning" id="tuningSelect" size=""
 						onChange="javascript:getScale(document.getElementById('keySelect'), document.getElementById('modeSelect'), document.getElementById('tuningSelect'))">
 						<option id="standardE" value="standardE" class="tuning" selected="selected">Standard E</option>
@@ -695,6 +695,7 @@
 			</div>
 			<div id="fingerboardSelectDiv" class="form-div">
 				<form id="fingerboardSelectForm" autocomplete="off">
+				<label for="fingerboardSelect">fingerboard</label><br>
 					<select name="fingerboard" id="fingerboardSelect" size="" onChange="javascript:changeFingerboard(this)">
 						<option value="rosewood" selected="selected">Rosewood</option>
 						<option value="maple">Maple</option>
@@ -721,7 +722,7 @@
 			</div>
 		</div>
 		<div id="chords-zoom" class="chords-zoom">
-			<img id="chord-zoom-image">
+			<img id="chord-zoom-image" alt="chord-zoom-image">
 		</div>
 		<div id="footer">
 			<?php 
