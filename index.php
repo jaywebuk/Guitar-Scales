@@ -46,10 +46,10 @@
 					<li><a class="" href="#" title="My Projects" data-link="jnrwebdev" target="_blank">
 							<img src="header-images/site_logo_32.png" alt="Projects">
 						</a></li>
-					<li><a class="" href="https://twitter.com/jayuk79" target="_blank">
+					<li><a class="" href="https://twitter.com/jayuk79" target="_blank" rel="noopener">
 							<img src="header-images/twitter_32.png" alt="Twitter" title="Twitter" alt="Twitter">
 						</a></li>
-					<li><a class="" href="https://github.com/jayuk79" target="_blank">
+					<li><a class="" href="https://github.com/jayuk79" target="_blank" rel="noopener">
 							<img src="header-images/GitHub_32.png" alt="Twitter" title="GitHub" alt="GitHub">
 						</a></li>
 			</ul>
