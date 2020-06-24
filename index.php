@@ -43,7 +43,7 @@
 					<h1>Guitar Scales</h1>
 				</div>
 			<ul class="social">
-					<li><a class="" href="#" title="My Projects" data-link="jnrwebdev" target="_blank">
+					<li><a class="" href="/" title="My Projects" data-link="jnrwebdev" target="_blank">
 							<img src="header-images/site_logo_32.png" alt="Projects">
 						</a></li>
 					<li><a class="" href="https://twitter.com/jayuk79" target="_blank" rel="noopener">
@@ -733,7 +733,7 @@
 				}
 				?>
 			<div>
-				<p class="copyright">&copy; 2016 <?=$yearString ?> Jason Robinson. All rights reserved</p>
+				<p class="copyright">&copy; 2016 <?=$yearString ?> <a href="/">Jason Robinson.</a> All rights reserved</p>
 			</div>
 		</div>
 

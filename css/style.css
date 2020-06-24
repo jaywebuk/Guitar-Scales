@@ -604,13 +604,17 @@ button:active {
   box-sizing: border-box;
   background: #552266;
   background: linear-gradient(180deg, #552266 0%, #332244 100%);
-  color: #fff3e6;
+  color: #fff;
 }
 
 #footer p {
-  font-size: .8rem;
+  font-size: .9rem;
   text-align: center;
   margin: 0;
+}
+
+#footer p a {
+  color: white;
 }
 
 @media screen and (min-width: 600px) {

@@ -555,13 +555,18 @@ button {
     rgba(85, 34, 102, 1) 0%,
     rgba(51, 34, 68, 1) 100%
   );
-  color: #fff3e6;
+  color: #fff;
 
   p {
-    font-size: .8rem;
+    font-size: .9rem;
     text-align: center;
     margin: 0;
+
+    a {
+      color: white;
+    }
   }
+
 }
 
 @media screen and (min-width: 600px) {
