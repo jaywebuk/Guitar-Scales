@@ -4,3 +4,6 @@ Harmonic_Minor_Scales*
 Melodic_Minor_Scales*
 Natural_Minor_Scales*
 Minor_Pentatonic_Scales*
+Blues_Scales*
+*.min.*
+get_scale.php
