@@ -6,7 +6,7 @@
  */
 
 const docReady = () => {
-    getScale(document.getElementById("keySelect"), document.getElementById("modeSelect"), document.getElementById("tuningSelect"));
+    getScale(document.querySelector("#keySelect"), document.querySelector("#modeSelect"), document.querySelector("#tuningSelect"));
 };
 
 let show_notes = true,
