@@ -193,49 +193,27 @@ const getScale = (keyV, modeV, tuningV) => {
             break;
     }
 
-    // NEEDS IMPROVING
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", `get_scale.php?key=${key.replace("#", "sharp")}&mode=Major`, true);
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", `js/scales.json`, true);
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.send();
     xhr.onload = () => {
-        if (xhr.readyState === 4) {
+        if (xhr.status !== 200) {
+            console.error(`Error ${xhr.status}: ${xhr.statusText}`);
             document.querySelector("#loading").style.display = "none";
-            if (xhr.status === 200) {
-                data = xhr.responseText;
-                majorScale = JSON.parse(data);
-                if (scaleMode === "Major") {
-                    scale = majorScale;
-                    displayScale(majorScale, scale, scaleMode, tuning);
-                }
-                if (scaleMode !== "Major") {
-                    xhr = new XMLHttpRequest();
-                    xhr.open("GET", "get_scale.php?key=" + key.replace("#", "sharp") + "&mode=" + mode, true);
-                    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-                    xhr.onload = () => {
-                        if (xhr.readyState === 4) {
-                            if (xhr.status === 200) {
-                                data = xhr.responseText;
-                                scale = JSON.parse(data);
-                                displayScale(majorScale, scale, scaleMode, tuning);
-                            } else {
-                                console.error(xhr.statusText);
-                            }
-                        }
-                    };
-                    xhr.onerror = () => {
-                        console.error(xhr.statusText);
-                    };
-                    xhr.send();
-                }
-            } else {
-                console.error(xhr.statusText);
-            }
+        } else {
+            document.querySelector("#loading").style.display = "none";
+            data = JSON.parse(xhr.responseText);
+            majorScale = data["Major"][key + "Major"];
+            scale = data[mode][key + mode];
+            displayScale(majorScale, scale, scaleMode, tuning);
+            console.log(majorScale);
+            console.log(data[mode][key + mode]);
         }
     };
     xhr.onerror = () => {
         console.error(xhr.statusText);
     };
-    xhr.send();
 };
 
 const displayScale = (majorScale, scale, scaleMode, tuning) => {

@@ -1,15 +1,32 @@
-[{
-  "AbMelodic_Minor": ["Ab", "Bb", "Cb", "Db", "Eb", "F", "G"],
-  "AMelodic_Minor": ["A", "B", "C", "D", "E", "F#", "G#"],
-  "BbMelodic_Minor": ["Bb", "C", "Db", "Eb", "F", "G", "A"],
-  "BMelodic_Minor": ["B", "C#", "D", "E", "F#", "G#", "A#"],
-  "CMelodic_Minor": ["C", "D", "Eb", "F", "G", "A", "B"],
-  "CsharpMelodic_Minor": ["C#", "D#", "E", "F#", "G#", "A#", "B#"],
-  "DbMelodic_Minor": [""],
-  "DMelodic_Minor": ["D", "E", "F", "G", "A", "B", "C#"],
-  "EbMelodic_Minor": ["Eb", "F", "Gb", "Ab", "Bb", "C", "D"],
-  "EMelodic_Minor": ["E", "F#", "G", "A", "B", "C#", "D#"],
-  "FMelodic_Minor": ["F", "G", "Ab", "Bb", "C", "D", "E"],
-  "FsharpMelodic_Minor": ["F#", "G#", "A", "B", "C#", "D#", "E#"],
-  "GMelodic_Minor": ["G", "A", "Bb", "C", "D", "E", "F#"]
-}]
+[
+"Major", {
+  "AbMajor": ["Ab", "Bb", "C", "Db", "Eb", "F", "G"],
+  "AMajor": ["A", "B", "C#", "D", "E", "F#", "G#"],
+  "BbMajor": ["Bb", "C", "D", "Eb", "F", "G", "A"],
+  "BMajor": ["B", "C#", "D#", "E", "F#", "G#", "A#"],
+  "CMajor": ["C", "D", "E", "F", "G", "A", "B"],
+  "CsharpMajor": ["C#", "D#", "E#", "F#", "G#", "A#", "B#"],
+  "DbMajor": ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"],
+  "DMajor": ["D", "E", "F#", "G", "A", "B", "C#"],
+  "EbMajor": ["Eb", "F", "G", "Ab", "Bb", "C", "D"],
+  "EMajor": ["E", "F#", "G#", "A", "B", "C#", "D#"],
+  "FMajor": ["F", "G", "A", "Bb", "C", "D", "E"],
+  "FsharpMajor": ["F#", "G#", "A#", "B", "C#", "D#", "E#"],
+  "GMajor": ["G", "A", "B", "C", "D", "E", "F#"]
+},
+"Melodic Minor", {
+    "AbMelodic_Minor": ["Ab", "Bb", "Cb", "Db", "Eb", "F", "G"],
+    "AMelodic_Minor": ["A", "B", "C", "D", "E", "F#", "G#"],
+    "BbMelodic_Minor": ["Bb", "C", "Db", "Eb", "F", "G", "A"],
+    "BMelodic_Minor": ["B", "C#", "D", "E", "F#", "G#", "A#"],
+    "CMelodic_Minor": ["C", "D", "Eb", "F", "G", "A", "B"],
+    "CsharpMelodic_Minor": ["C#", "D#", "E", "F#", "G#", "A#", "B#"],
+    "DbMelodic_Minor": [""],
+    "DMelodic_Minor": ["D", "E", "F", "G", "A", "B", "C#"],
+    "EbMelodic_Minor": ["Eb", "F", "Gb", "Ab", "Bb", "C", "D"],
+    "EMelodic_Minor": ["E", "F#", "G", "A", "B", "C#", "D#"],
+    "FMelodic_Minor": ["F", "G", "Ab", "Bb", "C", "D", "E"],
+    "FsharpMelodic_Minor": ["F#", "G#", "A", "B", "C#", "D#", "E#"],
+    "GMelodic_Minor": ["G", "A", "Bb", "C", "D", "E", "F#"]
+  }
+]
