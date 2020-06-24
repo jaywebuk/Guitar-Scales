@@ -639,7 +639,7 @@
 		<div id="formContainer" class="formContainer">
 			<div id="keySelectDiv" class="form-div">
 				<form id="keySelectForm">
-				<label for="keySelect">key</label><br>
+				<label for="keySelect">Key</label><br>
 					<select name="key" id="keySelect" size=""
 						onChange="javascript:getScale(document.getElementById('keySelect'), document.getElementById('modeSelect'), document.getElementById('tuningSelect'))">
 						<!-- for the sake of compatibility &sharp; and &flat; are not used here-->
@@ -661,7 +661,7 @@
 			</div>
 			<div id="modeSelectDiv" class="form-div">
 				<form id="modeSelectForm">
-					<label for="modeSelect">mode</label><br>
+					<label for="modeSelect">Mode</label><br>
 					<select name="mode" id="modeSelect" size=""
 						onChange="javascript:getScale(document.getElementById('keySelect'), document.getElementById('modeSelect'), document.getElementById('tuningSelect'))">
 						<option id="Major" value="Major" class="modeTitle" selected="selected">Major</option>
@@ -682,7 +682,7 @@
 			
 			<div id="tuningSelectDiv" class="form-div">
 				<form id="tuningSelectForm">
-				<label for="tuningSelect">tuning</label><br>
+				<label for="tuningSelect">Tuning</label><br>
 					<select name="tuning" id="tuningSelect" size=""
 						onChange="javascript:getScale(document.getElementById('keySelect'), document.getElementById('modeSelect'), document.getElementById('tuningSelect'))">
 						<option id="standardE" value="standardE" class="tuning" selected="selected">Standard E</option>
@@ -695,7 +695,7 @@
 			</div>
 			<div id="fingerboardSelectDiv" class="form-div">
 				<form id="fingerboardSelectForm" autocomplete="off">
-				<label for="fingerboardSelect">fingerboard</label><br>
+				<label for="fingerboardSelect">Fingerboard</label><br>
 					<select name="fingerboard" id="fingerboardSelect" size="" onChange="javascript:changeFingerboard(this)">
 						<option value="rosewood" selected="selected">Rosewood</option>
 						<option value="maple">Maple</option>
