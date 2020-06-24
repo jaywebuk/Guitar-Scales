@@ -198,17 +198,15 @@ const getScale = (keyV, modeV, tuningV) => {
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.send();
     xhr.onload = () => {
-        if (xhr.status !== 200) {
-            console.error(`Error ${xhr.status}: ${xhr.statusText}`);
-            document.querySelector("#loading").style.display = "none";
-        } else {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             document.querySelector("#loading").style.display = "none";
             data = JSON.parse(xhr.responseText);
             majorScale = data["Major"][key + "Major"];
             scale = data[mode][key + mode];
             displayScale(majorScale, scale, scaleMode, tuning);
-            console.log(majorScale);
-            console.log(data[mode][key + mode]);
+        } else {
+            console.error(`Error ${xhr.status}: ${xhr.statusText}`);
+            document.querySelector("#loading").style.display = "none";
         }
     };
     xhr.onerror = () => {
@@ -479,40 +477,38 @@ chord_click = function () {
     });
     document.querySelector("#more-chords-header").textContent = keyText + " " + mode;
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "get_files.php?key=" + key.replace("#", "sharp").replace("b", "flat") + "&mode=" + mode, true);
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", `count_files.php?key=${key.replace("#", "sharp").replace("b", "flat")}&mode=${mode}`, true);
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.send();
     xhr.onload = () => {
-        if (xhr.readyState === 4) {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             document.querySelector("#loading").style.display = "none";
-            if (xhr.status === 200) {
-                data = xhr.responseText;
-                document.querySelector("#more-chords-body").innerHTML = "";
-                for (let ii = 0; ii < data; ii++) {
-                    document.querySelector("#more-chords-body").innerHTML +=
-                        '<div class="more-chord-container"><img id="' +
-                        key.replace("#", "sharp").replace("b", "flat") +
-                        ii +
-                        '" class="chord-image more-chord-image" src="images/Chords/' +
-                        key.replace("#", "sharp").replace("b", "flat") +
-                        "/" +
-                        mode +
-                        "/" +
-                        key.replace("#", "sharp").replace("b", "flat") +
-                        "_" +
-                        mode +
-                        (ii + 1) +
-                        '.png" onclick="javascript:zoom(this)"></div>';
-                }
-            } else {
-                console.error(xhr.statusText);
+            data = xhr.responseText;
+            document.querySelector("#more-chords-body").innerHTML = "";
+            for (let ii = 0; ii < data; ii++) {
+                document.querySelector("#more-chords-body").innerHTML +=
+                    '<div class="more-chord-container"><img id="' +
+                    key.replace("#", "sharp").replace("b", "flat") +
+                    ii +
+                    '" class="chord-image more-chord-image" src="images/Chords/' +
+                    key.replace("#", "sharp").replace("b", "flat") +
+                    "/" +
+                    mode +
+                    "/" +
+                    key.replace("#", "sharp").replace("b", "flat") +
+                    "_" +
+                    mode +
+                    (ii + 1) +
+                    '.png" onclick="javascript:zoom(this)"></div>';
             }
+        } else {
+            console.error(xhr.statusText);
         }
     };
     xhr.onerror = () => {
         console.error(xhr.statusText);
     };
-    xhr.send();
 };
 
 const zoom = img => {
