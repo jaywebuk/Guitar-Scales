@@ -73,38 +73,32 @@ const clearBoard = () => {
 const changeFingerboard = wood => {
     const dots = document.querySelectorAll(".dots");
     const necks = document.querySelectorAll(".neck");
-    if (wood.value === "maple") {
-        dots.forEach(el => {
-            el.style.backgroundColor = "#333";
-        });
-        necks.forEach(el => {
-            el.style.backgroundColor = "#ffe5cc";
-        });
-
-        document.querySelector("#fretNut").style.borderColor = "#000";
-        return;
+    switch (wood.value) {
+        case "rosewood":
+            neckColor = "#460e00";
+            dotColor = "#ccc";
+            fretNutColor = "#FAEBD7";
+            break;
+        case "ebony":
+            neckColor = "#160b03";
+            dotColor = "#ccc";
+            fretNutColor = "#FAEBD7";
+            break;
+        default:
+            neckColor = "#ffe5cc";
+            dotColor = "#333";
+            fretNutColor = "#000";
+            break;
     }
-    if (wood.value === "rosewood") {
-        dots.forEach(el => {
-            el.style.backgroundColor = "#ccc";
-        });
-        necks.forEach(el => {
-            el.style.backgroundColor = "#460e00";
-        });
 
-        document.querySelector("#fretNut").style.borderColor = "#FAEBD7";
-        return;
-    }
-    if (wood.value === "ebony") {
-        dots.forEach(el => {
-            el.style.backgroundColor = "#ccc";
-        });
-        necks.forEach(el => {
-            el.style.backgroundColor = "#160b03";
-        });
+    necks.forEach(el => {
+        el.style.backgroundColor = neckColor;
+    });
+    dots.forEach(el => {
+        el.style.backgroundColor = dotColor;
+    });
 
-        document.querySelector("#fretNut").style.borderColor = "#FAEBD7";
-    }
+    document.querySelector("#fretNut").style.borderColor = fretNutColor;
 };
 
 const getScale = (keyV, modeV, tuningV) => {
@@ -195,12 +189,12 @@ const getScale = (keyV, modeV, tuningV) => {
 
     let xhr = new XMLHttpRequest();
     xhr.open("GET", `js/scales.json`, true);
-    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.responseType = "json";
     xhr.send();
     xhr.onload = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
             document.querySelector("#loading").style.display = "none";
-            data = JSON.parse(xhr.responseText);
+            data = xhr.response;
             majorScale = data["Major"][key + "Major"];
             scale = data[mode][key + mode];
             displayScale(majorScale, scale, scaleMode, tuning);
@@ -224,7 +218,6 @@ const displayScale = (majorScale, scale, scaleMode, tuning) => {
         G,
         B,
         E,
-        ii,
         chords = MajorChords;
 
     switch (tuning) {
@@ -480,11 +473,12 @@ chord_click = function () {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", `count_files.php?key=${key.replace("#", "sharp").replace("b", "flat")}&mode=${mode}`, true);
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.responseType = "text";
     xhr.send();
     xhr.onload = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
             document.querySelector("#loading").style.display = "none";
-            data = xhr.responseText;
+            data = xhr.response;
             document.querySelector("#more-chords-body").innerHTML = "";
             for (let ii = 0; ii < data; ii++) {
                 document.querySelector("#more-chords-body").innerHTML +=
