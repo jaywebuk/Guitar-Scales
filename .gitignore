@@ -1,9 +1,4 @@
 .vscode/
 ChromePhp.php
-Harmonic_Minor_Scales*
-Melodic_Minor_Scales*
-Natural_Minor_Scales*
-Minor_Pentatonic_Scales*
-Blues_Scales*
-scales.json.old
 *.min.*
+.jshintrc

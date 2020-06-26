@@ -5,13 +5,8 @@
  *
  */
 
-const docReady = () => {
-    getScale(key);
-};
-
-let show_notes = true,
-    show_frets = true,
-    chordBody,
+let showNotes = true,
+    showFrets = true,
     key = "E",
     majorScale,
     scale,
@@ -20,41 +15,41 @@ let show_notes = true,
     scaleData,
     chordNums = {};
 
-const show_frets_notes = showThis => {
+const show_frets_notes = (showThis) => {
     const fret_notes = document.querySelectorAll(".fretNote");
     const fret_nums = document.querySelectorAll(".fret-num");
     switch (showThis) {
         case "show-notes":
-            if (show_notes === true) {
-                fret_notes.forEach(el => {
+            if (showNotes === true) {
+                fret_notes.forEach((el) => {
                     el.style.visibility = "hidden";
                 });
-                show_notes = false;
+                showNotes = false;
             } else {
-                fret_notes.forEach(el => {
+                fret_notes.forEach((el) => {
                     el.style.visibility = "visible";
                 });
-                show_notes = true;
+                showNotes = true;
             }
             break;
         case "show-frets":
-            if (show_frets === true) {
-                fret_nums.forEach(el => {
+            if (showFrets === true) {
+                fret_nums.forEach((el) => {
                     el.style.visibility = "hidden";
                 });
-                show_frets = false;
+                showFrets = false;
             } else {
-                fret_nums.forEach(el => {
+                fret_nums.forEach((el) => {
                     el.style.visibility = "visible";
                 });
-                show_frets = true;
+                showFrets = true;
             }
             break;
     }
 };
 
 const frets_note_buttons = document.querySelectorAll(".button");
-frets_note_buttons.forEach(el => {
+frets_note_buttons.forEach((el) => {
     el.addEventListener("click", () => {
         show_frets_notes(el.id);
     });
@@ -64,30 +59,30 @@ const clearBoard = () => {
     const finger = document.querySelectorAll(".finger");
     const finger0 = document.querySelectorAll(".finger0");
 
-    finger.forEach(el => {
+    finger.forEach((el) => {
         el.style.visibility = "hidden";
         el.childNodes[1].style.display = "none";
         el.style.backgroundColor = "darkgreen";
     });
 
-    finger0.forEach(el => {
+    finger0.forEach((el) => {
         el.style.visibility = "hidden";
         el.style.backgroundColor = "darkgreen";
     });
     return true;
 };
 
-const changeMode = thisMode => {
+const changeMode = (thisMode) => {
     scaleMode = thisMode;
     displayScale();
 };
 
-const changeTuning = thisTuning => {
+const changeTuning = (thisTuning) => {
     tuning = thisTuning;
     displayScale();
 };
 
-const changeFingerboard = wood => {
+const changeFingerboard = (wood) => {
     const dots = document.querySelectorAll(".dots");
     const necks = document.querySelectorAll(".neck");
     switch (wood.value) {
@@ -108,17 +103,17 @@ const changeFingerboard = wood => {
             break;
     }
 
-    necks.forEach(el => {
+    necks.forEach((el) => {
         el.style.backgroundColor = neckColor;
     });
-    dots.forEach(el => {
+    dots.forEach((el) => {
         el.style.backgroundColor = dotColor;
     });
 
     document.querySelector("#fretNut").style.borderColor = fretNutColor;
 };
 
-const getScale = thisKey => {
+const getScale = (thisKey) => {
     key = thisKey;
     document.querySelector("#loading").style.display = "block";
 
@@ -160,23 +155,23 @@ const getScale = thisKey => {
     xhr.responseType = "json";
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.send();
-    xhr.onload = () => {
-        if (xhr.readyState === 4 && xhr.status === 200) {
+    xhr.onload = function () {
+        if (this.readyState === 4 && this.status === 200) {
             document.querySelector("#loading").style.display = "none";
-            scaleData = xhr.response;
+            scaleData = this.response;
             displayScale();
         } else {
-            console.error(`Error ${xhr.status}: ${xhr.statusText}`);
+            console.error(`Error ${this.status}: ${this.statusText}`);
             document.querySelector("#loading").style.display = "none";
         }
     };
-    xhr.onerror = () => {
-        console.error(xhr.statusText);
+    xhr.onerror = function() {
+        console.error(this.statusText);
     };
 };
 
 const displayScale = () => {
-    majorScale = scaleData["Major"];
+    majorScale = scaleData.Major;
     scale = scaleData[scaleMode];
     clearBoard();
     let fretShift = 0,
@@ -252,37 +247,37 @@ const displayScale = () => {
         case "Dorian":
             fretShift = 1;
             noteShift = 1;
-            scale = scaleData["Major"];
+            scale = scaleData.Major;
             thisIsAMode = true;
             break;
         case "Phrygian":
             fretShift = 2;
             noteShift = 2;
-            scale = scaleData["Major"];
+            scale = scaleData.Major;
             thisIsAMode = true;
             break;
         case "Lydian":
             fretShift = 3;
             noteShift = 3;
-            scale = scaleData["Major"];
+            scale = scaleData.Major;
             thisIsAMode = true;
             break;
         case "Mixolydian":
             fretShift = 4;
             noteShift = 4;
-            scale = scaleData["Major"];
+            scale = scaleData.Major;
             thisIsAMode = true;
             break;
         case "Aeolian":
             fretShift = 5;
             noteShift = 5;
-            scale = scaleData["Major"];
+            scale = scaleData.Major;
             thisIsAMode = true;
             break;
         case "Locrian":
             fretShift = 6;
             noteShift = 6;
-            scale = scaleData["Major"];
+            scale = scaleData.Major;
             thisIsAMode = true;
             break;
     }
@@ -312,62 +307,62 @@ const displayScale = () => {
                 }
             }
         }
-        for (let scaleNote in scale) {
+        for (let jj = 0; jj < scale.length; jj++) {
             for (let ii = 0; ii < 3; ii++) {
-                if (E[fretNum][ii] === scale[scaleNote]) {
+                if (E[fretNum][ii] === scale[jj]) {
                     document.querySelector("#E1F" + fretNum).style.visibility = "visible";
                     document.querySelector("#E1F" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#E1F" + fretNum).childNodes[1].textContent = scale[scaleNote];
+                    document.querySelector("#E1F" + fretNum).childNodes[1].textContent = scale[jj];
 
                     if (E[fretNum][ii] === scale[0 + fretShift]) {
                         document.querySelector("#E1F" + fretNum).style.backgroundColor = "#005bb1";
                     }
                 }
 
-                if (B[fretNum][ii] === scale[scaleNote]) {
+                if (B[fretNum][ii] === scale[jj]) {
                     document.querySelector("#BF" + fretNum).style.visibility = "visible";
                     document.querySelector("#BF" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#BF" + fretNum).childNodes[1].textContent = scale[scaleNote];
+                    document.querySelector("#BF" + fretNum).childNodes[1].textContent = scale[jj];
 
                     if (B[fretNum][ii] === scale[0 + fretShift]) {
                         document.querySelector("#BF" + fretNum).style.backgroundColor = "#005bb1";
                     }
                 }
 
-                if (G[fretNum][ii] === scale[scaleNote]) {
+                if (G[fretNum][ii] === scale[jj]) {
                     document.querySelector("#GF" + fretNum).style.visibility = "visible";
                     document.querySelector("#GF" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#GF" + fretNum).childNodes[1].textContent = scale[scaleNote];
+                    document.querySelector("#GF" + fretNum).childNodes[1].textContent = scale[jj];
 
                     if (G[fretNum][ii] === scale[0 + fretShift]) {
                         document.querySelector("#GF" + fretNum).style.backgroundColor = "#005bb1";
                     }
                 }
 
-                if (D[fretNum][ii] === scale[scaleNote]) {
+                if (D[fretNum][ii] === scale[jj]) {
                     document.querySelector("#DF" + fretNum).style.visibility = "visible";
                     document.querySelector("#DF" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#DF" + fretNum).childNodes[1].textContent = scale[scaleNote];
+                    document.querySelector("#DF" + fretNum).childNodes[1].textContent = scale[jj];
 
                     if (D[fretNum][ii] === scale[0 + fretShift]) {
                         document.querySelector("#DF" + fretNum).style.backgroundColor = "#005bb1";
                     }
                 }
 
-                if (A[fretNum][ii] === scale[scaleNote]) {
+                if (A[fretNum][ii] === scale[jj]) {
                     document.querySelector("#AF" + fretNum).style.visibility = "visible";
                     document.querySelector("#AF" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#AF" + fretNum).childNodes[1].textContent = scale[scaleNote];
+                    document.querySelector("#AF" + fretNum).childNodes[1].textContent = scale[jj];
 
                     if (A[fretNum][ii] === scale[0 + fretShift]) {
                         document.querySelector("#AF" + fretNum).style.backgroundColor = "#005bb1";
                     }
                 }
 
-                if (E2[fretNum][ii] === scale[scaleNote]) {
+                if (E2[fretNum][ii] === scale[jj]) {
                     document.querySelector("#E2F" + fretNum).style.visibility = "visible";
                     document.querySelector("#E2F" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#E2F" + fretNum).childNodes[1].textContent = scale[scaleNote];
+                    document.querySelector("#E2F" + fretNum).childNodes[1].textContent = scale[jj];
 
                     if (E2[fretNum][ii] === scale[0 + fretShift]) {
                         document.querySelector("#E2F" + fretNum).style.backgroundColor = "#005bb1";
@@ -400,7 +395,7 @@ const displayScale = () => {
         document.querySelector("#chords-body").textContent = "CHORDS COMING SOON";
     } else {
         document.querySelector("#chords-body").innerHTML = "";
-        for (let ii in chords) {
+        for (let ii = 0; ii < chords.length; ii++) {
             let folder = scale[ii];
             document.querySelector(
                 "#chords-body"
@@ -424,20 +419,20 @@ const displayScale = () => {
     }
 
     let chordContainers = document.querySelectorAll(".chord-container");
-    chordContainers.forEach(el => {
+    chordContainers.forEach((el) => {
         el.addEventListener("click", chord_click);
     });
 
     document.querySelector("#more-chords-close").addEventListener("click", () => {
         document.querySelector("#more-chords").style.display = "none";
-        chordContainers.forEach(el => {
+        chordContainers.forEach((el) => {
             el.addEventListener("click", chord_click);
             el.style.opacity = "1";
         });
     });
 };
 
-chord_click = function () {
+function chord_click() {
     document.querySelector("#more-chords-body").innerHTML = "";
     let data = 0;
     let keyExists = false;
@@ -449,13 +444,13 @@ chord_click = function () {
     document.querySelector("#more-chords").style.display = "block";
     document.querySelector(".chord-container").removeEventListener("click", chord_click);
     let chordContainers = document.querySelectorAll(".chord-container");
-    chordContainers.forEach(el => {
+    chordContainers.forEach((el) => {
         el.style.opacity = "0.4";
         el.removeEventListener("click", chord_click);
     });
     document.querySelector("#more-chords-header").textContent = keyText + " " + mode;
     if (Object.keys(chordNums).length > 0) {
-        for (thisKey in chordNums) {
+        for (const thisKey in chordNums) {
             if (thisKey === key + mode) {
                 keyExists = true;
                 data = chordNums[key + mode];
@@ -463,30 +458,30 @@ chord_click = function () {
         }
     }
 
-    if (keyExists === false) {
+    if (keyExists === true) {
+        drawChords(data, key, mode);
+    } else {
         document.querySelector("#loading").style.display = "block";
         let xhr = new XMLHttpRequest();
         xhr.open("GET", `count_files.php?key=${key.replace("#", "sharp").replace("b", "flat")}&mode=${mode}`, true);
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xhr.responseType = "text";
         xhr.send();
-        xhr.onload = () => {
-            if (xhr.readyState === 4 && xhr.status === 200) {
+        xhr.onload = function () {
+            if (this.readyState === 4 && this.status === 200) {
                 document.querySelector("#loading").style.display = "none";
-                data = xhr.response;
+                data = this.response;
                 chordNums = { ...chordNums, [key + mode]: data };
                 drawChords(data, key, mode);
             } else {
-                console.error(xhr.statusText);
+                console.error(this.statusText);
             }
         };
-        xhr.onerror = () => {
-            console.error(xhr.statusText);
+        xhr.onerror = function() {
+            console.error(this.statusText);
         };
-    } else {
-        drawChords(data, key, mode);
     }
-};
+}
 
 const drawChords = (data, key, mode) => {
     for (let ii = 0; ii < data; ii++) {
@@ -507,7 +502,7 @@ const drawChords = (data, key, mode) => {
     }
 };
 
-const zoom = img => {
+const zoom = (img) => {
     document.querySelector("#chord-zoom-image").setAttribute("src", img.src);
     document.querySelector("#more-chords").style.display = "none";
     document.querySelector("#chords-zoom").style.display = "block";
@@ -517,3 +512,7 @@ document.querySelector("#chords-zoom").addEventListener("click", function () {
     this.style.display = "none";
     document.querySelector("#more-chords").style.display = "block";
 });
+
+const docReady = () => {
+    getScale(key);
+};
