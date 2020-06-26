@@ -12,7 +12,6 @@ const docReady = () => {
 let show_notes = true,
     show_frets = true,
     chordBody,
-    thisIsAMode = false,
     key = "E",
     majorScale,
     scale,
@@ -123,8 +122,6 @@ const getScale = thisKey => {
     key = thisKey;
     document.querySelector("#loading").style.display = "block";
 
-    thisIsAMode = false;
-
     switch (key) {
         case "Db":
             document.querySelector("#Natural_Minor").setAttribute("disabled", "disabled");
@@ -155,48 +152,6 @@ const getScale = thisKey => {
             document.querySelector("#Melodic_Minor").removeAttribute("disabled");
             document.querySelector("#Melodic_Minor").textContent = "Melodic Minor";
             document.querySelector("#Melodic_Minor").style.fontSize = "";
-            break;
-    }
-
-    switch (scaleMode) {
-        case "Natural_Minor":
-            mode = "Natural_Minor";
-            break;
-        case "Harmonic_Minor":
-            mode = "Harmonic_Minor";
-            break;
-        case "Melodic_Minor":
-            mode = "Melodic_Minor";
-            break;
-        case "Minor_Pentatonic":
-            mode = "Minor_Pentatonic";
-            break;
-        case "Blues":
-            mode = "Blues";
-            break;
-        case "Dorian":
-            mode = "Major";
-            thisIsAMode = true;
-            break;
-        case "Phrygian":
-            mode = "Major";
-            thisIsAMode = true;
-            break;
-        case "Lydian":
-            mode = "Major";
-            thisIsAMode = true;
-            break;
-        case "Mixolydian":
-            mode = "Major";
-            thisIsAMode = true;
-            break;
-        case "Aeolian":
-            mode = "Major";
-            thisIsAMode = true;
-            break;
-        case "Locrian":
-            mode = "Major";
-            thisIsAMode = true;
             break;
     }
 
@@ -232,7 +187,8 @@ const displayScale = () => {
         G,
         B,
         E,
-        chords = MajorChords;
+        chords = MajorChords,
+        thisIsAMode = false;
 
     switch (tuning) {
         case "standardE":
@@ -297,31 +253,37 @@ const displayScale = () => {
             fretShift = 1;
             noteShift = 1;
             scale = scaleData["Major"];
+            thisIsAMode = true;
             break;
         case "Phrygian":
             fretShift = 2;
             noteShift = 2;
             scale = scaleData["Major"];
+            thisIsAMode = true;
             break;
         case "Lydian":
             fretShift = 3;
             noteShift = 3;
             scale = scaleData["Major"];
+            thisIsAMode = true;
             break;
         case "Mixolydian":
             fretShift = 4;
             noteShift = 4;
             scale = scaleData["Major"];
+            thisIsAMode = true;
             break;
         case "Aeolian":
             fretShift = 5;
             noteShift = 5;
             scale = scaleData["Major"];
+            thisIsAMode = true;
             break;
         case "Locrian":
             fretShift = 6;
             noteShift = 6;
             scale = scaleData["Major"];
+            thisIsAMode = true;
             break;
     }
     document.querySelector("#Dorian").textContent = `${majorScale[1]} Dorian`;
