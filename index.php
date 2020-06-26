@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.min.css">
 	<script defer src="js/fretNotes.min.js"></script>
-	<script defer src="js/guitar_scales.min.js"></script>
+	<script defer src="js/guitar_scales.js"></script>
 	<link rel="icon" type="image/png" href="favicon.png">
 	<title>Guitar Scales</title>
 
@@ -641,7 +641,7 @@
 				<form id="keySelectForm">
 				<label for="keySelect">Key</label><br>
 					<select name="key" id="keySelect" size=""
-						onChange="javascript:getScale(document.getElementById('keySelect'), document.getElementById('modeSelect'), document.getElementById('tuningSelect'))">
+						onChange="javascript:getScale(this.value)">
 						<!-- for the sake of compatibility &sharp; and &flat; are not used here-->
 						<option value="Ab" class="menuTitle">Ab</option>
 						<option id="A" value="A" class="menuTitle">A</option>
@@ -663,7 +663,7 @@
 				<form id="modeSelectForm">
 					<label for="modeSelect">Mode</label><br>
 					<select name="mode" id="modeSelect" size=""
-						onChange="javascript:getScale(document.getElementById('keySelect'), document.getElementById('modeSelect'), document.getElementById('tuningSelect'))">
+						onChange="javascript:changeMode(this.value)">
 						<option id="Major" value="Major" class="modeTitle" selected="selected">Major</option>
 						<option id="Dorian" class="modeTitle" value="Dorian">Dorian</option>
 						<option id="Phrygian" class="modeTitle" value="Phrygian">Phrygian</option>
@@ -684,7 +684,7 @@
 				<form id="tuningSelectForm">
 				<label for="tuningSelect">Tuning</label><br>
 					<select name="tuning" id="tuningSelect" size=""
-						onChange="javascript:getScale(document.getElementById('keySelect'), document.getElementById('modeSelect'), document.getElementById('tuningSelect'))">
+						onChange="javascript:changeTuning(this.value)">
 						<option id="standardE" value="standardE" class="tuning" selected="selected">Standard E</option>
 						<option value="dropD" class="tuning">Drop D</option>
 						<option value="openD" class="tuning">Open D</option>

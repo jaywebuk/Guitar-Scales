@@ -6,13 +6,20 @@
  */
 
 const docReady = () => {
-    getScale(document.querySelector("#keySelect"), document.querySelector("#modeSelect"), document.querySelector("#tuningSelect"));
+    getScale(key);
 };
 
 let show_notes = true,
     show_frets = true,
     chordBody,
-    thisIsAMode = false;
+    thisIsAMode = false,
+    key = "E",
+    majorScale,
+    scale,
+    scaleMode = "Major",
+    tuning = "standardE",
+    scaleData,
+    chordNums = {};
 
 const show_frets_notes = showThis => {
     const fret_notes = document.querySelectorAll(".fretNote");
@@ -63,11 +70,22 @@ const clearBoard = () => {
         el.childNodes[1].style.display = "none";
         el.style.backgroundColor = "darkgreen";
     });
+
     finger0.forEach(el => {
         el.style.visibility = "hidden";
         el.style.backgroundColor = "darkgreen";
     });
     return true;
+};
+
+const changeMode = thisMode => {
+    scaleMode = thisMode;
+    displayScale();
+};
+
+const changeTuning = thisTuning => {
+    tuning = thisTuning;
+    displayScale();
 };
 
 const changeFingerboard = wood => {
@@ -101,14 +119,9 @@ const changeFingerboard = wood => {
     document.querySelector("#fretNut").style.borderColor = fretNutColor;
 };
 
-const getScale = (keyV, modeV, tuningV) => {
+const getScale = thisKey => {
+    key = thisKey;
     document.querySelector("#loading").style.display = "block";
-    const key = keyV.value;
-    const tuning = tuningV.value;
-    let mode = "Major",
-        scaleMode = modeV[modeV.selectedIndex].id,
-        majorScale,
-        scale;
 
     thisIsAMode = false;
 
@@ -188,16 +201,15 @@ const getScale = (keyV, modeV, tuningV) => {
     }
 
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `js/scales.json`, true);
+    xhr.open("GET", `get_scale.php?key=${key.replace("#", "sharp")}`, true);
     xhr.responseType = "json";
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xhr.send();
     xhr.onload = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
             document.querySelector("#loading").style.display = "none";
-            data = xhr.response;
-            majorScale = data["Major"][key + "Major"];
-            scale = data[mode][key + mode];
-            displayScale(majorScale, scale, scaleMode, tuning);
+            scaleData = xhr.response;
+            displayScale();
         } else {
             console.error(`Error ${xhr.status}: ${xhr.statusText}`);
             document.querySelector("#loading").style.display = "none";
@@ -208,7 +220,9 @@ const getScale = (keyV, modeV, tuningV) => {
     };
 };
 
-const displayScale = (majorScale, scale, scaleMode, tuning) => {
+const displayScale = () => {
+    majorScale = scaleData["Major"];
+    scale = scaleData[scaleMode];
     clearBoard();
     let fretShift = 0,
         noteShift = 0,
@@ -264,16 +278,16 @@ const displayScale = (majorScale, scale, scaleMode, tuning) => {
     }
 
     switch (scaleMode) {
-        case "Natural_Minor":
+        case "Natural Minor":
             chords = NaturalMinorChords;
             break;
-        case "Harmonic_Minor":
+        case "HarmonicMinor":
             chords = HarmonicMinorChords;
             break;
-        case "Melodic_Minor":
+        case "MelodicMinor":
             chords = MelodicMinorChords;
             break;
-        case "Minor_Pentatonic":
+        case "Minor Pentatonic":
             chords = MinorPentatonicChords;
             break;
         case "Blues":
@@ -282,26 +296,32 @@ const displayScale = (majorScale, scale, scaleMode, tuning) => {
         case "Dorian":
             fretShift = 1;
             noteShift = 1;
+            scale = scaleData["Major"];
             break;
         case "Phrygian":
             fretShift = 2;
             noteShift = 2;
+            scale = scaleData["Major"];
             break;
         case "Lydian":
             fretShift = 3;
             noteShift = 3;
+            scale = scaleData["Major"];
             break;
         case "Mixolydian":
             fretShift = 4;
             noteShift = 4;
+            scale = scaleData["Major"];
             break;
         case "Aeolian":
             fretShift = 5;
             noteShift = 5;
+            scale = scaleData["Major"];
             break;
         case "Locrian":
             fretShift = 6;
             noteShift = 6;
+            scale = scaleData["Major"];
             break;
     }
     document.querySelector("#Dorian").textContent = `${majorScale[1]} Dorian`;
@@ -456,7 +476,10 @@ const displayScale = (majorScale, scale, scaleMode, tuning) => {
 };
 
 chord_click = function () {
-    document.querySelector("#loading").style.display = "block";
+    document.querySelector("#more-chords-body").innerHTML = "";
+    let data = 0;
+    let keyExists = false;
+
     const key = this.dataset.key;
     const mode = this.dataset.mode;
     const keyText = key.replace("-", " / " + key.substr(0, key.indexOf("P")));
@@ -469,40 +492,57 @@ chord_click = function () {
         el.removeEventListener("click", chord_click);
     });
     document.querySelector("#more-chords-header").textContent = keyText + " " + mode;
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", `count_files.php?key=${key.replace("#", "sharp").replace("b", "flat")}&mode=${mode}`, true);
-    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-    xhr.responseType = "text";
-    xhr.send();
-    xhr.onload = () => {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            document.querySelector("#loading").style.display = "none";
-            data = xhr.response;
-            document.querySelector("#more-chords-body").innerHTML = "";
-            for (let ii = 0; ii < data; ii++) {
-                document.querySelector("#more-chords-body").innerHTML +=
-                    '<div class="more-chord-container"><img id="' +
-                    key.replace("#", "sharp").replace("b", "flat") +
-                    ii +
-                    '" class="chord-image more-chord-image" src="images/Chords/' +
-                    key.replace("#", "sharp").replace("b", "flat") +
-                    "/" +
-                    mode +
-                    "/" +
-                    key.replace("#", "sharp").replace("b", "flat") +
-                    "_" +
-                    mode +
-                    (ii + 1) +
-                    '.png" onclick="javascript:zoom(this)"></div>';
+    if (Object.keys(chordNums).length > 0) {
+        for (thisKey in chordNums) {
+            if (thisKey === key + mode) {
+                keyExists = true;
+                data = chordNums[key + mode];
             }
-        } else {
-            console.error(xhr.statusText);
         }
-    };
-    xhr.onerror = () => {
-        console.error(xhr.statusText);
-    };
+    }
+
+    if (keyExists === false) {
+        document.querySelector("#loading").style.display = "block";
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", `count_files.php?key=${key.replace("#", "sharp").replace("b", "flat")}&mode=${mode}`, true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xhr.responseType = "text";
+        xhr.send();
+        xhr.onload = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.querySelector("#loading").style.display = "none";
+                data = xhr.response;
+                chordNums = { ...chordNums, [key + mode]: data };
+                drawChords(data, key, mode);
+            } else {
+                console.error(xhr.statusText);
+            }
+        };
+        xhr.onerror = () => {
+            console.error(xhr.statusText);
+        };
+    } else {
+        drawChords(data, key, mode);
+    }
+};
+
+const drawChords = (data, key, mode) => {
+    for (let ii = 0; ii < data; ii++) {
+        document.querySelector("#more-chords-body").innerHTML +=
+            '<div class="more-chord-container"><img id="' +
+            key.replace("#", "sharp").replace("b", "flat") +
+            ii +
+            '" class="chord-image more-chord-image" src="images/Chords/' +
+            key.replace("#", "sharp").replace("b", "flat") +
+            "/" +
+            mode +
+            "/" +
+            key.replace("#", "sharp").replace("b", "flat") +
+            "_" +
+            mode +
+            (ii + 1) +
+            '.png" onclick="javascript:zoom(this)"></div>';
+    }
 };
 
 const zoom = img => {

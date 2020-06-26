@@ -5,5 +5,5 @@ Melodic_Minor_Scales*
 Natural_Minor_Scales*
 Minor_Pentatonic_Scales*
 Blues_Scales*
+scales.json.old
 *.min.*
-get_scale.php

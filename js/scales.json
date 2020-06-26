@@ -1,92 +1,106 @@
 {
-    "Major": {
-        "AbMajor": ["Ab", "Bb", "C", "Db", "Eb", "F", "G"],
-        "AMajor": ["A", "B", "C#", "D", "E", "F#", "G#"],
-        "BbMajor": ["Bb", "C", "D", "Eb", "F", "G", "A"],
-        "BMajor": ["B", "C#", "D#", "E", "F#", "G#", "A#"],
-        "CMajor": ["C", "D", "E", "F", "G", "A", "B"],
-        "C#Major": ["C#", "D#", "E#", "F#", "G#", "A#", "B#"],
-        "DbMajor": ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"],
-        "DMajor": ["D", "E", "F#", "G", "A", "B", "C#"],
-        "EbMajor": ["Eb", "F", "G", "Ab", "Bb", "C", "D"],
-        "EMajor": ["E", "F#", "G#", "A", "B", "C#", "D#"],
-        "FMajor": ["F", "G", "A", "Bb", "C", "D", "E"],
-        "F#Major": ["F#", "G#", "A#", "B", "C#", "D#", "E#"],
-        "GMajor": ["G", "A", "B", "C", "D", "E", "F#"]
+    "Ab": {
+        "Major": ["Ab", "Bb", "C", "Db", "Eb", "F", "G"],
+        "Melodic Minor": ["Ab", "Bb", "Cb", "Db", "Eb", "F", "G"],
+        "Harmonic Minor": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "G"],
+        "Natural Minor": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "Gb"],
+        "Minor Pentatonic": ["C", "Eb", "F", "G", "Bb"],
+        "Blues": ["C", "Eb", "F", "Gb", "G", "Bb"]
     },
-    "Melodic_Minor": {
-        "AbMelodic_Minor": ["Ab", "Bb", "Cb", "Db", "Eb", "F", "G"],
-        "AMelodic_Minor": ["A", "B", "C", "D", "E", "F#", "G#"],
-        "BbMelodic_Minor": ["Bb", "C", "Db", "Eb", "F", "G", "A"],
-        "BMelodic_Minor": ["B", "C#", "D", "E", "F#", "G#", "A#"],
-        "CMelodic_Minor": ["C", "D", "Eb", "F", "G", "A", "B"],
-        "C#Melodic_Minor": ["C#", "D#", "E", "F#", "G#", "A#", "B#"],
-        "DbMelodic_Minor": [""],
-        "DMelodic_Minor": ["D", "E", "F", "G", "A", "B", "C#"],
-        "EbMelodic_Minor": ["Eb", "F", "Gb", "Ab", "Bb", "C", "D"],
-        "EMelodic_Minor": ["E", "F#", "G", "A", "B", "C#", "D#"],
-        "FMelodic_Minor": ["F", "G", "Ab", "Bb", "C", "D", "E"],
-        "F#Melodic_Minor": ["F#", "G#", "A", "B", "C#", "D#", "E#"],
-        "GMelodic_Minor": ["G", "A", "Bb", "C", "D", "E", "F#"]
+    "A": {
+        "Major": ["A", "B", "C#", "D", "E", "F#", "G#"],
+        "Melodic Minor": ["A", "B", "C", "D", "E", "F#", "G#"],
+        "Harmonic Minor": ["A", "B", "C", "D", "E", "F", "G#"],
+        "Natural Minor": ["A", "B", "C", "D", "E", "F", "G"],
+        "Minor Pentatonic": ["A", "C", "D", "E", "G"],
+        "Blues": ["A", "C", "D", "Eb", "E", "G"]
     },
-    "Harmonic_Minor": {
-        "AbHarmonic_Minor": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "G"],
-        "AHarmonic_Minor": ["A", "B", "C", "D", "E", "F", "G#"],
-        "BbHarmonic_Minor": ["Bb", "C", "Db", "Eb", "F", "Gb", "A"],
-        "BHarmonic_Minor": ["B", "C#", "D", "E", "F#", "G", "A#"],
-        "CHarmonic_Minor": ["C", "D", "Eb", "F", "G", "Ab", "B"],
-        "C#Harmonic_Minor": ["C#", "D#", "E", "F#", "G#", "A", "B#"],
-        "F#Harmonic_Minor": ["F#", "G#", "A", "B", "C#", "D", "E#"],
-        "DbHarmonic_Minor": [""],
-        "DHarmonic_Minor": ["D", "E", "F", "G", "A", "Bb", "C#"],
-        "EbHarmonic_Minor": ["Eb", "F", "Gb", "Ab", "Bb", "Cb", "D"],
-        "EHarmonic_Minor": ["E", "F#", "G", "A", "B", "C", "D#"],
-        "FHarmonic_Minor": ["F", "G", "Ab", "Bb", "C", "Db", "E"],
-        "GHarmonic_Minor": ["G", "A", "Bb", "C", "D", "Eb", "F#"]
+    "Bb": {
+        "Major": ["Bb", "C", "D", "Eb", "F", "G", "A"],
+        "Melodic Minor": ["Bb", "C", "Db", "Eb", "F", "G", "A"],
+        "Harmonic Minor": ["Bb", "C", "Db", "Eb", "F", "Gb", "A"],
+        "Natural Minor": ["Bb", "C", "Db", "Eb", "F", "Gb", "Ab"],
+        "Minor Pentatonic": ["Bb", "Db", "Eb", "F", "Ab"],
+        "Blues": ["Bb", "Db", "Eb", "E", "F", "Ab"]
     },
-    "Natural_Minor": {
-        "AbNatural_Minor": ["Ab", "Bb", "Cb", "Db", "Eb", "Fb", "Gb"],
-        "ANatural_Minor": ["A", "B", "C", "D", "E", "F", "G"],
-        "BbNatural_Minor": ["Bb", "C", "Db", "Eb", "F", "Gb", "Ab"],
-        "BNatural_Minor": ["B", "C#", "D", "E", "F#", "G", "A"],
-        "CNatural_Minor": ["C", "D", "Eb", "F", "G", "Ab", "Bb"],
-        "C#Natural_Minor": ["C#", "D#", "E", "F#", "G#", "A", "B"],
-        "F#Natural_Minor": ["F#", "G#", "A", "B", "C#", "D", "E"],
-        "DbNatural_Minor": [""],
-        "DNatural_Minor": ["D", "E", "F", "G", "A", "Bb", "C"],
-        "EbNatural_Minor": ["Eb", "F", "Gb", "Ab", "Bb", "Cb", "Db"],
-        "ENatural_Minor": ["E", "F#", "G", "A", "B", "C", "D"],
-        "FNatural_Minor": ["F", "G", "Ab", "Bb", "C", "Db", "Eb"],
-        "GNatural_Minor": ["G", "A", "Bb", "C", "D", "Eb", "F"]
+    "B": {
+        "Major": ["B", "C#", "D#", "E", "F#", "G#", "A#"],
+        "Melodic Minor": ["B", "C#", "D", "E", "F#", "G#", "A#"],
+        "Harmonic Minor": ["B", "C#", "D", "E", "F#", "G", "A#"],
+        "Natural Minor": ["B", "C#", "D", "E", "F#", "G", "A"],
+        "Minor Pentatonic": ["B", "D", "E", "F#", "A"],
+        "Blues": ["B", "D", "E", "F", "F#", "A"]
     },
-    "Minor_Pentatonic": {
-        "CMinor_Pentatonic": ["C", "Eb", "F", "G", "Bb"],
-        "C#Minor_Pentatonic": ["C#", "E", "F#", "G#", "B"],
-        "DbMinor_Pentatonic": ["Db", "Fb", "Gb", "Ab", "Cb"],
-        "DMinor_Pentatonic": ["D", "F", "G", "A", "C"],
-        "EbMinor_Pentatonic": ["Eb", "Gb", "Ab", "Bb", "Db"],
-        "EMinor_Pentatonic": ["E", "G", "A", "B", "D"],
-        "FMinor_Pentatonic": ["F", "Ab", "Bb", "C", "Eb"],
-        "F#Minor_Pentatonic": ["F#", "A", "B", "C#", "E"],
-        "GMinor_Pentatonic": ["G", "Bb", "C", "D", "F"],
-        "AbMinor_Pentatonic": ["Ab", "Cb", "Db", "Eb", "Gb"],
-        "AMinor_Pentatonic": ["A", "C", "D", "E", "G"],
-        "BbMinor_Pentatonic": ["Bb", "Db", "Eb", "F", "Ab"],
-        "BMinor_Pentatonic": ["B", "D", "E", "F#", "A"]
+    "C": {
+        "Major": ["C", "D", "E", "F", "G", "A", "B"],
+        "Melodic Minor": ["C", "D", "Eb", "F", "G", "A", "B"],
+        "Harmonic Minor": ["C", "D", "Eb", "F", "G", "Ab", "B"],
+        "Natural Minor": ["C", "D", "Eb", "F", "G", "Ab", "Bb"],
+        "Minor Pentatonic": ["C", "Eb", "F", "G", "Bb"],
+        "Blues": ["C", "Eb", "F", "Gb", "G", "Bb"]
     },
-    "Blues": {
-        "CBlues": ["C", "Eb", "F", "Gb", "G", "Bb"],
-        "C#Blues": ["C#", "E", "F#", "G", "G#", "B"],
-        "DbBlues": ["Db", "E", "Gb", "G", "Ab", "B"],
-        "DBlues": ["D", "F", "G", "Ab", "A", "C"],
-        "EbBlues": ["Eb", "Gb", "Ab", "A", "Bb", "Db"],
-        "EBlues": ["E", "G", "A", "Bb", "B", "D"],
-        "FBlues": ["F", "Ab", "Bb", "B", "C", "Eb"],
-        "F#Blues": ["F#", "A", "B", "C", "C#", "E"],
-        "GBlues": ["G", "Bb", "C", "Db", "D", "F"],
-        "AbBlues": ["Ab", "B", "Db", "D", "Eb", "Gb"],
-        "ABlues": ["A", "C", "D", "Eb", "E", "G"],
-        "BbBlues": ["Bb", "Db", "Eb", "E", "F", "Ab"],
-        "BBlues": ["B", "D", "E", "F", "F#", "A"]
+    "Csharp": {
+        "Major": ["C#", "D#", "E#", "F#", "G#", "A#", "B#"],
+        "Melodic Minor": ["C#", "D#", "E", "F#", "G#", "A#", "B#"],
+        "Harmonic Minor": ["C#", "D#", "E", "F#", "G#", "A", "B#"],
+        "Natural Minor": ["C#", "D#", "E", "F#", "G#", "A", "B"],
+        "Minor Pentatonic": ["C#", "E", "F#", "G#", "B"],
+        "Blues": ["C#", "E", "F#", "G", "G#", "B"]
+    },
+    "Db": {
+        "Major": ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"],
+        "Melodic Minor": [""],
+        "Harmonic Minor": [""],
+        "Natural Minor": [""],
+        "Minor Pentatonic": ["Db", "Fb", "Gb", "Ab", "Cb"],
+        "Blues": ["Db", "E", "Gb", "G", "Ab", "B"]
+    },
+    "D": {
+        "Major": ["D", "E", "F#", "G", "A", "B", "C#"],
+        "Melodic Minor": ["D", "E", "F", "G", "A", "B", "C#"],
+        "Harmonic Minor": ["D", "E", "F", "G", "A", "Bb", "C#"],
+        "Natural Minor": ["D", "E", "F", "G", "A", "Bb", "C"],
+        "Minor Pentatonic": ["D", "F", "G", "A", "C"],
+        "Blues": ["D", "F", "G", "Ab", "A", "C"]
+    },
+    "Eb": {
+        "Major": ["Eb", "F", "G", "Ab", "Bb", "C", "D"],
+        "Melodic Minor": ["Eb", "F", "Gb", "Ab", "Bb", "C", "D"],
+        "Harmonic Minor": ["Eb", "F", "Gb", "Ab", "Bb", "Cb", "D"],
+        "Natural Minor": ["Eb", "F", "Gb", "Ab", "Bb", "Cb", "Db"],
+        "Minor Pentatonic": ["Eb", "Gb", "Ab", "Bb", "Db"],
+        "Blues": ["Eb", "Gb", "Ab", "A", "Bb", "Db"]
+    },
+    "E": {
+        "Major": ["E", "F#", "G#", "A", "B", "C#", "D#"],
+        "Melodic Minor": ["E", "F#", "G", "A", "B", "C#", "D#"],
+        "Harmonic Minor": ["E", "F#", "G", "A", "B", "C", "D#"],
+        "Natural Minor": ["E", "F#", "G", "A", "B", "C", "D"],
+        "Minor Pentatonic": ["E", "G", "A", "B", "D"],
+        "Blues": ["E", "G", "A", "Bb", "B", "D"]
+    },
+    "F": {
+        "Major": ["F", "G", "A", "Bb", "C", "D", "E"],
+        "Melodic Minor": ["F", "G", "Ab", "Bb", "C", "D", "E"],
+        "Harmonic Minor": ["F", "G", "Ab", "Bb", "C", "Db", "E"],
+        "Natural Minor": ["F", "G", "Ab", "Bb", "C", "Db", "Eb"],
+        "Minor Pentatonic": ["F", "Ab", "Bb", "C", "Eb"],
+        "Blues": ["F", "Ab", "Bb", "B", "C", "Eb"]
+    },
+    "Fsharp": {
+        "Major": ["F#", "G#", "A#", "B", "C#", "D#", "E#"],
+        "Melodic Minor": ["F#", "G#", "A", "B", "C#", "D#", "E#"],
+        "Harmonic Minor": ["F#", "G#", "A", "B", "C#", "D", "E#"],
+        "Natural Minor": ["F#", "G#", "A", "B", "C#", "D", "E"],
+        "Minor Pentatonic": ["F#", "A", "B", "C#", "E"],
+        "Blues": ["F#", "A", "B", "C", "C#", "E"]
+    },
+    "G": {
+        "Major": ["G", "A", "B", "C", "D", "E", "F#"],
+        "Melodic Minor": ["G", "A", "Bb", "C", "D", "E", "F#"],
+        "Harmonic Minor": ["G", "A", "Bb", "C", "D", "Eb", "F#"],
+        "Natural Minor": ["G", "A", "Bb", "C", "D", "Eb", "F"],
+        "Minor Pentatonic": ["G", "Bb", "C", "D", "F"],
+        "Blues": ["G", "Bb", "C", "Db", "D", "F"]
     }
 }
