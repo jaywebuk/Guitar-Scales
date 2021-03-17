@@ -15,7 +15,7 @@ let showNotes = true,
     scaleData,
     chordNums = {};
 
-const show_frets_notes = (showThis) => {
+const show_frets_notes = showThis => {
     const fret_notes = document.querySelectorAll(".fretNote");
     const fret_nums = document.querySelectorAll(".fret-num");
     switch (showThis) {

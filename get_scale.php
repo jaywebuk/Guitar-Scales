@@ -2,7 +2,7 @@
 
 include "ChromePhp.php";
 
-if(filter_has_var(INPUT_GET, 'key') && (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')) {
+if(filter_has_var(INPUT_GET, 'key')) {
   $url = 'js/scales.json';
   $data = file_get_contents($url);
   $scale = json_decode($data);
