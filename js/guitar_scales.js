@@ -360,7 +360,7 @@ const displayScale = () => {
                 if (A[fretNum][ii] === scale[jj]) {
                     AF = document.getElementById("AF" + fretNum);
                     AF.style.visibility = "visible";
-                    AF.childNodes[1].style.display = "inline";
+                    AF.childNodes[1].style.display = "inline"
                     AF.childNodes[1].textContent = scale[jj];
 
                     if (A[fretNum][ii] === scale[0 + fretShift]) {
