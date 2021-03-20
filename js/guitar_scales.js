@@ -1,9 +1,21 @@
 /**
  *
  * @author Jason Robinson
- * @copyright Jason Robinson 2017 - 2020
+ * @copyright Jason Robinson 2017 - 2021
  *
  */
+
+const status = response => {
+    if (response.status >= 200 && response.status < 300) {
+        return Promise.resolve(response);
+    } else {
+        return Promise.reject(new Error(response.statusText));
+    }
+};
+
+const json = response => {
+    return response.json();
+};
 
 let showNotes = true,
     showFrets = true,
@@ -72,17 +84,17 @@ const clearBoard = () => {
     return true;
 };
 
-const changeMode = (thisMode) => {
+const changeMode = thisMode => {
     scaleMode = thisMode;
     displayScale();
 };
 
-const changeTuning = (thisTuning) => {
+const changeTuning = thisTuning => {
     tuning = thisTuning;
     displayScale();
 };
 
-const changeFingerboard = (wood) => {
+const changeFingerboard = wood => {
     const dots = document.querySelectorAll(".dots");
     const necks = document.querySelectorAll(".neck");
     switch (wood.value) {
@@ -110,64 +122,56 @@ const changeFingerboard = (wood) => {
         el.style.backgroundColor = dotColor;
     });
 
-    document.querySelector("#fretNut").style.borderColor = fretNutColor;
+    document.getElementById("fretNut").style.borderColor = fretNutColor;
 };
 
-const getScale = (thisKey) => {
+const getScale = thisKey => {
     key = thisKey;
-    document.querySelector("#loading").style.display = "block";
+    document.getElementById("loading").style.display = "block";
+    const modeSelect = document.getElementById("modeSelect");
+    const Natural_Minor = document.getElementById("Natural_Minor");
+    const Harmonic_Minor = document.getElementById("Harmonic_Minor");
+    const Melodic_Minor = document.getElementById("Melodic_Minor");
 
     switch (key) {
         case "Db":
-            document.querySelector("#Natural_Minor").setAttribute("disabled", "disabled");
-            document.querySelector("#Natural_Minor").textContent = "Natural Minor - Use C#";
-            document.querySelector("#Natural_Minor").style.fontSize = "1.1rem";
-            document.querySelector("#Harmonic_Minor").setAttribute("disabled", "disabled");
-            document.querySelector("#Harmonic_Minor").textContent = "Harmonic Minor - Use C#";
-            document.querySelector("#Harmonic_Minor").style.fontSize = "1.1rem";
-            document.querySelector("#Melodic_Minor").setAttribute("disabled", "disabled");
-            document.querySelector("#Melodic_Minor").textContent = "Melodic Minor - Use C#";
-            document.querySelector("#Melodic_Minor").style.fontSize = "1.1rem";
-            if (
-                document.querySelector("#modeSelect").selectedIndex === 7 ||
-                document.querySelector("#modeSelect").selectedIndex === 8 ||
-                document.querySelector("#modeSelect").selectedIndex === 9
-            ) {
-                document.querySelector("#modeSelect").selectedIndex = 0;
+            Natural_Minor.setAttribute("disabled", "disabled");
+            Natural_Minor.textContent = "Natural Minor - Use C#";
+            Natural_Minor.style.fontSize = "1.1rem";
+            Harmonic_Minor.setAttribute("disabled", "disabled");
+            Harmonic_Minor.textContent = "Harmonic Minor - Use C#";
+            Harmonic_Minor.style.fontSize = "1.1rem";
+            Melodic_Minor.setAttribute("disabled", "disabled");
+            Melodic_Minor.textContent = "Melodic Minor - Use C#";
+            Melodic_Minor.style.fontSize = "1.1rem";
+            if ([7, 8, 9].indexOf(modeSelect.selectedIndex) !== -1) {
+                modeSelect.selectedIndex = 0;
                 scaleMode = "Major";
             }
             break;
         default:
-            document.querySelector("#Natural_Minor").removeAttribute("disabled");
-            document.querySelector("#Natural_Minor").textContent = "Natural Minor";
-            document.querySelector("#Natural_Minor").style.fontSize = "";
-            document.querySelector("#Harmonic_Minor").removeAttribute("disabled");
-            document.querySelector("#Harmonic_Minor").textContent = "Harmonic Minor";
-            document.querySelector("#Harmonic_Minor").style.fontSize = "";
-            document.querySelector("#Melodic_Minor").removeAttribute("disabled");
-            document.querySelector("#Melodic_Minor").textContent = "Melodic Minor";
-            document.querySelector("#Melodic_Minor").style.fontSize = "";
+            Natural_Minor.removeAttribute("disabled");
+            Natural_Minor.textContent = "Natural Minor";
+            Natural_Minor.style.fontSize = "";
+            Harmonic_Minor.removeAttribute("disabled");
+            Harmonic_Minor.textContent = "Harmonic Minor";
+            Harmonic_Minor.style.fontSize = "";
+            Melodic_Minor.removeAttribute("disabled");
+            Melodic_Minor.textContent = "Melodic Minor";
+            Melodic_Minor.style.fontSize = "";
             break;
     }
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", `get_scale.php?key=${key.replace("#", "sharp")}`, true);
-    xhr.responseType = "json";
-    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-    xhr.send();
-    xhr.onload = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            document.querySelector("#loading").style.display = "none";
-            scaleData = this.response;
+    fetch(`get_scale.php?key=${key.replace("#", "sharp")}`)
+        .then(status)
+        .then(json)
+        .then(function (data) {
+            document.getElementById("loading").style.display = "none";
+            scaleData = data;
             displayScale();
-        } else {
-            console.error(`Error ${this.status}: ${this.statusText}`);
-            document.querySelector("#loading").style.display = "none";
-        }
-    };
-    xhr.onerror = function() {
-        console.error(this.statusText);
-    };
+        }).catch(function (error) {
+            console.log('Request failed', error);
+        });
 };
 
 const displayScale = () => {
@@ -281,26 +285,26 @@ const displayScale = () => {
             thisIsAMode = true;
             break;
     }
-    document.querySelector("#Dorian").textContent = `${majorScale[1]} Dorian`;
-    document.querySelector("#Phrygian").textContent = `${majorScale[2]} Phrygian`;
-    document.querySelector("#Lydian").textContent = `${majorScale[3]} Lydian`;
-    document.querySelector("#Mixolydian").textContent = `${majorScale[4]} Mixolydian`;
-    document.querySelector("#Aeolian").textContent = `${majorScale[5]} Aeolian`;
-    document.querySelector("#Locrian").textContent = `${majorScale[6]} Locrian`;
-    document.querySelector("#scaleTitle").textContent = `${scale[noteShift]} ${scaleMode.replace("_", " ")}`;
-    document.querySelector("#notes").innerHTML = "";
+    document.getElementById("Dorian").textContent = `${majorScale[1]} Dorian`;
+    document.getElementById("Phrygian").textContent = `${majorScale[2]} Phrygian`;
+    document.getElementById("Lydian").textContent = `${majorScale[3]} Lydian`;
+    document.getElementById("Mixolydian").textContent = `${majorScale[4]} Mixolydian`;
+    document.getElementById("Aeolian").textContent = `${majorScale[5]} Aeolian`;
+    document.getElementById("Locrian").textContent = `${majorScale[6]} Locrian`;
+    document.getElementById("scaleTitle").textContent = `${scale[noteShift]} ${scaleMode.replace("_", " ")}`;
+    document.getElementById("notes").innerHTML = "";
 
     for (let fretNum = 0; fretNum < 25; fretNum++) {
-        document.querySelector("#fret" + fretNum).style.backgroundColor = "";
+        document.getElementById("fret" + fretNum).style.backgroundColor = "";
         if (fretNum < scale.length + 1) {
             if (fretNum === 0) {
-                document.querySelector("#notes").innerHTML += `<span class="rootNote">${scale[fretNum + noteShift]}</span> `;
+                document.getElementById("notes").innerHTML += `<span class="rootNote">${scale[fretNum + noteShift]}</span> `;
             } else if (fretNum > 0 && fretNum < scale.length) {
                 if (fretNum + noteShift >= scale.length) {
                     noteShift -= scale.length;
                 }
 
-                document.querySelector("#notes").textContent += `${scale[fretNum + noteShift]} `;
+                document.getElementById("notes").textContent += `${scale[fretNum + noteShift]} `;
             } else if (fretNum === scale.length) {
                 if (fretNum + noteShift >= scale.length) {
                     noteShift -= scale.length;
@@ -310,98 +314,103 @@ const displayScale = () => {
         for (let jj = 0; jj < scale.length; jj++) {
             for (let ii = 0; ii < 3; ii++) {
                 if (E[fretNum][ii] === scale[jj]) {
-                    document.querySelector("#E1F" + fretNum).style.visibility = "visible";
-                    document.querySelector("#E1F" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#E1F" + fretNum).childNodes[1].textContent = scale[jj];
+                    let E1F = document.getElementById("E1F" + fretNum);
+                    E1F.style.visibility = "visible";
+                    E1F.childNodes[1].style.display = "inline";
+                    E1F.childNodes[1].textContent = scale[jj];
 
                     if (E[fretNum][ii] === scale[0 + fretShift]) {
-                        document.querySelector("#E1F" + fretNum).style.backgroundColor = "#005bb1";
+                        E1F.style.backgroundColor = "#005bb1";
                     }
                 }
 
                 if (B[fretNum][ii] === scale[jj]) {
-                    document.querySelector("#BF" + fretNum).style.visibility = "visible";
-                    document.querySelector("#BF" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#BF" + fretNum).childNodes[1].textContent = scale[jj];
+                    let BF = document.getElementById("BF" + fretNum);
+                    BF.style.visibility = "visible";
+                    BF.childNodes[1].style.display = "inline";
+                    BF.childNodes[1].textContent = scale[jj];
 
                     if (B[fretNum][ii] === scale[0 + fretShift]) {
-                        document.querySelector("#BF" + fretNum).style.backgroundColor = "#005bb1";
+                        BF.style.backgroundColor = "#005bb1";
                     }
                 }
 
                 if (G[fretNum][ii] === scale[jj]) {
-                    document.querySelector("#GF" + fretNum).style.visibility = "visible";
-                    document.querySelector("#GF" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#GF" + fretNum).childNodes[1].textContent = scale[jj];
+                    GF = document.getElementById("GF" + fretNum);
+                    GF.style.visibility = "visible";
+                    GF.childNodes[1].style.display = "inline";
+                    GF.childNodes[1].textContent = scale[jj];
 
                     if (G[fretNum][ii] === scale[0 + fretShift]) {
-                        document.querySelector("#GF" + fretNum).style.backgroundColor = "#005bb1";
+                        GF.style.backgroundColor = "#005bb1";
                     }
                 }
 
                 if (D[fretNum][ii] === scale[jj]) {
-                    document.querySelector("#DF" + fretNum).style.visibility = "visible";
-                    document.querySelector("#DF" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#DF" + fretNum).childNodes[1].textContent = scale[jj];
+                    DF = document.getElementById("DF" + fretNum);
+                    DF.style.visibility = "visible";
+                    DF.childNodes[1].style.display = "inline";
+                    DF.childNodes[1].textContent = scale[jj];
 
                     if (D[fretNum][ii] === scale[0 + fretShift]) {
-                        document.querySelector("#DF" + fretNum).style.backgroundColor = "#005bb1";
+                        DF.style.backgroundColor = "#005bb1";
                     }
                 }
 
                 if (A[fretNum][ii] === scale[jj]) {
-                    document.querySelector("#AF" + fretNum).style.visibility = "visible";
-                    document.querySelector("#AF" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#AF" + fretNum).childNodes[1].textContent = scale[jj];
+                    AF = document.getElementById("AF" + fretNum);
+                    AF.style.visibility = "visible";
+                    AF.childNodes[1].style.display = "inline";
+                    AF.childNodes[1].textContent = scale[jj];
 
                     if (A[fretNum][ii] === scale[0 + fretShift]) {
-                        document.querySelector("#AF" + fretNum).style.backgroundColor = "#005bb1";
+                        AF.style.backgroundColor = "#005bb1";
                     }
                 }
 
                 if (E2[fretNum][ii] === scale[jj]) {
-                    document.querySelector("#E2F" + fretNum).style.visibility = "visible";
-                    document.querySelector("#E2F" + fretNum).childNodes[1].style.display = "inline";
-                    document.querySelector("#E2F" + fretNum).childNodes[1].textContent = scale[jj];
+                    E2F = document.getElementById("E2F" + fretNum);
+                    E2F.style.visibility = "visible";
+                    E2F.childNodes[1].style.display = "inline";
+                    E2F.childNodes[1].textContent = scale[jj];
 
                     if (E2[fretNum][ii] === scale[0 + fretShift]) {
-                        document.querySelector("#E2F" + fretNum).style.backgroundColor = "#005bb1";
+                        E2F.style.backgroundColor = "#005bb1";
                     }
                 }
             }
         }
     }
     if (thisIsAMode === true) {
-        document.querySelector("#scaleTitle").textContent += ` '${scale[0]}'`;
+        document.getElementById("scaleTitle").textContent += ` '${scale[0]}'`;
     }
 
     if (tuning === "standardE") {
-        document.querySelector("#notes").textContent += ' "Standard E"';
+        document.getElementById("notes").textContent += ' "Standard E"';
     }
     if (tuning === "dropD") {
-        document.querySelector("#notes").textContent += ' "Drop D"';
+        document.getElementById("notes").textContent += ' "Drop D"';
     }
     if (tuning === "openD") {
-        document.querySelector("#notes").textContent += ' "Open D"';
+        document.getElementById("notes").textContent += ' "Open D"';
     }
     if (tuning === "dropC") {
-        document.querySelector("#notes").textContent += ' "Drop C"';
+        document.getElementById("notes").textContent += ' "Drop C"';
     }
     if (tuning === "DADGAD") {
-        document.querySelector("#notes").textContent += ' "DADGAD"';
+        document.getElementById("notes").textContent += ' "DADGAD"';
     }
 
     if (scaleMode === "Blues") {
-        document.querySelector("#chords-body").textContent = "CHORDS COMING SOON";
+        document.getElementById("chords-body").textContent = "CHORDS COMING SOON";
     } else {
-        document.querySelector("#chords-body").innerHTML = "";
+        document.getElementById("chords-body").innerHTML = "";
         for (let ii = 0; ii < chords.length; ii++) {
             let folder = scale[ii];
-            document.querySelector(
-                "#chords-body"
+            document.getElementById("chords-body"
             ).innerHTML += `<div id="chord${ii}" class="chord-container" data-key="${scale[ii]}" data-mode="${chords[ii]}"></div>`;
-            document.querySelector("#chord" + ii).innerHTML += `<h2>${scale[ii]} ${chords[ii]}</h2>`;
-            document.querySelector("#chord" + ii).innerHTML +=
+            document.getElementById("chord" + ii).innerHTML += `<h2>${scale[ii]} ${chords[ii]}</h2>`;
+            document.getElementById("chord" + ii).innerHTML +=
                 '<img class="chord-image" src="images/Chords/' +
                 folder.replace("#", "sharp").replace("b", "flat") +
                 "/" +
@@ -423,8 +432,8 @@ const displayScale = () => {
         el.addEventListener("click", chord_click);
     });
 
-    document.querySelector("#more-chords-close").addEventListener("click", () => {
-        document.querySelector("#more-chords").style.display = "none";
+    document.getElementById("more-chords-close").addEventListener("click", () => {
+        document.getElementById("more-chords").style.display = "none";
         chordContainers.forEach((el) => {
             el.addEventListener("click", chord_click);
             el.style.opacity = "1";
@@ -433,22 +442,22 @@ const displayScale = () => {
 };
 
 function chord_click() {
-    document.querySelector("#more-chords-body").innerHTML = "";
+    document.getElementById("more-chords-body").innerHTML = "";
     let data = 0;
     let keyExists = false;
 
     const key = this.dataset.key;
     const mode = this.dataset.mode;
     const keyText = key.replace("-", " / " + key.substr(0, key.indexOf("P")));
-    document.querySelector("#more-chords-body").textContent = "";
-    document.querySelector("#more-chords").style.display = "block";
+    document.getElementById("more-chords-body").textContent = "";
+    document.getElementById("more-chords").style.display = "block";
     document.querySelector(".chord-container").removeEventListener("click", chord_click);
     let chordContainers = document.querySelectorAll(".chord-container");
     chordContainers.forEach((el) => {
         el.style.opacity = "0.4";
         el.removeEventListener("click", chord_click);
     });
-    document.querySelector("#more-chords-header").textContent = keyText + " " + mode;
+    document.getElementById("more-chords-header").textContent = keyText + " " + mode;
     if (Object.keys(chordNums).length > 0) {
         for (const thisKey in chordNums) {
             if (thisKey === key + mode) {
@@ -461,31 +470,25 @@ function chord_click() {
     if (keyExists === true) {
         drawChords(data, key, mode);
     } else {
-        document.querySelector("#loading").style.display = "block";
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", `count_files.php?key=${key.replace("#", "sharp").replace("b", "flat")}&mode=${mode}`, true);
-        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-        xhr.responseType = "text";
-        xhr.send();
-        xhr.onload = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                document.querySelector("#loading").style.display = "none";
-                data = this.response;
+        document.getElementById("loading").style.display = "block";
+
+        fetch(`count_files.php?key=${key.replace("#", "sharp").replace("b", "flat")}&mode=${mode}`)
+            .then(status)
+            .then(json)
+            .then(function (data) {
+                console.log(data);
+                document.getElementById("loading").style.display = "none";
                 chordNums = { ...chordNums, [key + mode]: data };
                 drawChords(data, key, mode);
-            } else {
-                console.error(this.statusText);
-            }
-        };
-        xhr.onerror = function() {
-            console.error(this.statusText);
-        };
+            }).catch(function (error) {
+                console.log('Request failed', error);
+            });
     }
 }
 
 const drawChords = (data, key, mode) => {
     for (let ii = 0; ii < data; ii++) {
-        document.querySelector("#more-chords-body").innerHTML +=
+        document.getElementById("more-chords-body").innerHTML +=
             '<div class="more-chord-container"><img id="' +
             key.replace("#", "sharp").replace("b", "flat") +
             ii +
@@ -503,16 +506,12 @@ const drawChords = (data, key, mode) => {
 };
 
 const zoom = (img) => {
-    document.querySelector("#chord-zoom-image").setAttribute("src", img.src);
-    document.querySelector("#more-chords").style.display = "none";
-    document.querySelector("#chords-zoom").style.display = "block";
+    document.getElementById("chord-zoom-image").setAttribute("src", img.src);
+    document.getElementById("more-chords").style.display = "none";
+    document.getElementById("chords-zoom").style.display = "block";
 };
 
-document.querySelector("#chords-zoom").addEventListener("click", function () {
+document.getElementById("chords-zoom").addEventListener("click", function () {
     this.style.display = "none";
-    document.querySelector("#more-chords").style.display = "block";
+    document.getElementById("more-chords").style.display = "block";
 });
-
-const docReady = () => {
-    getScale(key);
-};

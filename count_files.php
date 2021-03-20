@@ -1,6 +1,6 @@
 <?php
 
-if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+if (filter_has_var(INPUT_GET, 'key')) {
 
   $key = filter_input(INPUT_GET, 'key', FILTER_SANITIZE_STRING);
   if(filter_has_var(INPUT_GET, 'mode')) :

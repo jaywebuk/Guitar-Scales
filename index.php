@@ -32,7 +32,7 @@
 
 </head>
 <!-- <script>function docReady(){}</script> -->
-<body onload='docReady()'>
+<body onload='getScale("E")'>
 
 	<div id="loading">
 		<img src="images/loading.gif" alt="loading">
