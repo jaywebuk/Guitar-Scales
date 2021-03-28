@@ -7,9 +7,9 @@
 	<meta name="keywords" content="Guitar, Scales, Music, Tab, Notes">
 	<meta name="author" content="Jason Robinson">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="stylesheet" href="css/style.css">
 	<script defer src="js/fretNotes.js"></script>
-	<script defer src="js/guitar_scales.min.js"></script>
+	<script defer src="js/guitar_scales.js"></script>
 	<link rel="icon" type="image/png" href="favicon.png">
 	<title>Guitar Scales</title>
 
@@ -725,20 +725,16 @@
 			<img id="chord-zoom-image" alt="chord-zoom-image">
 		</div>
 		<div id="footer">
-			<?php 
-				$year = date("Y");
-				$yearString = "";
-				if ($year > 2016) {
-					$yearString = " - $year";
-				}
-				?>
 			<div>
-				<p class="copyright">&copy; 2016 <?=$yearString ?> <a href="/">Jason Robinson.</a> All rights reserved</p>
+				<p class="copyright">&copy; 2016 - <span id="currentYear"></span> <a href="/">Jason Robinson.</a> All rights reserved</p>
 			</div>
 		</div>
 
 	</div>
-
+	<script>
+		let date = new Date();
+		document.getElementById("currentYear").textContent = date.getFullYear();
+	</script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-include "ChromePhp.php";
+// include "ChromePhp.php";
 
 if(filter_has_var(INPUT_GET, 'key')) {
   $url = 'js/scales.json';
