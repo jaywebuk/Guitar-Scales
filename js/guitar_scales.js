@@ -3,7 +3,7 @@
  * @author Jason Robinson
  * @copyright Jason Robinson 2017 - 2021
  *
- */
+ **/
 
 const status = response => {
     if (response.status >= 200 && response.status < 300) {

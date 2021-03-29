@@ -1,6 +1,15 @@
-const populateString = (start, finish, notes) => {
+/**
+ *
+ * @author Jason Robinson
+ * @copyright Jason Robinson 2017 - 2021
+ *
+ **/
+
+const populateString = (start, notes) => {
 	let string = {};
-	for (ii = 0, xx = start; xx <= finish; ii++, xx++) {
+	xx = start;
+	for (let ii = 0; ii < 13; ii++, xx++) {
+		if (xx == 12) xx = 0;
 		string[ii] = notes[xx];
 		string[ii + 12] = notes[xx];
 	}
@@ -19,19 +28,7 @@ let notes = [
 		["F", "E#"],
 		["Gb", "F#"],
 		["G"],
-		["Ab", "G#"],
-		["A"],
-		["Bb", "A#"],
-		["B", "Cb"],
-		["C", "B#"],
-		["Db", "C#"],
-		["D"],
-		["Eb", "D#"],
-		["E", "Fb"],
-		["F", "E#"],
-		["Gb", "F#"],
-		["G"],
-		["Ab", "G#"],
+		["Ab", "G#"]
 	],
 	MajorChords = ["Major", "Minor", "Minor", "Major", "Major", "Minor", "Dim"],
 	NaturalMinorChords = [
@@ -70,11 +67,11 @@ let notes = [
 	],
 	BluesChords = [];
 
-Estring = populateString(7, 19, notes);
-Bstring = populateString(2, 14, notes);
-Cstring = populateString(3, 15, notes);
-Fstring = populateString(8, 20, notes);
-Gstring = populateString(10, 22, notes);
-Dstring = populateString(5, 17, notes);
-Astring = populateString(0, 12, notes);
-fSharpString = populateString(9, 21, notes);
+Estring = populateString(7, notes);
+Bstring = populateString(2, notes);
+Cstring = populateString(3, notes);
+Fstring = populateString(8, notes);
+Gstring = populateString(10, notes);
+Dstring = populateString(5, notes);
+Astring = populateString(0, notes);
+fSharpString = populateString(9, notes);
