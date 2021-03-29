@@ -1,9 +1,11 @@
 /**
  *
  * @author Jason Robinson
- * @copyright Jason Robinson 2017 - 2021
+ * @copyright Jason Robinson 2016 - 2021
  *
  **/
+
+var eId = document.getElementById.bind(document);
 
 const status = response => {
     if (response.status >= 200 && response.status < 300) {
@@ -122,16 +124,16 @@ const changeFingerboard = wood => {
         el.style.backgroundColor = dotColor;
     });
 
-    document.getElementById("fretNut").style.borderColor = fretNutColor;
+    eId("fretNut").style.borderColor = fretNutColor;
 };
 
 const getScale = thisKey => {
     key = thisKey;
-    document.getElementById("loading").style.display = "block";
-    const modeSelect = document.getElementById("modeSelect");
-    const Natural_Minor = document.getElementById("Natural_Minor");
-    const Harmonic_Minor = document.getElementById("Harmonic_Minor");
-    const Melodic_Minor = document.getElementById("Melodic_Minor");
+    eId("loading").style.display = "block";
+    const modeSelect = eId("modeSelect");
+    const Natural_Minor = eId("Natural_Minor");
+    const Harmonic_Minor = eId("Harmonic_Minor");
+    const Melodic_Minor = eId("Melodic_Minor");
 
     switch (key) {
         case "Db":
@@ -166,7 +168,7 @@ const getScale = thisKey => {
         .then(status)
         .then(json)
         .then(function (data) {
-            document.getElementById("loading").style.display = "none";
+            eId("loading").style.display = "none";
             scaleData = data;
             displayScale();
         }).catch(function (error) {
@@ -236,10 +238,10 @@ const displayScale = () => {
         case "Natural Minor":
             chords = NaturalMinorChords;
             break;
-        case "HarmonicMinor":
+        case "Harmonic Minor":
             chords = HarmonicMinorChords;
             break;
-        case "MelodicMinor":
+        case "Melodic Minor":
             chords = MelodicMinorChords;
             break;
         case "Minor Pentatonic":
@@ -249,62 +251,56 @@ const displayScale = () => {
             chords = BluesChords;
             break;
         case "Dorian":
-            fretShift = 1;
-            noteShift = 1;
+            fretShift = noteShift = 1;
             scale = scaleData.Major;
             thisIsAMode = true;
             break;
         case "Phrygian":
-            fretShift = 2;
-            noteShift = 2;
+            fretShift = noteShift = 2;
             scale = scaleData.Major;
             thisIsAMode = true;
             break;
         case "Lydian":
-            fretShift = 3;
-            noteShift = 3;
+            fretShift = noteShift = 3;
             scale = scaleData.Major;
             thisIsAMode = true;
             break;
         case "Mixolydian":
-            fretShift = 4;
-            noteShift = 4;
+            fretShift = noteShift = 4;
             scale = scaleData.Major;
             thisIsAMode = true;
             break;
         case "Aeolian":
-            fretShift = 5;
-            noteShift = 5;
+            fretShift = noteShift = 5;
             scale = scaleData.Major;
             thisIsAMode = true;
             break;
         case "Locrian":
-            fretShift = 6;
-            noteShift = 6;
+            fretShift = noteShift = 6;
             scale = scaleData.Major;
             thisIsAMode = true;
             break;
     }
-    document.getElementById("Dorian").textContent = `${majorScale[1]} Dorian`;
-    document.getElementById("Phrygian").textContent = `${majorScale[2]} Phrygian`;
-    document.getElementById("Lydian").textContent = `${majorScale[3]} Lydian`;
-    document.getElementById("Mixolydian").textContent = `${majorScale[4]} Mixolydian`;
-    document.getElementById("Aeolian").textContent = `${majorScale[5]} Aeolian`;
-    document.getElementById("Locrian").textContent = `${majorScale[6]} Locrian`;
-    document.getElementById("scaleTitle").textContent = `${scale[noteShift]} ${scaleMode.replace("_", " ")}`;
-    document.getElementById("notes").innerHTML = "";
+    eId("Dorian").textContent = `${majorScale[1]} Dorian`;
+    eId("Phrygian").textContent = `${majorScale[2]} Phrygian`;
+    eId("Lydian").textContent = `${majorScale[3]} Lydian`;
+    eId("Mixolydian").textContent = `${majorScale[4]} Mixolydian`;
+    eId("Aeolian").textContent = `${majorScale[5]} Aeolian`;
+    eId("Locrian").textContent = `${majorScale[6]} Locrian`;
+    eId("scaleTitle").textContent = `${scale[noteShift]} ${scaleMode.replace("_", " ")}`;
+    eId("notes").innerHTML = "";
 
     for (let fretNum = 0; fretNum < 25; fretNum++) {
-        document.getElementById("fret" + fretNum).style.backgroundColor = "";
+        eId("fret" + fretNum).style.backgroundColor = "";
         if (fretNum < scale.length + 1) {
             if (fretNum === 0) {
-                document.getElementById("notes").innerHTML += `<span class="rootNote">${scale[fretNum + noteShift]}</span> `;
+                eId("notes").innerHTML += `<span class="rootNote">${scale[fretNum + noteShift]}</span> `;
             } else if (fretNum > 0 && fretNum < scale.length) {
                 if (fretNum + noteShift >= scale.length) {
                     noteShift -= scale.length;
                 }
 
-                document.getElementById("notes").textContent += `${scale[fretNum + noteShift]} `;
+                eId("notes").textContent += `${scale[fretNum + noteShift]} `;
             } else if (fretNum === scale.length) {
                 if (fretNum + noteShift >= scale.length) {
                     noteShift -= scale.length;
@@ -314,7 +310,7 @@ const displayScale = () => {
         for (let jj = 0; jj < scale.length; jj++) {
             for (let ii = 0; ii < 3; ii++) {
                 if (E[fretNum][ii] === scale[jj]) {
-                    let E1F = document.getElementById("E1F" + fretNum);
+                    let E1F = eId("E1F" + fretNum);
                     E1F.style.visibility = "visible";
                     E1F.childNodes[1].style.display = "inline";
                     E1F.childNodes[1].textContent = scale[jj];
@@ -325,7 +321,7 @@ const displayScale = () => {
                 }
 
                 if (B[fretNum][ii] === scale[jj]) {
-                    let BF = document.getElementById("BF" + fretNum);
+                    let BF = eId("BF" + fretNum);
                     BF.style.visibility = "visible";
                     BF.childNodes[1].style.display = "inline";
                     BF.childNodes[1].textContent = scale[jj];
@@ -336,7 +332,7 @@ const displayScale = () => {
                 }
 
                 if (G[fretNum][ii] === scale[jj]) {
-                    GF = document.getElementById("GF" + fretNum);
+                    GF = eId("GF" + fretNum);
                     GF.style.visibility = "visible";
                     GF.childNodes[1].style.display = "inline";
                     GF.childNodes[1].textContent = scale[jj];
@@ -347,7 +343,7 @@ const displayScale = () => {
                 }
 
                 if (D[fretNum][ii] === scale[jj]) {
-                    DF = document.getElementById("DF" + fretNum);
+                    DF = eId("DF" + fretNum);
                     DF.style.visibility = "visible";
                     DF.childNodes[1].style.display = "inline";
                     DF.childNodes[1].textContent = scale[jj];
@@ -358,7 +354,7 @@ const displayScale = () => {
                 }
 
                 if (A[fretNum][ii] === scale[jj]) {
-                    AF = document.getElementById("AF" + fretNum);
+                    AF = eId("AF" + fretNum);
                     AF.style.visibility = "visible";
                     AF.childNodes[1].style.display = "inline"
                     AF.childNodes[1].textContent = scale[jj];
@@ -369,7 +365,7 @@ const displayScale = () => {
                 }
 
                 if (E2[fretNum][ii] === scale[jj]) {
-                    E2F = document.getElementById("E2F" + fretNum);
+                    E2F = eId("E2F" + fretNum);
                     E2F.style.visibility = "visible";
                     E2F.childNodes[1].style.display = "inline";
                     E2F.childNodes[1].textContent = scale[jj];
@@ -382,35 +378,34 @@ const displayScale = () => {
         }
     }
     if (thisIsAMode === true) {
-        document.getElementById("scaleTitle").textContent += ` '${scale[0]}'`;
+        eId("scaleTitle").textContent += ` '${scale[0]}'`;
     }
 
     if (tuning === "standardE") {
-        document.getElementById("notes").textContent += ' "Standard E"';
+        eId("notes").textContent += ' "Standard E"';
     }
     if (tuning === "dropD") {
-        document.getElementById("notes").textContent += ' "Drop D"';
+        eId("notes").textContent += ' "Drop D"';
     }
     if (tuning === "openD") {
-        document.getElementById("notes").textContent += ' "Open D"';
+        eId("notes").textContent += ' "Open D"';
     }
     if (tuning === "dropC") {
-        document.getElementById("notes").textContent += ' "Drop C"';
+        eId("notes").textContent += ' "Drop C"';
     }
     if (tuning === "DADGAD") {
-        document.getElementById("notes").textContent += ' "DADGAD"';
+        eId("notes").textContent += ' "DADGAD"';
     }
 
     if (scaleMode === "Blues") {
-        document.getElementById("chords-body").textContent = "CHORDS COMING SOON";
+        eId("chords-body").textContent = "CHORDS COMING SOON";
     } else {
-        document.getElementById("chords-body").innerHTML = "";
+        eId("chords-body").innerHTML = "";
         for (let ii = 0; ii < chords.length; ii++) {
             let folder = scale[ii];
-            document.getElementById("chords-body"
-            ).innerHTML += `<div id="chord${ii}" class="chord-container" data-key="${scale[ii]}" data-mode="${chords[ii]}"></div>`;
-            document.getElementById("chord" + ii).innerHTML += `<h2>${scale[ii]} ${chords[ii]}</h2>`;
-            document.getElementById("chord" + ii).innerHTML +=
+            eId("chords-body").innerHTML += `<div id="chord${ii}" class="chord-container" data-key="${scale[ii]}" data-mode="${chords[ii]}"></div>`;
+            eId("chord" + ii).innerHTML += `<h2>${scale[ii]} ${chords[ii]}</h2>`;
+            eId("chord" + ii).innerHTML +=
                 '<img class="chord-image" src="images/Chords/' +
                 folder.replace("#", "sharp").replace("b", "flat") +
                 "/" +
@@ -432,8 +427,8 @@ const displayScale = () => {
         el.addEventListener("click", chord_click);
     });
 
-    document.getElementById("more-chords-close").addEventListener("click", () => {
-        document.getElementById("more-chords").style.display = "none";
+    eId("more-chords-close").addEventListener("click", () => {
+        eId("more-chords").style.display = "none";
         chordContainers.forEach((el) => {
             el.addEventListener("click", chord_click);
             el.style.opacity = "1";
@@ -442,22 +437,22 @@ const displayScale = () => {
 };
 
 function chord_click() {
-    document.getElementById("more-chords-body").innerHTML = "";
+    eId("more-chords-body").innerHTML = "";
     let data = 0;
     let keyExists = false;
 
     const key = this.dataset.key;
     const mode = this.dataset.mode;
     const keyText = key.replace("-", " / " + key.substr(0, key.indexOf("P")));
-    document.getElementById("more-chords-body").textContent = "";
-    document.getElementById("more-chords").style.display = "block";
+    eId("more-chords-body").textContent = "";
+    eId("more-chords").style.display = "block";
     document.querySelector(".chord-container").removeEventListener("click", chord_click);
     let chordContainers = document.querySelectorAll(".chord-container");
     chordContainers.forEach((el) => {
         el.style.opacity = "0.4";
         el.removeEventListener("click", chord_click);
     });
-    document.getElementById("more-chords-header").textContent = keyText + " " + mode;
+    eId("more-chords-header").textContent = keyText + " " + mode;
     if (Object.keys(chordNums).length > 0) {
         for (const thisKey in chordNums) {
             if (thisKey === key + mode) {
@@ -470,15 +465,18 @@ function chord_click() {
     if (keyExists === true) {
         drawChords(data, key, mode);
     } else {
-        document.getElementById("loading").style.display = "block";
+        eId("loading").style.display = "block";
 
         fetch(`count_files.php?key=${key.replace("#", "sharp").replace("b", "flat")}&mode=${mode}`)
             .then(status)
             .then(json)
             .then(function (data) {
                 console.log(data);
-                document.getElementById("loading").style.display = "none";
-                chordNums = { ...chordNums, [key + mode]: data };
+                eId("loading").style.display = "none";
+                chordNums = {
+                    ...chordNums,
+                    [key + mode]: data
+                };
                 drawChords(data, key, mode);
             }).catch(function (error) {
                 console.log('Request failed', error);
@@ -488,7 +486,7 @@ function chord_click() {
 
 const drawChords = (data, key, mode) => {
     for (let ii = 0; ii < data; ii++) {
-        document.getElementById("more-chords-body").innerHTML +=
+        eId("more-chords-body").innerHTML +=
             '<div class="more-chord-container"><img id="' +
             key.replace("#", "sharp").replace("b", "flat") +
             ii +
@@ -506,12 +504,12 @@ const drawChords = (data, key, mode) => {
 };
 
 const zoom = (img) => {
-    document.getElementById("chord-zoom-image").setAttribute("src", img.src);
-    document.getElementById("more-chords").style.display = "none";
-    document.getElementById("chords-zoom").style.display = "block";
+    eId("chord-zoom-image").setAttribute("src", img.src);
+    eId("more-chords").style.display = "none";
+    eId("chords-zoom").style.display = "block";
 };
 
-document.getElementById("chords-zoom").addEventListener("click", function () {
+eId("chords-zoom").addEventListener("click", function () {
     this.style.display = "none";
-    document.getElementById("more-chords").style.display = "block";
+    eId("more-chords").style.display = "block";
 });

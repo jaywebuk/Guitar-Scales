@@ -1,22 +1,25 @@
 /**
  *
  * @author Jason Robinson
- * @copyright Jason Robinson 2017 - 2021
+ * @copyright Jason Robinson 2016 - 2021
  *
  **/
 
-const populateString = (start, notes) => {
+const populateString = (fretNote, notes) => {
+
 	let string = {};
-	xx = start;
-	for (let ii = 0; ii < 13; ii++, xx++) {
-		if (xx == 12) xx = 0;
-		string[ii] = notes[xx];
-		string[ii + 12] = notes[xx];
+
+	for (let ii = 0; ii < 13; ii++, fretNote++) {
+		if (fretNote == 12) fretNote = 0;
+		string[ii] = notes[fretNote];
+		string[ii + 12] = notes[fretNote];
 	}
+
 	return string;
+
 };
 
-let notes = [
+const notes = [
 		["A"],
 		["Bb", "A#"],
 		["B", "Cb"],
@@ -28,9 +31,17 @@ let notes = [
 		["F", "E#"],
 		["Gb", "F#"],
 		["G"],
-		["Ab", "G#"]
+		["Ab", "G#"],
 	],
-	MajorChords = ["Major", "Minor", "Minor", "Major", "Major", "Minor", "Dim"],
+	MajorChords = [
+		"Major",
+		"Minor",
+		"Minor",
+		"Major",
+		"Major",
+		"Minor",
+		"Dim",
+	],
 	NaturalMinorChords = [
 		"Minor",
 		"Dim",
