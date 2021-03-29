@@ -471,7 +471,6 @@ function chord_click() {
             .then(status)
             .then(json)
             .then(function (data) {
-                console.log(data);
                 eId("loading").style.display = "none";
                 chordNums = {
                     ...chordNums,
