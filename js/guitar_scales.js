@@ -39,12 +39,12 @@ const show_frets_notes = showThis => {
                     el.style.visibility = "hidden";
                 });
                 showNotes = false;
-            } else {
-                fret_notes.forEach((el) => {
-                    el.style.visibility = "visible";
-                });
-                showNotes = true;
+                break;
             }
+            fret_notes.forEach((el) => {
+                el.style.visibility = "visible";
+            });
+            showNotes = true;
             break;
         case "show-frets":
             if (showFrets === true) {
@@ -52,12 +52,12 @@ const show_frets_notes = showThis => {
                     el.style.visibility = "hidden";
                 });
                 showFrets = false;
-            } else {
-                fret_nums.forEach((el) => {
-                    el.style.visibility = "visible";
-                });
-                showFrets = true;
+                break;
             }
+            fret_nums.forEach((el) => {
+                el.style.visibility = "visible";
+            });
+            showFrets = true;
             break;
     }
 };
@@ -174,6 +174,13 @@ const getScale = thisKey => {
         }).catch(function (error) {
             console.error('Request failed', error);
         });
+};
+
+const showfinger = (finger, fretNum, scale) => {
+    let stringNote = eId(finger + fretNum);
+    stringNote.style.visibility = "visible";
+    stringNote.childNodes[1].style.display = "inline";
+    stringNote.childNodes[1].textContent = scale;
 };
 
 const displayScale = () => {
@@ -307,71 +314,55 @@ const displayScale = () => {
                 }
             }
         }
+
         for (let jj = 0; jj < scale.length; jj++) {
             for (let ii = 0; ii < 3; ii++) {
+
                 if (E[fretNum][ii] === scale[jj]) {
-                    let E1F = eId("E1F" + fretNum);
-                    E1F.style.visibility = "visible";
-                    E1F.childNodes[1].style.display = "inline";
-                    E1F.childNodes[1].textContent = scale[jj];
+                    showfinger("E1F", fretNum, scale[jj]);
 
                     if (E[fretNum][ii] === scale[0 + fretShift]) {
-                        E1F.style.backgroundColor = "#005bb1";
+                        eId("E1F" + fretNum).style.backgroundColor = "#005bb1";
                     }
                 }
 
                 if (B[fretNum][ii] === scale[jj]) {
-                    let BF = eId("BF" + fretNum);
-                    BF.style.visibility = "visible";
-                    BF.childNodes[1].style.display = "inline";
-                    BF.childNodes[1].textContent = scale[jj];
+                    showfinger("BF", fretNum, scale[jj]);
 
                     if (B[fretNum][ii] === scale[0 + fretShift]) {
-                        BF.style.backgroundColor = "#005bb1";
+                        eId("BF" + fretNum).style.backgroundColor = "#005bb1";
                     }
                 }
 
                 if (G[fretNum][ii] === scale[jj]) {
-                    GF = eId("GF" + fretNum);
-                    GF.style.visibility = "visible";
-                    GF.childNodes[1].style.display = "inline";
-                    GF.childNodes[1].textContent = scale[jj];
+                    showfinger("GF", fretNum, scale[jj]);
 
                     if (G[fretNum][ii] === scale[0 + fretShift]) {
-                        GF.style.backgroundColor = "#005bb1";
+                        eId("GF" + fretNum).style.backgroundColor = "#005bb1";
                     }
                 }
 
                 if (D[fretNum][ii] === scale[jj]) {
-                    DF = eId("DF" + fretNum);
-                    DF.style.visibility = "visible";
-                    DF.childNodes[1].style.display = "inline";
-                    DF.childNodes[1].textContent = scale[jj];
+                    showfinger("DF", fretNum, scale[jj]);
 
                     if (D[fretNum][ii] === scale[0 + fretShift]) {
-                        DF.style.backgroundColor = "#005bb1";
+                        eId("DF" + fretNum).style.backgroundColor = "#005bb1";
                     }
                 }
 
                 if (A[fretNum][ii] === scale[jj]) {
-                    AF = eId("AF" + fretNum);
-                    AF.style.visibility = "visible";
-                    AF.childNodes[1].style.display = "inline"
-                    AF.childNodes[1].textContent = scale[jj];
+                    showfinger("AF", fretNum, scale[jj]);
 
                     if (A[fretNum][ii] === scale[0 + fretShift]) {
-                        AF.style.backgroundColor = "#005bb1";
+                        eId("AF" + fretNum).style.backgroundColor = "#005bb1";
                     }
                 }
 
                 if (E2[fretNum][ii] === scale[jj]) {
-                    E2F = eId("E2F" + fretNum);
-                    E2F.style.visibility = "visible";
-                    E2F.childNodes[1].style.display = "inline";
-                    E2F.childNodes[1].textContent = scale[jj];
+                    showfinger("E2F", fretNum, scale[jj]);
 
                     if (E2[fretNum][ii] === scale[0 + fretShift]) {
-                        E2F.style.backgroundColor = "#005bb1";
+                        eId("E2F" + fretNum).style.backgroundColor = "#005bb1";
                     }
                 }
             }
@@ -381,20 +372,21 @@ const displayScale = () => {
         eId("scaleTitle").textContent += ` '${scale[0]}'`;
     }
 
-    if (tuning === "standardE") {
-        eId("notes").textContent += ' "Standard E"';
-    }
-    if (tuning === "dropD") {
-        eId("notes").textContent += ' "Drop D"';
-    }
-    if (tuning === "openD") {
-        eId("notes").textContent += ' "Open D"';
-    }
-    if (tuning === "dropC") {
-        eId("notes").textContent += ' "Drop C"';
-    }
-    if (tuning === "DADGAD") {
-        eId("notes").textContent += ' "DADGAD"';
+    switch (tuning) {
+        case "dropD":
+            eId("notes").textContent += ' "Drop D"';
+            break;
+        case "openD":
+            eId("notes").textContent += ' "Open D"';
+            break;
+        case "dropC":
+            eId("notes").textContent += ' "Drop C"';
+            break;
+        case "DADGAD":
+            eId("notes").textContent += ' "DADGAD"';
+            break;
+        default:
+            eId("notes").textContent += ' "Standard E"';
     }
 
     if (scaleMode === "Blues") {
