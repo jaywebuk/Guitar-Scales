@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  *
  * @author Jason Robinson
@@ -78,11 +79,11 @@ const notes = [
 	],
 	BluesChords = [];
 
-Estring = populateString(7, notes);
-Bstring = populateString(2, notes);
-Cstring = populateString(3, notes);
-Fstring = populateString(8, notes);
-Gstring = populateString(10, notes);
-Dstring = populateString(5, notes);
-Astring = populateString(0, notes);
-fSharpString = populateString(9, notes);
+let Estring = populateString(7, notes);
+let Bstring = populateString(2, notes);
+let Cstring = populateString(3, notes);
+let Fstring = populateString(8, notes);
+let Gstring = populateString(10, notes);
+let Dstring = populateString(5, notes);
+let Astring = populateString(0, notes);
+let fSharpString = populateString(9, notes);
