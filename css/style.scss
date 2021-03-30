@@ -40,8 +40,9 @@ body {
 header.main-header {
   position: relative;
   height: 100px;
-  background: rgb(2,0,36);
-  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,82,255,1) 100%);  color: #fff;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 82, 255, 1) 100%);
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -581,18 +582,22 @@ button {
 }
 
 .more-chords-close {
-  color: white;
+  // color: white;
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   top: 5px;
   right: 5px;
-  border-radius: 10%;
+  border: solid 1px black;
+  border-radius: 2px;
+  box-sizing: border-box;
+  line-height: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.8em;
-  background-color: black;
+  // background-color: #ccc;
+  font-weight: bold;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -607,8 +612,9 @@ button {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  background: rgb(2,0,36);
-  background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,82,255,1) 100%);  color: #fff;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 82, 255, 1) 100%);
+  color: #fff;
 
   p {
     font-size: .9rem;

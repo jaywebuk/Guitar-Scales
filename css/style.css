@@ -574,18 +574,20 @@ button:active {
 }
 
 .more-chords-close {
-  color: white;
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   top: 5px;
   right: 5px;
-  border-radius: 10%;
+  border: solid 1px black;
+  border-radius: 2px;
+  box-sizing: border-box;
+  line-height: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.8em;
-  background-color: black;
+  font-weight: bold;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
