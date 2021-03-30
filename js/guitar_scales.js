@@ -172,7 +172,7 @@ const getScale = thisKey => {
             scaleData = data;
             displayScale();
         }).catch(function (error) {
-            console.log('Request failed', error);
+            console.error('Request failed', error);
         });
 };
 
@@ -471,7 +471,6 @@ function chord_click() {
             .then(status)
             .then(json)
             .then(function (data) {
-                console.log(data);
                 eId("loading").style.display = "none";
                 chordNums = {
                     ...chordNums,
@@ -479,7 +478,7 @@ function chord_click() {
                 };
                 drawChords(data, key, mode);
             }).catch(function (error) {
-                console.log('Request failed', error);
+                console.error('Request failed', error);
             });
     }
 }

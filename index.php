@@ -697,8 +697,8 @@
 				<form id="fingerboardSelectForm" autocomplete="off">
 				<label for="fingerboardSelect">Fingerboard</label><br>
 					<select name="fingerboard" id="fingerboardSelect" size="" onChange="javascript:changeFingerboard(this)">
-						<option value="rosewood" selected="selected">Rosewood</option>
-						<option value="maple">Maple</option>
+						<option value="rosewood">Rosewood</option>
+						<option value="maple" selected="selected">Maple</option>
 						<option value="ebony">Ebony</option>
 					</select>
 				</form>
