@@ -224,6 +224,8 @@ header.main-header {
   position: fixed;
   width: 95vw;
   max-width: 31rem;
+  max-height: 100vh;
+  overflow: auto;
   background: white;
   @include border();
   left: 50%;
@@ -242,6 +244,7 @@ header.main-header {
     margin-top: 5px;
     text-align: center;
     color: black;
+    margin: 0;
   }
 }
 
@@ -254,15 +257,7 @@ header.main-header {
 
 .more-key-chords {
   text-align: center;
-
-  &::after {
-    content: "Click a chord to enlarge,again to restore";
-    font-size: 0.9em;
-    text-align: center;
-    display: block;
-    font-weight: normal;
-    color: black;
-  }
+  font-size: 0.9em;
 }
 
 .chords-zoom {
@@ -590,8 +585,8 @@ button {
   position: absolute;
   width: 30px;
   height: 30px;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   border-radius: 10%;
   display: flex;
   justify-content: center;

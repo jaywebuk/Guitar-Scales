@@ -716,9 +716,9 @@
 			<div id="more-chords" class="more-chords">
 				<div id="more-chords-close" class="more-chords-close">X</div>
 				<h1 id="more-chords-header" class="more-chords-header"></h1>
-				<hr>
+
 				<div id="more-chords-body" class="more-chords-body"></div>
-				<p id="more-key-chords" class="more-key-chords"></p>
+				<p id="more-key-chords" class="more-key-chords">Click a chord to enlarge, again to restore</p>
 			</div>
 		</div>
 		<div id="chords-zoom" class="chords-zoom">
