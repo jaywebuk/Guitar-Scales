@@ -16,6 +16,7 @@ body {
   position: fixed;
   display: none;
   left: 50%;
+  top: 105px;
   transform: translateX(-50%);
   z-index: 10;
   background-color: white;
