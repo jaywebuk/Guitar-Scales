@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /**
  *
  * @author Jason Robinson
@@ -6,9 +5,62 @@
  *
  **/
 
-let eId = document.getElementById.bind(document);
+const eId = document.getElementById.bind(document);
 
-let neckWood = {
+// CREATE GLOBAL VARIABLES AND OBJECTS \\
+
+const notes = [
+		["A"],
+		["A#", "Bb"],
+		["B", "Cb"],
+		["B#", "C"],
+		["C#", "Db"],
+		["D"],
+		["D#", "Eb"],
+		["E", "Fb"],
+		["E#", "F"],
+		["F#", "Gb"],
+		["G"],
+		["G#", "Ab"],
+	],
+	MajorChords = ["Major", "Minor", "Minor", "Major", "Major", "Minor", "Dim"],
+	NaturalMinorChords = [
+		"Minor",
+		"Dim",
+		"Major",
+		"Minor",
+		"Minor",
+		"Major",
+		"Major",
+	],
+	MelodicMinorChords = [
+		"Minor",
+		"Minor",
+		"Aug",
+		"Major",
+		"Major",
+		"Dim",
+		"Dim",
+	],
+	HarmonicMinorChords = [
+		"Minor",
+		"Dim",
+		"Aug",
+		"Minor",
+		"Major",
+		"Major",
+		"Dim",
+	],
+	MinorPentatonicChords = [
+		"Power-5",
+		"Power-5",
+		"Power-5",
+		"Power-5",
+		"Power-5",
+	],
+	BluesChords = [];
+
+const neckWood = {
 	rosewood: {
 		neckColor: "#460e00",
 		dotColor: "#ccc",
@@ -26,6 +78,30 @@ let neckWood = {
 	},
 };
 
+let showNotes = true,
+	showFrets = true,
+	key = "E",
+	majorScale,
+	scale,
+	scaleMode = "Major",
+	tuning = "standardE",
+	scaleData,
+	chordNums = {};
+
+/// CREATE THE FUNCTIONS \\\
+
+const populateString = (fretNote, notes) => {
+	let string = {};
+
+	for (let ii = 0; ii < 13; ii++, fretNote++) {
+		if (fretNote == 12) fretNote = 0;
+		string[ii] = notes[fretNote];
+		string[ii + 12] = notes[fretNote];
+	}
+
+	return string;
+};
+
 const statusResponse = (response) => {
 	if (response.status >= 200 && response.status < 300) {
 		return Promise.resolve(response);
@@ -37,16 +113,6 @@ const statusResponse = (response) => {
 const json = (response) => {
 	return response.json();
 };
-
-let showNotes = true,
-	showFrets = true,
-	key = "E",
-	majorScale,
-	scale,
-	scaleMode = "Major",
-	tuning = "standardE",
-	scaleData,
-	chordNums = {};
 
 const show_frets_notes = (showThis) => {
 	const fret_notes = document.querySelectorAll(".fretNote");
@@ -80,6 +146,15 @@ const show_frets_notes = (showThis) => {
 			break;
 	}
 };
+
+let Estring = populateString(7, notes);
+let Bstring = populateString(2, notes);
+let Cstring = populateString(3, notes);
+let Fstring = populateString(8, notes);
+let Gstring = populateString(10, notes);
+let Dstring = populateString(5, notes);
+let Astring = populateString(0, notes);
+let fSharpString = populateString(9, notes);
 
 const frets_note_buttons = document.querySelectorAll(".button");
 frets_note_buttons.forEach((el) => {
@@ -115,7 +190,6 @@ const changeTuning = (thisTuning) => {
 	displayScale();
 };
 
-// console.log(neckWood.rosewood);
 const changeFingerboard = (wood) => {
 	const dots = document.querySelectorAll(".dots");
 	const necks = document.querySelectorAll(".neck");
@@ -496,14 +570,19 @@ function chord_click() {
 
 const drawChords = (numChords, key, mode) => {
 	console.log(numChords);
+	let elem1, elem2;
 	for (let ii = 0; ii < numChords; ii++) {
-		let elem1 = document.createElement("div");
+		elem1 = document.createElement("div");
 		elem1.classList = "more-chord-container";
 		eId("more-chords-body").appendChild(elem1);
-		let elem2 = document.createElement("img");
+		elem2 = document.createElement("img");
 		elem2.id = `${key.replace("#", "sharp").replace("b", "flat")}${ii}`;
 		elem2.classList = "chord-image more-chord-image";
-		elem2.src =`images/Chords/${key.replace("#", "sharp").replace("b", "flat")}/${mode}/${key.replace("#", "sharp").replace("b", "flat")}_${mode}${ii + 1}.png`;
+		elem2.src = `images/Chords/${key
+			.replace("#", "sharp")
+			.replace("b", "flat")}/${mode}/${key
+			.replace("#", "sharp")
+			.replace("b", "flat")}_${mode}${ii + 1}.png`;
 		elem2.addEventListener("click", (event) => {
 			zoom(event.target);
 		});
