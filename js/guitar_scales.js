@@ -274,7 +274,8 @@ const displayScale = () => {
 		B,
 		E,
 		chords = MajorChords,
-		thisIsAMode = false;
+		thisIsAMode = false,
+		divElem, imgElem;
 
 	switch (tuning) {
 		case "standardE":
@@ -372,10 +373,7 @@ const displayScale = () => {
 	eId("Mixolydian").textContent = `${majorScale[4]} Mixolydian`;
 	eId("Aeolian").textContent = `${majorScale[5]} Aeolian`;
 	eId("Locrian").textContent = `${majorScale[6]} Locrian`;
-	eId("scaleTitle").textContent = `${scale[noteShift]} ${scaleMode.replace(
-		"_",
-		" "
-	)}`;
+	eId("scaleTitle").textContent = `${scale[noteShift]} ${scaleMode.replace("_" , " ")}`;
 	eId("notes").innerHTML = "";
 
 	for (let fretNum = 0; fretNum < 25; fretNum++) {
@@ -477,9 +475,14 @@ const displayScale = () => {
 		eId("chords-body").innerHTML = "";
 		for (let ii = 0; ii < chords.length; ii++) {
 			let folder = scale[ii];
-			eId(
-				"chords-body"
-			).innerHTML += `<div id="chord${ii}" class="chord-container" data-key="${scale[ii]}" data-mode="${chords[ii]}"></div>`;
+			divElem = document.createElement("div");
+			divElem.id = `chord${ii}`;
+			divElem.classList = "chord-container";
+			divElem.setAttribute("data-key", `${scale[ii]}`);
+			divElem.setAttribute("data-mode", `${chords[ii]}`);
+			console.log(divElem);
+			eId("chords-body").appendChild(divElem);
+			// eId("chords-body").innerHTML += `<div  class= data-key="" data-mode="${chords[ii]}"></div>`;
 			eId(
 				"chord" + ii
 			).innerHTML += `<h2>${scale[ii]} ${chords[ii]}</h2>`;
