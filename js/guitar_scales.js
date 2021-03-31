@@ -375,32 +375,20 @@ const displayScale = () => {
 	eId("scaleTitle").textContent = `${scale[noteShift]} ${scaleMode.replace("_" , " ")}`;
 	eId("notes").innerHTML = "";
 
+	let shiftedScale = [...scale];
+	let splicedScale = shiftedScale.splice(noteShift);
+	let newScale = [...splicedScale,...shiftedScale];
+
+	eId("notes").textContent = newScale.toString().replaceAll(",", " ");
 	for (let fretNum = 0; fretNum < 25; fretNum++) {
 		eId("fret" + fretNum).style.backgroundColor = "";
-		if (fretNum < scale.length + 1) {
-			if (fretNum === 0) {
-				eId("notes").innerHTML += `<span class="rootNote">${
-					scale[fretNum + noteShift]
-				}</span> `;
-			} else if (fretNum > 0 && fretNum < scale.length) {
-				if (fretNum + noteShift >= scale.length) {
-					noteShift -= scale.length;
-				}
-
-				eId("notes").textContent += `${scale[fretNum + noteShift]} `;
-			} else if (fretNum === scale.length) {
-				if (fretNum + noteShift >= scale.length) {
-					noteShift -= scale.length;
-				}
-			}
-		}
-
+		
 		for (let jj = 0; jj < scale.length; jj++) {
 			for (let ii = 0; ii < 3; ii++) {
 				if (E[fretNum][ii] === scale[jj]) {
 					showfinger("E1F", fretNum, scale[jj]);
 
-					if (E[fretNum][ii] === scale[0 + fretShift]) {
+					if (E[fretNum][ii] === newScale[0]) {
 						eId("E1F" + fretNum).style.backgroundColor = "#005bb1";
 					}
 				}
@@ -408,7 +396,7 @@ const displayScale = () => {
 				if (B[fretNum][ii] === scale[jj]) {
 					showfinger("BF", fretNum, scale[jj]);
 
-					if (B[fretNum][ii] === scale[0 + fretShift]) {
+					if (B[fretNum][ii] === newScale[0]) {
 						eId("BF" + fretNum).style.backgroundColor = "#005bb1";
 					}
 				}
@@ -416,7 +404,7 @@ const displayScale = () => {
 				if (G[fretNum][ii] === scale[jj]) {
 					showfinger("GF", fretNum, scale[jj]);
 
-					if (G[fretNum][ii] === scale[0 + fretShift]) {
+					if (G[fretNum][ii] === newScale[0]) {
 						eId("GF" + fretNum).style.backgroundColor = "#005bb1";
 					}
 				}
@@ -424,7 +412,7 @@ const displayScale = () => {
 				if (D[fretNum][ii] === scale[jj]) {
 					showfinger("DF", fretNum, scale[jj]);
 
-					if (D[fretNum][ii] === scale[0 + fretShift]) {
+					if (D[fretNum][ii] === newScale[0]) {
 						eId("DF" + fretNum).style.backgroundColor = "#005bb1";
 					}
 				}
@@ -432,7 +420,7 @@ const displayScale = () => {
 				if (A[fretNum][ii] === scale[jj]) {
 					showfinger("AF", fretNum, scale[jj]);
 
-					if (A[fretNum][ii] === scale[0 + fretShift]) {
+					if (A[fretNum][ii] === newScale[0]) {
 						eId("AF" + fretNum).style.backgroundColor = "#005bb1";
 					}
 				}
@@ -440,7 +428,7 @@ const displayScale = () => {
 				if (E2[fretNum][ii] === scale[jj]) {
 					showfinger("E2F", fretNum, scale[jj]);
 
-					if (E2[fretNum][ii] === scale[0 + fretShift]) {
+					if (E2[fretNum][ii] === newScale[0]) {
 						eId("E2F" + fretNum).style.backgroundColor = "#005bb1";
 					}
 				}
@@ -479,8 +467,8 @@ const displayScale = () => {
 			div = document.createElement("div");
 			div.id = "chord" + ii;
 			div.classList = "chord-container";
-			div.dataset.key = "scale" + ii;
-			div.dataset.mode = "chords" + ii;
+			div.dataset.key = `${scale[ii]}`;
+			div.dataset.mode = `${chords[ii]}`;
 			eId("chords-body").appendChild(div);
 
 			div.addEventListener("click", chord_click);
@@ -493,15 +481,12 @@ const displayScale = () => {
 			img.src = `images/Chords/${folder.replace("#", "sharp").replace("b", "flat")}/
 			${chords[ii]}/${scale[ii].replace("#", "sharp").replace("b", "flat")}_${chords[ii].replace("#", "sharp").replace("b", "flat")}1.png`;
 			img.alt = `${scale[ii]} ${chords[ii]}`;
-			console.log(img);
+			// console.log(img);
 			eId("chord" + ii).appendChild(img);
 		}
 	}
 
 	let chordContainers = document.querySelectorAll(".chord-container");
-	/* chordContainers.forEach((el) => {
-		el.addEventListener("click", chord_click);
-	}); */
 
 	eId("more-chords-close").addEventListener("click", () => {
 		eId("more-chords").style.display = "none";
@@ -513,6 +498,7 @@ const displayScale = () => {
 };
 
 function chord_click() {
+	console.log(this);
 	eId("more-chords-body").innerHTML = "";
 	let data = 0;
 	let keyExists = false;
@@ -567,7 +553,7 @@ function chord_click() {
 }
 
 const drawChords = (numChords, key, mode) => {
-	console.log(numChords);
+	// console.log(numChords);
 	let elem1, elem2;
 	for (let ii = 0; ii < numChords; ii++) {
 		elem1 = document.createElement("div");
