@@ -147,13 +147,13 @@ const show_frets_notes = (showThis) => {
 	}
 };
 
-let Estring = populateString(7, notes);
-let Bstring = populateString(2, notes);
-let Cstring = populateString(3, notes);
+let eString = populateString(7, notes);
+let bString = populateString(2, notes);
+let cString = populateString(3, notes);
 let Fstring = populateString(8, notes);
-let Gstring = populateString(10, notes);
-let Dstring = populateString(5, notes);
-let Astring = populateString(0, notes);
+let gString = populateString(10, notes);
+let dString = populateString(5, notes);
+let aString = populateString(0, notes);
 let fSharpString = populateString(9, notes);
 
 const frets_note_buttons = document.querySelectorAll(".button");
@@ -278,44 +278,44 @@ const displayScale = () => {
 
 	switch (tuning) {
 		case "standardE":
-			E2 = Estring;
-			A = Astring;
-			D = Dstring;
-			G = Gstring;
-			B = Bstring;
-			E = Estring;
+			E2 = eString;
+			A = aString;
+			D = dString;
+			G = gString;
+			B = bString;
+			E = eString;
 			break;
 		case "dropD":
-			E2 = Dstring;
-			A = Astring;
-			D = Dstring;
-			G = Gstring;
-			B = Bstring;
-			E = Estring;
+			E2 = dString;
+			A = aString;
+			D = dString;
+			G = gString;
+			B = bString;
+			E = eString;
 			break;
 		case "openD":
-			E2 = Dstring;
-			A = Astring;
-			D = Dstring;
+			E2 = dString;
+			A = aString;
+			D = dString;
 			G = fSharpString;
-			B = Astring;
-			E = Dstring;
+			B = aString;
+			E = dString;
 			break;
 		case "dropC":
-			E2 = Cstring;
-			A = Gstring;
-			D = Cstring;
+			E2 = cString;
+			A = gString;
+			D = cString;
 			G = Fstring;
-			B = Astring;
-			E = Dstring;
+			B = aString;
+			E = dString;
 			break;
 		case "DADGAD":
-			E2 = Dstring;
-			A = Astring;
-			D = Dstring;
-			G = Gstring;
-			B = Astring;
-			E = Dstring;
+			E2 = dString;
+			A = aString;
+			D = dString;
+			G = gString;
+			B = aString;
+			E = dString;
 			break;
 	}
 
