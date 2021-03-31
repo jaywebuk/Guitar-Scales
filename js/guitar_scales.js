@@ -150,7 +150,7 @@ const show_frets_notes = (showThis) => {
 let eString = populateString(7, notes);
 let bString = populateString(2, notes);
 let cString = populateString(3, notes);
-let Fstring = populateString(8, notes);
+let fString = populateString(8, notes);
 let gString = populateString(10, notes);
 let dString = populateString(5, notes);
 let aString = populateString(0, notes);
@@ -305,7 +305,7 @@ const displayScale = () => {
 			E2 = cString;
 			A = gString;
 			D = cString;
-			G = Fstring;
+			G = fString;
 			B = aString;
 			E = dString;
 			break;
