@@ -274,8 +274,7 @@ const displayScale = () => {
 		B,
 		E,
 		chords = MajorChords,
-		thisIsAMode = false,
-		divElem, imgElem;
+		thisIsAMode = false;
 
 	switch (tuning) {
 		case "standardE":
@@ -473,40 +472,36 @@ const displayScale = () => {
 		eId("chords-body").textContent = "CHORDS COMING SOON";
 	} else {
 		eId("chords-body").innerHTML = "";
+		let div, h2, img;
 		for (let ii = 0; ii < chords.length; ii++) {
 			let folder = scale[ii];
-			divElem = document.createElement("div");
-			divElem.id = `chord${ii}`;
-			divElem.classList = "chord-container";
-			divElem.setAttribute("data-key", `${scale[ii]}`);
-			divElem.setAttribute("data-mode", `${chords[ii]}`);
-			console.log(divElem);
-			eId("chords-body").appendChild(divElem);
-			// eId("chords-body").innerHTML += `<div  class= data-key="" data-mode="${chords[ii]}"></div>`;
-			eId(
-				"chord" + ii
-			).innerHTML += `<h2>${scale[ii]} ${chords[ii]}</h2>`;
-			eId("chord" + ii).innerHTML +=
-				'<img class="chord-image" src="images/Chords/' +
-				folder.replace("#", "sharp").replace("b", "flat") +
-				"/" +
-				chords[ii] +
-				"/" +
-				scale[ii].replace("#", "sharp").replace("b", "flat") +
-				"_" +
-				chords[ii].replace("#", "sharp").replace("b", "flat") +
-				'1.png" alt="' +
-				scale[ii] +
-				" " +
-				chords[ii] +
-				'">';
+
+			div = document.createElement("div");
+			div.id = "chord" + ii;
+			div.classList = "chord-container";
+			div.dataset.key = "scale" + ii;
+			div.dataset.mode = "chords" + ii;
+			eId("chords-body").appendChild(div);
+
+			div.addEventListener("click", chord_click);
+
+			h2 = document.createElement("h2");
+			h2.textContent = `${scale[ii]} ${chords[ii]}`
+			eId("chord" + ii).appendChild(h2);
+
+			img = document.createElement("img");
+			img.src = `images/Chords/${folder.replace("#", "sharp").replace("b", "flat")}/
+			${chords[ii]}/${scale[ii].replace("#", "sharp").replace("b", "flat")}_${chords[ii].replace("#", "sharp").replace("b", "flat")}1.png`;
+			img.alt = `${scale[ii]} ${chords[ii]}`;
+			console.log(img);
+			eId("chord" + ii).appendChild(img);
 		}
 	}
 
 	let chordContainers = document.querySelectorAll(".chord-container");
-	chordContainers.forEach((el) => {
+	/* chordContainers.forEach((el) => {
 		el.addEventListener("click", chord_click);
-	});
+	}); */
 
 	eId("more-chords-close").addEventListener("click", () => {
 		eId("more-chords").style.display = "none";
