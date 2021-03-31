@@ -265,8 +265,7 @@ const displayScale = () => {
 	majorScale = scaleData.Major;
 	scale = scaleData[scaleMode];
 	clearBoard();
-	let fretShift = 0,
-		noteShift = 0,
+	let noteShift = 0,
 		E2,
 		A,
 		D,
@@ -336,32 +335,32 @@ const displayScale = () => {
 			chords = BluesChords;
 			break;
 		case "Dorian":
-			fretShift = noteShift = 1;
+			noteShift = 1;
 			scale = scaleData.Major;
 			thisIsAMode = true;
 			break;
 		case "Phrygian":
-			fretShift = noteShift = 2;
+			noteShift = 2;
 			scale = scaleData.Major;
 			thisIsAMode = true;
 			break;
 		case "Lydian":
-			fretShift = noteShift = 3;
+			noteShift = 3;
 			scale = scaleData.Major;
 			thisIsAMode = true;
 			break;
 		case "Mixolydian":
-			fretShift = noteShift = 4;
+			noteShift = 4;
 			scale = scaleData.Major;
 			thisIsAMode = true;
 			break;
 		case "Aeolian":
-			fretShift = noteShift = 5;
+			noteShift = 5;
 			scale = scaleData.Major;
 			thisIsAMode = true;
 			break;
 		case "Locrian":
-			fretShift = noteShift = 6;
+			noteShift = 6;
 			scale = scaleData.Major;
 			thisIsAMode = true;
 			break;
