@@ -5,10 +5,10 @@ if (filter_has_var(INPUT_GET, 'key')) {
   $key = filter_input(INPUT_GET, 'key', FILTER_SANITIZE_STRING);
   if(filter_has_var(INPUT_GET, 'mode')) :
     $mode = filter_input(INPUT_GET, 'mode', FILTER_SANITIZE_STRING);
-    $folderPath = getcwd()."/images/Chords/$key/$mode/";
+    $folderPath = "../images/Chords/$key/$mode/";
 
   else :
-    $folderPath = getcwd()."/images/Chords/$key/";
+    $folderPath = "../images/Chords/$key/";
   endif;
 
   $numImages = 0;

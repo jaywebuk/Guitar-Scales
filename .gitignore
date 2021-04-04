@@ -1,8 +1,6 @@
 .vscode/
 ChromePhp.php
 *.min.*
-.jshintrc
-.eslintrc.json
 fretNotes.js.old
 *.css
 *.js

@@ -58,7 +58,7 @@ const notes = [
 		"Power-5",
 		"Power-5",
 	],
-	BluesChords = [];
+	BluesChords: string[] = [];
 
 const neckWood = {
 	rosewood: {
@@ -91,15 +91,15 @@ let showNotes = true,
 /// CREATE THE FUNCTIONS \\\
 
 const populateString = (fretNote, notes) => {
-	let string = {};
+	const guitarString = {};
 
 	for (let ii = 0; ii < 13; ii++, fretNote++) {
 		if (fretNote == 12) fretNote = 0;
-		string[ii] = notes[fretNote];
-		string[ii + 12] = notes[fretNote];
+		guitarString[ii] = notes[fretNote];
+		guitarString[ii + 12] = notes[fretNote];
 	}
 
-	return string;
+	return guitarString;
 };
 
 const statusResponse = (response) => {
@@ -147,14 +147,14 @@ const show_frets_notes = (showThis) => {
 	}
 };
 
-let eString = populateString(7, notes);
-let bString = populateString(2, notes);
-let cString = populateString(3, notes);
-let fString = populateString(8, notes);
-let gString = populateString(10, notes);
-let dString = populateString(5, notes);
-let aString = populateString(0, notes);
-let fSharpString = populateString(9, notes);
+const eString = populateString(7, notes);
+const bString = populateString(2, notes);
+const cString = populateString(3, notes);
+const fString = populateString(8, notes);
+const gString = populateString(10, notes);
+const dString = populateString(5, notes);
+const aString = populateString(0, notes);
+const fSharpString = populateString(9, notes);
 
 const frets_note_buttons = document.querySelectorAll(".button");
 frets_note_buttons.forEach((el) => {
@@ -241,7 +241,7 @@ const getScale = (thisKey) => {
 			break;
 	}
 
-	fetch(`get_scale.php?key=${key.replace("#", "sharp")}`)
+	fetch(`php/get_scale.php?key=${key.replace("#", "sharp")}`)
 		.then(statusResponse)
 		.then(json)
 		.then(function (data) {
@@ -255,7 +255,7 @@ const getScale = (thisKey) => {
 };
 
 const showfinger = (finger, fretNum, scale) => {
-	let stringNote = eId(finger + fretNum);
+	const stringNote = eId(finger + fretNum);
 	stringNote.style.visibility = "visible";
 	stringNote.childNodes[1].style.display = "inline";
 	stringNote.childNodes[1].textContent = scale;
@@ -374,9 +374,9 @@ const displayScale = () => {
 	eId("scaleTitle").textContent = `${scale[noteShift]} ${scaleMode.replace("_" , " ")}`;
 	eId("notes").innerHTML = "";
 
-	let shiftedScale = [...scale];
-	let splicedScale = shiftedScale.splice(noteShift);
-	let newScale = [...splicedScale,...shiftedScale];
+	const shiftedScale = [...scale];
+	const splicedScale = shiftedScale.splice(noteShift);
+	const newScale = [...splicedScale,...shiftedScale];
 
 	eId("notes").textContent = newScale.toString().replaceAll(",", " ");
 	for (let fretNum = 0; fretNum < 25; fretNum++) {
@@ -461,7 +461,7 @@ const displayScale = () => {
 		eId("chords-body").innerHTML = "";
 		let div, h2, img;
 		for (let ii = 0; ii < chords.length; ii++) {
-			let folder = scale[ii];
+			const folder = scale[ii];
 
 			div = document.createElement("div");
 			div.id = "chord" + ii;
@@ -485,7 +485,7 @@ const displayScale = () => {
 		}
 	}
 
-	let chordContainers = document.querySelectorAll(".chord-container");
+	const chordContainers = document.querySelectorAll(".chord-container");
 
 	eId("more-chords-close").addEventListener("click", () => {
 		eId("more-chords").style.display = "none";
@@ -510,7 +510,7 @@ function chord_click() {
 	document
 		.querySelector(".chord-container")
 		.removeEventListener("click", chord_click);
-	let chordContainers = document.querySelectorAll(".chord-container");
+	const chordContainers = document.querySelectorAll(".chord-container");
 	chordContainers.forEach((el) => {
 		el.style.opacity = "0.4";
 		el.removeEventListener("click", chord_click);
@@ -531,7 +531,7 @@ function chord_click() {
 		eId("loading").style.display = "block";
 
 		fetch(
-			`count_files.php?key=${key
+			`php/count_files.php?key=${key
 				.replace("#", "sharp")
 				.replace("b", "flat")}&mode=${mode}`
 		)
@@ -573,7 +573,7 @@ const drawChords = (numChords, key, mode) => {
 	}
 };
 
-const zoom = (img) => {
+const zoom = (img: Element) => {
 	eId("chord-zoom-image").setAttribute("src", img.src);
 	eId("more-chords").style.display = "none";
 	eId("chords-zoom").style.display = "block";
