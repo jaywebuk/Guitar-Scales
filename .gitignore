@@ -7,3 +7,5 @@ fretNotes.js.old
 *.css
 *.js
 *.css.map
+node_modules/
+old/

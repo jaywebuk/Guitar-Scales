@@ -1,0 +1,24 @@
+{
+  "name": "guitar-scales",
+  "version": "1.0.0",
+  "description": "This tool shows some popular scales with accompanying chords.",
+  "main": "./public/index.php",
+  "dependencies": {
+    "typescript": "^4.2.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayuk79/guitar-scales.git"
+  },
+  "keywords": [],
+  "author": "Jason Robinson",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/jayuk79/guitar-scales/issues"
+  },
+  "homepage": "https://github.com/jayuk79/guitar-scales#readme"
+}
