@@ -4,3 +4,5 @@ ChromePhp.php
 .jshintrc
 .eslintrc.json
 fretNotes.js.old
+*.css
+*.js
