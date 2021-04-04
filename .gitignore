@@ -2,6 +2,5 @@
 ChromePhp.php
 *.min.*
 .jshintrc
-node_modules
 .eslintrc.json
 fretNotes.js.old
