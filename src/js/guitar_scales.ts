@@ -9,7 +9,7 @@ const eId = document.getElementById.bind(document);
 
 // CREATE GLOBAL VARIABLES AND OBJECTS \\
 
-const notes = [
+const notes: string[][] = [
 		["A"],
 		["A#", "Bb"],
 		["B", "Cb"],
@@ -60,7 +60,24 @@ const notes = [
 	],
 	BluesChords: string[] = [];
 
-const neckWood = {
+interface neckWood {
+	rosewood: {
+		neckColor: string,
+		dotColor: string,
+		fretNutColor: string,
+	},
+	ebony: {
+		neckColor: string,
+		dotColor: string,
+		fretNutColor: string,
+	},
+	maple: {
+		neckColor: string,
+		dotColor: string,
+		fretNutColor: string,
+	},
+}
+const neckWood: neckWood = {
 	rosewood: {
 		neckColor: "#460e00",
 		dotColor: "#ccc",
@@ -84,15 +101,27 @@ let showNotes = true,
 	majorScale,
 	scale,
 	scaleMode = "Major",
-	tuning = "standardE",
-	scaleData,
-	chordNums = {};
+	tuning = "standardE";
+
+	let chordNums: {
+		[key: string]: number;
+	}
+
+	// let chordNums = {};
+	let scaleData: {
+		[property: string]: string[]
+	}
+
 
 /// CREATE THE FUNCTIONS \\\
 
-const populateString = (fretNote, notes) => {
-	const guitarString = {};
+interface fretString {
+	[name: string]: string[];
+}
 
+const populateString = (fretNote: number, notes: string[][]) => {
+	const guitarString: fretString = {};
+	
 	for (let ii = 0; ii < 13; ii++, fretNote++) {
 		if (fretNote == 12) fretNote = 0;
 		guitarString[ii] = notes[fretNote];
@@ -114,9 +143,9 @@ const json = (response) => {
 	return response.json();
 };
 
-const show_frets_notes = (showThis) => {
-	const fret_notes = document.querySelectorAll(".fretNote");
-	const fret_nums = document.querySelectorAll(".fret-num");
+const show_frets_notes = (showThis: string) => {
+	const fret_notes: NodeListOf<HTMLElement> = document.querySelectorAll(".fretNote");
+	const fret_nums: NodeListOf<HTMLElement> = document.querySelectorAll(".fret-num");
 	switch (showThis) {
 		case "show-notes":
 			if (showNotes === true) {
@@ -147,14 +176,14 @@ const show_frets_notes = (showThis) => {
 	}
 };
 
-const eString = populateString(7, notes);
-const bString = populateString(2, notes);
-const cString = populateString(3, notes);
-const fString = populateString(8, notes);
-const gString = populateString(10, notes);
-const dString = populateString(5, notes);
-const aString = populateString(0, notes);
-const fSharpString = populateString(9, notes);
+const eString: fretString = populateString(7, notes);
+const bString: fretString = populateString(2, notes);
+const cString: fretString = populateString(3, notes);
+const fString: fretString = populateString(8, notes);
+const gString: fretString = populateString(10, notes);
+const dString: fretString = populateString(5, notes);
+const aString: fretString = populateString(0, notes);
+const fSharpString: fretString = populateString(9, notes);
 
 const frets_note_buttons = document.querySelectorAll(".button");
 frets_note_buttons.forEach((el) => {
@@ -164,12 +193,12 @@ frets_note_buttons.forEach((el) => {
 });
 
 const clearBoard = () => {
-	const finger = document.querySelectorAll(".finger");
-	const finger0 = document.querySelectorAll(".finger0");
+	const finger: NodeListOf<HTMLElement> = document.querySelectorAll(".finger");
+	const finger0: NodeListOf<HTMLElement> = document.querySelectorAll(".finger0");
 
 	finger.forEach((el) => {
 		el.style.visibility = "hidden";
-		el.childNodes[1].style.display = "none";
+		(<HTMLElement>el.childNodes[1]).style.display = "none";
 		el.style.backgroundColor = "darkgreen";
 	});
 
@@ -180,34 +209,44 @@ const clearBoard = () => {
 	return true;
 };
 
-const changeMode = (thisMode) => {
+const changeMode = (thisMode: string) => {
 	scaleMode = thisMode;
 	displayScale();
 };
 
-const changeTuning = (thisTuning) => {
+const changeTuning = (thisTuning: string) => {
 	tuning = thisTuning;
 	displayScale();
 };
 
-const changeFingerboard = (wood) => {
-	const dots = document.querySelectorAll(".dots");
-	const necks = document.querySelectorAll(".neck");
-
-	necks.forEach((el) => {
+const changeFingerboard = (wood: HTMLSelectElement) => {
+	
+	const woodValue = wood.options[wood.selectedIndex].value;
+	// const woodValue = "ebony";
+	console.log(wood.options[wood.selectedIndex].value);
+	const dots: NodeListOf<HTMLElement> = document.querySelectorAll(".dots");
+	const necks: NodeListOf<HTMLElement> = document.querySelectorAll(".neck");
+	// console.log(Object.entries(necks));
+	
+	/* necks.forEach((el: Element) => {
 		el.style.backgroundColor = neckWood[wood.value].neckColor;
+	}); */
+	necks.forEach((el) => {
+		// console.log(el.style);
+		
+		el.style.backgroundColor = neckWood[`${woodValue}`].neckColor;
 	});
-	dots.forEach((el) => {
-		el.style.backgroundColor = neckWood[wood.value].dotColor;
+	dots.forEach(el => {
+		el.style.backgroundColor = neckWood[woodValue].dotColor;
 	});
 
-	eId("fretNut").style.borderColor = neckWood[wood.value].fretNutColor;
+	eId("fretNut").style.borderColor = neckWood[woodValue].fretNutColor;
 };
 
 const getScale = (thisKey) => {
 	key = thisKey;
 	eId("loading").style.display = "block";
-	const modeSelect = eId("modeSelect");
+	const modeSelect: HTMLSelectElement = eId("modeSelect");
 	const Natural_Minor = eId("Natural_Minor");
 	const Harmonic_Minor = eId("Harmonic_Minor");
 	const Melodic_Minor = eId("Melodic_Minor");
@@ -247,6 +286,8 @@ const getScale = (thisKey) => {
 		.then(function (data) {
 			eId("loading").style.display = "none";
 			scaleData = data;
+			// console.log(data);
+			
 			displayScale();
 		})
 		.catch(function (error) {
@@ -254,24 +295,28 @@ const getScale = (thisKey) => {
 		});
 };
 
-const showfinger = (finger, fretNum, scale) => {
-	const stringNote = eId(finger + fretNum);
+const showfinger = (finger: string, fretNum: number, scale: string) => {	
+	const stringNote: HTMLElement = eId(finger + fretNum);
 	stringNote.style.visibility = "visible";
-	stringNote.childNodes[1].style.display = "inline";
+	(stringNote.childNodes[1] as childNode).style.display = "inline";
 	stringNote.childNodes[1].textContent = scale;
 };
 
 const displayScale = () => {
+	// console.log(scaleData.Major);
+	// console.log(typeof scaleMode);
+	
 	majorScale = scaleData.Major;
 	scale = scaleData[scaleMode];
 	clearBoard();
+	
 	let noteShift = 0,
-		E2,
-		A,
-		D,
-		G,
-		B,
-		E,
+		E2: fretString = {},
+		A: fretString = {},
+		D: fretString = {},
+		G: fretString = {},
+		B: fretString = {},
+		E: fretString = {},
 		chords = MajorChords,
 		thisIsAMode = false;
 
@@ -384,6 +429,7 @@ const displayScale = () => {
 		
 		for (let jj = 0; jj < scale.length; jj++) {
 			for (let ii = 0; ii < 3; ii++) {
+				
 				if (E[fretNum][ii] === scale[jj]) {
 					showfinger("E1F", fretNum, scale[jj]);
 
@@ -465,7 +511,7 @@ const displayScale = () => {
 
 			div = document.createElement("div");
 			div.id = "chord" + ii;
-			div.classList = "chord-container";
+			div.setAttribute("class", "chord-container");
 			div.dataset.key = `${scale[ii]}`;
 			div.dataset.mode = `${chords[ii]}`;
 			eId("chords-body").appendChild(div);
@@ -473,7 +519,7 @@ const displayScale = () => {
 			div.addEventListener("click", chord_click);
 
 			h2 = document.createElement("h2");
-			h2.textContent = `${scale[ii]} ${chords[ii]}`
+			h2.textContent = `${scale[ii]} ${chords[ii]}`;
 			eId("chord" + ii).appendChild(h2);
 
 			img = document.createElement("img");
@@ -485,7 +531,7 @@ const displayScale = () => {
 		}
 	}
 
-	const chordContainers = document.querySelectorAll(".chord-container");
+	const chordContainers: NodeListOf<HTMLElement> = document.querySelectorAll(".chord-container");
 
 	eId("more-chords-close").addEventListener("click", () => {
 		eId("more-chords").style.display = "none";
@@ -496,31 +542,33 @@ const displayScale = () => {
 	});
 };
 
-function chord_click() {
-	console.log(this);
+function chord_click(this: HTMLElement) {
 	eId("more-chords-body").innerHTML = "";
 	let data = 0;
 	let keyExists = false;
-
-	const key = this.dataset.key;
-	const mode = this.dataset.mode;
+	
+	const key: string = this.dataset.key as string;
+	const mode: string = this.dataset.mode as string;
 	const keyText = key.replace("-", " / " + key.substr(0, key.indexOf("P")));
 	eId("more-chords-body").textContent = "";
 	eId("more-chords").style.display = "block";
 	document
 		.querySelector(".chord-container")
 		.removeEventListener("click", chord_click);
-	const chordContainers = document.querySelectorAll(".chord-container");
-	chordContainers.forEach((el) => {
+	const chordContainers: NodeListOf<HTMLElement> = document.querySelectorAll(".chord-container");
+	chordContainers.forEach((el: HTMLElement) => {
 		el.style.opacity = "0.4";
 		el.removeEventListener("click", chord_click);
 	});
 	eId("more-chords-header").textContent = keyText + " " + mode;
+				// console.log(key + mode);
 	if (Object.keys(chordNums).length > 0) {
 		for (const thisKey in chordNums) {
 			if (thisKey === key + mode) {
 				keyExists = true;
+				
 				data = chordNums[key + mode];
+				
 			}
 		}
 	}
@@ -543,6 +591,8 @@ function chord_click() {
 					...chordNums,
 					[key + mode]: data,
 				};
+				// console.log(chordNums);
+				
 				drawChords(data, key, mode);
 			})
 			.catch(function (error) {
@@ -551,29 +601,29 @@ function chord_click() {
 	}
 }
 
-const drawChords = (numChords, key, mode) => {
+const drawChords = (numChords: number, key: string, mode: string) => {
 	// console.log(numChords);
 	let elem1, elem2;
 	for (let ii = 0; ii < numChords; ii++) {
 		elem1 = document.createElement("div");
-		elem1.classList = "more-chord-container";
+		elem1.setAttribute("class", "more-chord-container");
 		eId("more-chords-body").appendChild(elem1);
 		elem2 = document.createElement("img");
 		elem2.id = `${key.replace("#", "sharp").replace("b", "flat")}${ii}`;
-		elem2.classList = "chord-image more-chord-image";
+		elem2.setAttribute("class", "chord-image more-chord-image");
 		elem2.src = `images/Chords/${key
 			.replace("#", "sharp")
 			.replace("b", "flat")}/${mode}/${key
 			.replace("#", "sharp")
 			.replace("b", "flat")}_${mode}${ii + 1}.png`;
 		elem2.addEventListener("click", (event) => {
-			zoom(event.target);
+			zoom(event.target as HTMLImageElement);
 		});
 		elem1.appendChild(elem2);
 	}
 };
 
-const zoom = (img: Element) => {
+const zoom = (img: HTMLImageElement) => {
 	eId("chord-zoom-image").setAttribute("src", img.src);
 	eId("more-chords").style.display = "none";
 	eId("chords-zoom").style.display = "block";
