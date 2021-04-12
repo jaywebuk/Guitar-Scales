@@ -60,23 +60,13 @@ const notes: string[][] = [
 	],
 	BluesChords: string[] = [];
 
+
 interface neckWood {
-	rosewood: {
-		neckColor: string,
-		dotColor: string,
-		fretNutColor: string,
-	},
-	ebony: {
-		neckColor: string,
-		dotColor: string,
-		fretNutColor: string,
-	},
-	maple: {
-		neckColor: string,
-		dotColor: string,
-		fretNutColor: string,
-	},
+	[wood: string]: {
+		[key: string]: string
+	}
 }
+
 const neckWood: neckWood = {
 	rosewood: {
 		neckColor: "#460e00",
@@ -131,7 +121,21 @@ const populateString = (fretNote: number, notes: string[][]) => {
 	return guitarString;
 };
 
-const statusResponse = (response) => {
+interface ResponseData {
+	body: string[],
+	bodyUsed: boolean,
+	headers: string,
+	ok: boolean,
+	redirected: boolean,
+	status: number,
+	statusText: string,
+	type: string,
+	url: string
+}
+
+const statusResponse = (response: Promise<Json>) => {
+	console.log(response);
+	
 	if (response.status >= 200 && response.status < 300) {
 		return Promise.resolve(response);
 	} else {
@@ -243,7 +247,7 @@ const changeFingerboard = (wood: HTMLSelectElement) => {
 	eId("fretNut").style.borderColor = neckWood[woodValue].fretNutColor;
 };
 
-const getScale = (thisKey) => {
+const getScale = (thisKey: string) => {
 	key = thisKey;
 	eId("loading").style.display = "block";
 	const modeSelect: HTMLSelectElement = eId("modeSelect");
