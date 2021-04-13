@@ -217,7 +217,7 @@ const changeFingerboard = (wood: HTMLSelectElement) => {
 	const necks: NodeListOf<HTMLElement> = document.querySelectorAll(".neck");
 	
 	necks.forEach(el => {
-		el.style.backgroundColor = neckWood[`${woodValue}`].neckColor;
+		el.style.backgroundColor = neckWood[woodValue].neckColor;
 	});
 	dots.forEach(el => {
 		el.style.backgroundColor = neckWood[woodValue].dotColor;
@@ -272,7 +272,7 @@ async function getScale(thisKey: string) {
 		eId("loading").style.display = "none";
 		displayScale();
 	} catch(error) {
-		console.log("Error", error);
+		console.error("Error", error);
 	}
 
 }
