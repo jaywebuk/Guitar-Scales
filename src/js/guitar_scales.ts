@@ -133,8 +133,7 @@ interface ResponseData {
 	url: string
 }
 
-const statusResponse = (response: Promise<Json>) => {
-	console.log(response);
+const statusResponse = (response: any) => {
 	
 	if (response.status >= 200 && response.status < 300) {
 		return Promise.resolve(response);
@@ -143,7 +142,7 @@ const statusResponse = (response: Promise<Json>) => {
 	}
 };
 
-const json = (response) => {
+const json = (response: any) => {
 	return response.json();
 };
 
@@ -226,18 +225,10 @@ const changeTuning = (thisTuning: string) => {
 const changeFingerboard = (wood: HTMLSelectElement) => {
 	
 	const woodValue = wood.options[wood.selectedIndex].value;
-	// const woodValue = "ebony";
-	console.log(wood.options[wood.selectedIndex].value);
 	const dots: NodeListOf<HTMLElement> = document.querySelectorAll(".dots");
 	const necks: NodeListOf<HTMLElement> = document.querySelectorAll(".neck");
-	// console.log(Object.entries(necks));
 	
-	/* necks.forEach((el: Element) => {
-		el.style.backgroundColor = neckWood[wood.value].neckColor;
-	}); */
-	necks.forEach((el) => {
-		// console.log(el.style);
-		
+	necks.forEach(el => {
 		el.style.backgroundColor = neckWood[`${woodValue}`].neckColor;
 	});
 	dots.forEach(el => {
@@ -250,7 +241,8 @@ const changeFingerboard = (wood: HTMLSelectElement) => {
 const getScale = (thisKey: string) => {
 	key = thisKey;
 	eId("loading").style.display = "block";
-	const modeSelect: HTMLSelectElement = eId("modeSelect");
+	
+	const modeSelect = <HTMLSelectElement>eId("modeSelect");
 	const Natural_Minor = eId("Natural_Minor");
 	const Harmonic_Minor = eId("Harmonic_Minor");
 	const Melodic_Minor = eId("Melodic_Minor");
@@ -266,7 +258,7 @@ const getScale = (thisKey: string) => {
 			Melodic_Minor.setAttribute("disabled", "disabled");
 			Melodic_Minor.textContent = "Melodic Minor - Use C#";
 			Melodic_Minor.style.fontSize = "1.1rem";
-			if ([7, 8, 9].indexOf(modeSelect.selectedIndex) !== -1) {
+			if ([7, 8, 9].indexOf(modeSelect.options.selectedIndex) !== -1) {
 				modeSelect.selectedIndex = 0;
 				scaleMode = "Major";
 			}
@@ -290,7 +282,6 @@ const getScale = (thisKey: string) => {
 		.then(function (data) {
 			eId("loading").style.display = "none";
 			scaleData = data;
-			// console.log(data);
 			
 			displayScale();
 		})
@@ -307,8 +298,6 @@ const showfinger = (finger: string, fretNum: number, scale: string) => {
 };
 
 const displayScale = () => {
-	// console.log(scaleData.Major);
-	// console.log(typeof scaleMode);
 	
 	majorScale = scaleData.Major;
 	scale = scaleData[scaleMode];
@@ -530,7 +519,6 @@ const displayScale = () => {
 			img.src = `images/Chords/${folder.replace("#", "sharp").replace("b", "flat")}/
 			${chords[ii]}/${scale[ii].replace("#", "sharp").replace("b", "flat")}_${chords[ii].replace("#", "sharp").replace("b", "flat")}1.png`;
 			img.alt = `${scale[ii]} ${chords[ii]}`;
-			// console.log(img);
 			eId("chord" + ii).appendChild(img);
 		}
 	}
@@ -565,7 +553,6 @@ function chord_click(this: HTMLElement) {
 		el.removeEventListener("click", chord_click);
 	});
 	eId("more-chords-header").textContent = keyText + " " + mode;
-				// console.log(key + mode);
 	if (Object.keys(chordNums).length > 0) {
 		for (const thisKey in chordNums) {
 			if (thisKey === key + mode) {
@@ -595,7 +582,6 @@ function chord_click(this: HTMLElement) {
 					...chordNums,
 					[key + mode]: data,
 				};
-				// console.log(chordNums);
 				
 				drawChords(data, key, mode);
 			})
@@ -606,7 +592,6 @@ function chord_click(this: HTMLElement) {
 }
 
 const drawChords = (numChords: number, key: string, mode: string) => {
-	// console.log(numChords);
 	let elem1, elem2;
 	for (let ii = 0; ii < numChords; ii++) {
 		elem1 = document.createElement("div");
