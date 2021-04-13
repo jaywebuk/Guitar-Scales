@@ -272,7 +272,7 @@ async function getScale(thisKey: string) {
 		eId("loading").style.display = "none";
 		displayScale();
 	} catch(error) {
-	console.log("Error", error);
+		console.log("Error", error);
 	}
 
 }
