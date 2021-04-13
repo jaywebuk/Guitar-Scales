@@ -9,7 +9,7 @@ const eId = document.getElementById.bind(document);
 
 // CREATE GLOBAL VARIABLES AND OBJECTS \\
 
-const notes: string[][] = [
+const notes = [
 		["A"],
 		["A#", "Bb"],
 		["B", "Cb"],
@@ -62,7 +62,7 @@ const notes: string[][] = [
 
 
 interface neckWood {
-	[wood: string]: {
+	[name: string]: {
 		[key: string]: string
 	}
 }
@@ -93,21 +93,21 @@ let showNotes = true,
 	scaleMode = "Major",
 	tuning = "standardE";
 
-	let chordNums: {
-		[key: string]: number;
-	}
+interface chordNums {
+	[key: string]: number;
+}
 
-	// let chordNums = {};
-	let scaleData: {
-		[property: string]: string[]
-	}
+let chordNums: chordNums = {};
 
-
-/// CREATE THE FUNCTIONS \\\
+let scaleData: {
+	[property: string]: string[]
+}
 
 interface fretString {
 	[name: string]: string[];
 }
+
+/// CREATE THE FUNCTIONS \\\
 
 const populateString = (fretNote: number, notes: string[][]) => {
 	const guitarString: fretString = {};
@@ -120,18 +120,6 @@ const populateString = (fretNote: number, notes: string[][]) => {
 
 	return guitarString;
 };
-
-interface ResponseData {
-	body: string[],
-	bodyUsed: boolean,
-	headers: string,
-	ok: boolean,
-	redirected: boolean,
-	status: number,
-	statusText: string,
-	type: string,
-	url: string
-}
 
 const statusResponse = (response: any) => {
 	
@@ -238,7 +226,7 @@ const changeFingerboard = (wood: HTMLSelectElement) => {
 	eId("fretNut").style.borderColor = neckWood[woodValue].fretNutColor;
 };
 
-const getScale = (thisKey: string) => {
+async function getScale(thisKey: string) {
 	key = thisKey;
 	eId("loading").style.display = "block";
 	
@@ -276,24 +264,31 @@ const getScale = (thisKey: string) => {
 			break;
 	}
 
-	fetch(`php/get_scale.php?key=${key.replace("#", "sharp")}`)
-		.then(statusResponse)
-		.then(json)
-		.then(function (data) {
-			eId("loading").style.display = "none";
-			scaleData = data;
-			
-			displayScale();
-		})
-		.catch(function (error) {
-			console.error("Request failed", error);
-		});
-};
+	const url = `php/get_scale.php?key=${key.replace("#", "sharp")}`;
+	
+	try {
+		const data = await http<fretString>(url);
+		scaleData = data;
+		eId("loading").style.display = "none";
+		displayScale();
+	} catch(error) {
+	console.log("Error", error);
+	}
+
+}
+
+async function http<T>(request: RequestInfo): Promise<T> {
+	const response = await fetch(request);
+	if(!response.ok) {
+		throw new Error(`error: ${response.status}`);
+	}
+	return await response.json().catch(() => ({}));
+}
 
 const showfinger = (finger: string, fretNum: number, scale: string) => {	
-	const stringNote: HTMLElement = eId(finger + fretNum);
+	const stringNote = eId(finger + fretNum);
 	stringNote.style.visibility = "visible";
-	(stringNote.childNodes[1] as childNode).style.display = "inline";
+	(<HTMLElement>stringNote.childNodes[1]).style.display = "inline";
 	stringNote.childNodes[1].textContent = scale;
 };
 
@@ -534,7 +529,7 @@ const displayScale = () => {
 	});
 };
 
-function chord_click(this: HTMLElement) {
+async function chord_click(this: HTMLElement) {
 	eId("more-chords-body").innerHTML = "";
 	let data = 0;
 	let keyExists = false;
@@ -567,27 +562,25 @@ function chord_click(this: HTMLElement) {
 	if (keyExists === true) {
 		drawChords(data, key, mode);
 	} else {
+
 		eId("loading").style.display = "block";
 
-		fetch(
-			`php/count_files.php?key=${key
-				.replace("#", "sharp")
-				.replace("b", "flat")}&mode=${mode}`
+		fetch(`php/count_files.php?key=${key.replace("#", "sharp").replace("b", "flat")}&mode=${mode}`
 		)
-			.then(statusResponse)
-			.then(json)
-			.then(function (data) {
-				eId("loading").style.display = "none";
-				chordNums = {
-					...chordNums,
-					[key + mode]: data,
-				};
-				
-				drawChords(data, key, mode);
-			})
-			.catch(function (error) {
-				console.error("Request failed", error);
-			});
+		.then(statusResponse)
+		.then(json)
+		.then(function (data) {
+			eId("loading").style.display = "none";
+			chordNums = {
+				...chordNums,
+				[key + mode]: data,
+			};
+			
+			drawChords(data, key, mode);
+		})
+		.catch(function (error) {
+			console.error("Request failed", error);
+		});
 	}
 }
 
