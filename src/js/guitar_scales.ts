@@ -32,13 +32,11 @@ MinorPentatonicChords = ["Power-5", "Power-5", "Power-5", "Power-5", "Power-5", 
 BluesChords: string[] = [];
 
 
-interface neckWood {
+const neckWood: {
 	[name: string]: {
 		[key: string]: string
 	}
-}
-
-const neckWood: neckWood = {
+} = {
 	rosewood: {
 		neckColor: "#460e00",
 		dotColor: "#ccc",
@@ -73,7 +71,6 @@ let showNotes = true,
 let chordNums: {
 	[key: string]: number;
 } = {};
-
 
 interface fretString {
 	[name: string]: string[];
@@ -392,16 +389,16 @@ const displayScale = () => {
 		for (let jj = 0; jj < scale.length; jj++) {
 			for (let ii = 0; ii < 3; ii++) {
 
-				stringArray.forEach(function(el,kk) {
-					console.log((stringArray.indexOf(stringArray[ii])));
+				[E2,A,D,G,B,E].forEach(function(el,kk) {
+					console.log(window["E2"]);
 					
-					if (el[fretNum][ii] === scale[jj]) {
-					showfinger(stringArray[ii]+"F", fretNum, scale[jj]);
+					// if (el[fretNum][ii] === scale[jj]) {
+					// showfinger(stringArray[ii]+"F", fretNum, scale[jj]);
 
-						if (el[fretNum][ii] === newScale[0]) {
-							eId(stringArray[ii]+"F" + fretNum).style.backgroundColor = "#005bb1";
-						}
-					}
+					// 	if (el[fretNum][ii] === newScale[0]) {
+					// 		eId(stringArray[ii]+"F" + fretNum).style.backgroundColor = "#005bb1";
+					// 	}
+					// }
 				});
 				
 				
