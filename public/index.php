@@ -73,7 +73,7 @@
 					<div class="string string6"></div>
 					<div id="fretNut" class="fret fretNut first-twelve"></div>
 					<div id="fret0" class="fret fret0 first-twelve">
-						<div id="E1F0" class="finger finger0 E1open">
+						<div id="EF0" class="finger finger0 E1open">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF0" class="finger finger0 Bopen">
@@ -94,7 +94,7 @@
 					</div>
 					<div class="fret fret1 first-twelve" id="fret1">
 						<div class="fret-num">1</div>
-						<div id="E1F1" class="finger E1">
+						<div id="EF1" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF1" class="finger B">
@@ -115,7 +115,7 @@
 					</div>
 					<div class="fret fret2 first-twelve" id="fret2">
 						<div class="fret-num">2</div>
-						<div id="E1F2" class="finger E1">
+						<div id="EF2" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF2" class="finger B">
@@ -137,7 +137,7 @@
 					<div class="fret fret3 first-twelve" id="fret3">
 						<div class="fret-num">3</div>
 						<div class="dot dots"></div>
-						<div id="E1F3" class="finger E1">
+						<div id="EF3" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF3" class="finger B">
@@ -158,7 +158,7 @@
 					</div>
 					<div class="fret fret4 first-twelve" id="fret4">
 						<div class="fret-num">4</div>
-						<div id="E1F4" class="finger E1">
+						<div id="EF4" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF4" class="finger B">
@@ -180,7 +180,7 @@
 					<div class="fret fret5 first-twelve" id="fret5">
 						<div class="fret-num">5</div>
 						<div class="dot dots"></div>
-						<div id="E1F5" class="finger E1">
+						<div id="EF5" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF5" class="finger B">
@@ -201,7 +201,7 @@
 					</div>
 					<div class="fret fret6 first-twelve second-twelve" id="fret6">
 						<div class="fret-num">6</div>
-						<div id="E1F6" class="finger E1">
+						<div id="EF6" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF6" class="finger B">
@@ -231,7 +231,7 @@
 					<div class="fret fret7 first-twelve second-twelve" id="fret7">
 						<div class="fret-num">7</div>
 						<div class="dot dots"></div>
-						<div id="E1F7" class="finger E1">
+						<div id="EF7" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF7" class="finger B">
@@ -252,7 +252,7 @@
 					</div>
 					<div class="fret fret8 first-twelve second-twelve" id="fret8">
 						<div class="fret-num">8</div>
-						<div id="E1F8" class="finger E1">
+						<div id="EF8" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF8" class="finger B">
@@ -274,7 +274,7 @@
 					<div class="fret fret9 first-twelve second-twelve" id="fret9">
 						<div class="fret-num">9</div>
 						<div class="dot dots"></div>
-						<div id="E1F9" class="finger E1">
+						<div id="EF9" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF9" class="finger B">
@@ -295,7 +295,7 @@
 					</div>
 					<div class="fret fret10 first-twelve second-twelve" id="fret10">
 						<div class="fret-num">10</div>
-						<div id="E1F10" class="finger E1">
+						<div id="EF10" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF10" class="finger B">
@@ -316,7 +316,7 @@
 					</div>
 					<div class="fret fret11 first-twelve second-twelve" id="fret11">
 						<div class="fret-num">11</div>
-						<div id="E1F11" class="finger E1">
+						<div id="EF11" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF11" class="finger B">
@@ -339,7 +339,7 @@
 						<div class="fret-num">12</div>
 						<div class="doubledot1 dots"></div>
 						<div class="doubledot2 dots"></div>
-						<div id="E1F12" class="finger E1">
+						<div id="EF12" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF12" class="finger B">
@@ -368,7 +368,7 @@
 					<div class="string string6"></div>
 					<div class="fret fret13 second-twelve third-twelve" id="fret13">
 						<div class="fret-num">13</div>
-						<div id="E1F13" class="finger E1">
+						<div id="EF13" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF13" class="finger B">
@@ -389,7 +389,7 @@
 					</div>
 					<div class="fret fret14 second-twelve third-twelve" id="fret14">
 						<div class="fret-num">14</div>
-						<div id="E1F14" class="finger E1">
+						<div id="EF14" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF14" class="finger B">
@@ -411,7 +411,7 @@
 					<div class="fret fret15 second-twelve third-twelve" id="fret15">
 						<div class="fret-num">15</div>
 						<div class="dot dots"></div>
-						<div id="E1F15" class="finger E1">
+						<div id="EF15" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF15" class="finger B">
@@ -432,7 +432,7 @@
 					</div>
 					<div class="fret fret16 second-twelve third-twelve" id="fret16">
 						<div class="fret-num">16</div>
-						<div id="E1F16" class="finger E1">
+						<div id="EF16" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF16" class="finger B">
@@ -454,7 +454,7 @@
 					<div class="fret fret17 second-twelve third-twelve" id="fret17">
 						<div class="fret-num">17</div>
 						<div class="dot dots"></div>
-						<div id="E1F17" class="finger E1">
+						<div id="EF17" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF17" class="finger B">
@@ -475,7 +475,7 @@
 					</div>
 					<div class="fret fret18 second-twelve third-twelve" id="fret18">
 						<div class="fret-num">18</div>
-						<div id="E1F18" class="finger E1">
+						<div id="EF18" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF18" class="finger B">
@@ -505,7 +505,7 @@
 					<div class="fret fret19 third-twelve" id="fret19">
 						<div class="fret-num">19</div>
 						<div class="dot dots"></div>
-						<div id="E1F19" class="finger E1">
+						<div id="EF19" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF19" class="finger B">
@@ -526,7 +526,7 @@
 					</div>
 					<div class="fret fret20 third-twelve" id="fret20">
 						<div class="fret-num">20</div>
-						<div id="E1F20" class="finger E1">
+						<div id="EF20" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF20" class="finger B">
@@ -548,7 +548,7 @@
 					<div class="fret fret21 third-twelve" id="fret21">
 						<div class="fret-num">21</div>
 						<div class="dot dots"></div>
-						<div id="E1F21" class="finger E1">
+						<div id="EF21" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF21" class="finger B">
@@ -569,7 +569,7 @@
 					</div>
 					<div class="fret fret22 third-twelve" id="fret22">
 						<div class="fret-num">22</div>
-						<div id="E1F22" class="finger E1">
+						<div id="EF22" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF22" class="finger B">
@@ -590,7 +590,7 @@
 					</div>
 					<div class="fret fret23 third-twelve" id="fret23">
 						<div class="fret-num">23</div>
-						<div id="E1F23" class="finger E1">
+						<div id="EF23" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF23" class="finger B">
@@ -613,7 +613,7 @@
 						<div class="fret-num">24</div>
 						<div class="doubledot1 dots"></div>
 						<div class="doubledot2 dots"></div>
-						<div id="E1F24" class="finger E1">
+						<div id="EF24" class="finger E1">
 							<span class="fretNote"></span>
 						</div>
 						<div id="BF24" class="finger B">

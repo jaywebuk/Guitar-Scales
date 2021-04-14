@@ -9,56 +9,27 @@ const eId = document.getElementById.bind(document);
 
 // CREATE GLOBAL VARIABLES AND OBJECTS \\
 
-const notes = [
-		["A"],
-		["A#", "Bb"],
-		["B", "Cb"],
-		["B#", "C"],
-		["C#", "Db"],
-		["D"],
-		["D#", "Eb"],
-		["E", "Fb"],
-		["E#", "F"],
-		["F#", "Gb"],
-		["G"],
-		["G#", "Ab"],
-	],
-	MajorChords = ["Major", "Minor", "Minor", "Major", "Major", "Minor", "Dim"],
-	NaturalMinorChords = [
-		"Minor",
-		"Dim",
-		"Major",
-		"Minor",
-		"Minor",
-		"Major",
-		"Major",
-	],
-	MelodicMinorChords = [
-		"Minor",
-		"Minor",
-		"Aug",
-		"Major",
-		"Major",
-		"Dim",
-		"Dim",
-	],
-	HarmonicMinorChords = [
-		"Minor",
-		"Dim",
-		"Aug",
-		"Minor",
-		"Major",
-		"Major",
-		"Dim",
-	],
-	MinorPentatonicChords = [
-		"Power-5",
-		"Power-5",
-		"Power-5",
-		"Power-5",
-		"Power-5",
-	],
-	BluesChords: string[] = [];
+const 
+notes = [
+	["A"],
+	["A#", "Bb"],
+	["B", "Cb"],
+	["B#", "C"],
+	["C#", "Db"],
+	["D"],
+	["D#", "Eb"],
+	["E", "Fb"],
+	["E#", "F"],
+	["F#", "Gb"],
+	["G"],
+	["G#", "Ab"],
+],
+MajorChords = ["Major", "Minor", "Minor", "Major", "Major", "Minor", "Dim", ],
+NaturalMinorChords = ["Minor", "Dim", "Major", "Minor", "Minor", "Major", "Major", ],
+MelodicMinorChords = ["Minor", "Minor", "Aug", "Major", "Major", "Dim", "Dim", ],
+HarmonicMinorChords = ["Minor", "Dim", "Aug", "Minor", "Major", "Major", "Dim", ],
+MinorPentatonicChords = ["Power-5", "Power-5", "Power-5", "Power-5", "Power-5", ],
+BluesChords: string[] = [];
 
 
 interface neckWood {
@@ -85,23 +56,24 @@ const neckWood: neckWood = {
 	},
 };
 
+let scaleData: {
+	[property: string]: string[]
+}
+
+// let scaleData: scaleData;
+
 let showNotes = true,
 	showFrets = true,
 	key = "E",
 	majorScale,
-	scale,
+	scale: string[],
 	scaleMode = "Major",
 	tuning = "standardE";
 
-interface chordNums {
+let chordNums: {
 	[key: string]: number;
-}
+} = {};
 
-let chordNums: chordNums = {};
-
-let scaleData: {
-	[property: string]: string[]
-}
 
 interface fretString {
 	[name: string]: string[];
@@ -351,6 +323,8 @@ const displayScale = () => {
 			break;
 	}
 
+	let stringArray = [E,B,G,D,A,E2];
+
 	switch (scaleMode) {
 		case "Natural Minor":
 			chords = NaturalMinorChords;
@@ -417,54 +391,67 @@ const displayScale = () => {
 		
 		for (let jj = 0; jj < scale.length; jj++) {
 			for (let ii = 0; ii < 3; ii++) {
+
+				stringArray.forEach(function(el,kk) {
+					console.log((stringArray.indexOf(stringArray[ii])));
+					
+					if (el[fretNum][ii] === scale[jj]) {
+					showfinger(stringArray[ii]+"F", fretNum, scale[jj]);
+
+						if (el[fretNum][ii] === newScale[0]) {
+							eId(stringArray[ii]+"F" + fretNum).style.backgroundColor = "#005bb1";
+						}
+					}
+				});
 				
-				if (E[fretNum][ii] === scale[jj]) {
+				
+				/* if (E[fretNum][ii] === scale[jj]) {
 					showfinger("E1F", fretNum, scale[jj]);
 
 					if (E[fretNum][ii] === newScale[0]) {
 						eId("E1F" + fretNum).style.backgroundColor = "#005bb1";
 					}
-				}
+				} */
 
-				if (B[fretNum][ii] === scale[jj]) {
+				/* if (B[fretNum][ii] === scale[jj]) {
 					showfinger("BF", fretNum, scale[jj]);
 
 					if (B[fretNum][ii] === newScale[0]) {
 						eId("BF" + fretNum).style.backgroundColor = "#005bb1";
 					}
-				}
+				} */
 
-				if (G[fretNum][ii] === scale[jj]) {
+				/* if (G[fretNum][ii] === scale[jj]) {
 					showfinger("GF", fretNum, scale[jj]);
 
 					if (G[fretNum][ii] === newScale[0]) {
 						eId("GF" + fretNum).style.backgroundColor = "#005bb1";
 					}
-				}
+				} */
 
-				if (D[fretNum][ii] === scale[jj]) {
+				/* if (D[fretNum][ii] === scale[jj]) {
 					showfinger("DF", fretNum, scale[jj]);
 
 					if (D[fretNum][ii] === newScale[0]) {
 						eId("DF" + fretNum).style.backgroundColor = "#005bb1";
 					}
-				}
+				} */
 
-				if (A[fretNum][ii] === scale[jj]) {
+				/* if (A[fretNum][ii] === scale[jj]) {
 					showfinger("AF", fretNum, scale[jj]);
 
 					if (A[fretNum][ii] === newScale[0]) {
 						eId("AF" + fretNum).style.backgroundColor = "#005bb1";
 					}
-				}
+				} */
 
-				if (E2[fretNum][ii] === scale[jj]) {
+				/* if (E2[fretNum][ii] === scale[jj]) {
 					showfinger("E2F", fretNum, scale[jj]);
 
 					if (E2[fretNum][ii] === newScale[0]) {
 						eId("E2F" + fretNum).style.backgroundColor = "#005bb1";
 					}
-				}
+				} */
 			}
 		}
 	}
