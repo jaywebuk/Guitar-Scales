@@ -82,7 +82,9 @@ const populateString = (fretNote: number, notes: string[][]) => {
 	const guitarString: fretString = {};
 	
 	for (let ii = 0; ii < 13; ii++, fretNote++) {
-		if (fretNote == 12) fretNote = 0;
+		if (fretNote == 12)
+			fretNote = 0;
+
 		guitarString[ii] = notes[fretNote];
 		guitarString[ii + 12] = notes[fretNote];
 	}
@@ -92,11 +94,11 @@ const populateString = (fretNote: number, notes: string[][]) => {
 
 const statusResponse = (response: any) => {
 	
-	if (response.status >= 200 && response.status < 300) {
+	if (response.status >= 200 && response.status < 300) 
 		return Promise.resolve(response);
-	} else {
+	else 
 		return Promise.reject(new Error(response.statusText));
-	}
+	
 };
 
 const json = (response: any) => {
@@ -267,7 +269,8 @@ const displayScale = () => {
 	scale = scaleData[scaleMode];
 	clearBoard();
 	
-	let noteShift = 0,
+	let 
+		noteShift = 0,
 		E2: fretString = {},
 		A: fretString = {},
 		D: fretString = {},
@@ -394,9 +397,8 @@ const displayScale = () => {
 					if (scale.includes(value[fretNum][ii])) {
 						showfinger(key+"F", fretNum, value[fretNum][ii]);
 
-						if (value[fretNum][ii] === newScale[0]) {
+						if (value[fretNum][ii] === newScale[0]) 
 							eId(key+"F" + fretNum).style.backgroundColor = "#005bb1";
-						}
 
 					}
 
@@ -405,10 +407,9 @@ const displayScale = () => {
 			}	
 		
 		}
-		
-	if (thisIsAMode === true) {
+
+	if (thisIsAMode === true) 
 		eId("scaleTitle").textContent += ` '${scale[0]}'`;
-	}
 
 	switch (tuning) {
 		case "dropD":
@@ -427,9 +428,9 @@ const displayScale = () => {
 			eId("notes").textContent += ' "Standard E"';
 	}
 
-	if (scaleMode === "Blues") {
+	if (scaleMode === "Blues")
 		eId("chords-body").textContent = "CHORDS COMING SOON";
-	} else {
+	else {
 		eId("chords-body").innerHTML = "";
 		let div, h2, img;
 		for (let ii = 0; ii < chords.length; ii++) {
@@ -485,21 +486,21 @@ async function chord_click(this: HTMLElement) {
 		el.style.opacity = "0.4";
 		el.removeEventListener("click", chord_click);
 	});
+
 	eId("more-chords-header").textContent = keyText + " " + mode;
+	
 	if (Object.keys(chordNums).length > 0) {
 		for (const thisKey in chordNums) {
 			if (thisKey === key + mode) {
 				keyExists = true;
-				
 				data = chordNums[key + mode];
-				
 			}
 		}
 	}
 
-	if (keyExists === true) {
+	if (keyExists === true) 
 		drawChords(data, key, mode);
-	} else {
+	else {
 
 		eId("loading").style.display = "block";
 
