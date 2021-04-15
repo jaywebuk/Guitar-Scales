@@ -277,6 +277,7 @@ const displayScale = () => {
 		chords = MajorChords,
 		thisIsAMode = false;
 
+
 	switch (tuning) {
 		case "standardE":
 			E2 = eString;
@@ -320,7 +321,7 @@ const displayScale = () => {
 			break;
 	}
 
-	let stringArray = [E,B,G,D,A,E2];
+	let stringArray = {"E2": E2, "A": A, "D": D, "G": G, "B": B, "E": E};
 
 	switch (scaleMode) {
 		case "Natural Minor":
@@ -385,73 +386,26 @@ const displayScale = () => {
 	eId("notes").textContent = newScale.toString().replaceAll(",", " ");
 	for (let fretNum = 0; fretNum < 25; fretNum++) {
 		eId("fret" + fretNum).style.backgroundColor = "";
-		
-		for (let jj = 0; jj < scale.length; jj++) {
+					
 			for (let ii = 0; ii < 3; ii++) {
 
-				[E2,A,D,G,B,E].forEach(function(el,kk) {
-					console.log(window["E2"]);
-					
-					// if (el[fretNum][ii] === scale[jj]) {
-					// showfinger(stringArray[ii]+"F", fretNum, scale[jj]);
+				for (const [key, value] of Object.entries(stringArray)) {
 
-					// 	if (el[fretNum][ii] === newScale[0]) {
-					// 		eId(stringArray[ii]+"F" + fretNum).style.backgroundColor = "#005bb1";
-					// 	}
-					// }
-				});
-				
-				
-				/* if (E[fretNum][ii] === scale[jj]) {
-					showfinger("E1F", fretNum, scale[jj]);
+					if (scale.includes(value[fretNum][ii])) {
+						showfinger(key+"F", fretNum, value[fretNum][ii]);
 
-					if (E[fretNum][ii] === newScale[0]) {
-						eId("E1F" + fretNum).style.backgroundColor = "#005bb1";
+						if (value[fretNum][ii] === newScale[0]) {
+							eId(key+"F" + fretNum).style.backgroundColor = "#005bb1";
+						}
+
 					}
-				} */
 
-				/* if (B[fretNum][ii] === scale[jj]) {
-					showfinger("BF", fretNum, scale[jj]);
+				}
 
-					if (B[fretNum][ii] === newScale[0]) {
-						eId("BF" + fretNum).style.backgroundColor = "#005bb1";
-					}
-				} */
-
-				/* if (G[fretNum][ii] === scale[jj]) {
-					showfinger("GF", fretNum, scale[jj]);
-
-					if (G[fretNum][ii] === newScale[0]) {
-						eId("GF" + fretNum).style.backgroundColor = "#005bb1";
-					}
-				} */
-
-				/* if (D[fretNum][ii] === scale[jj]) {
-					showfinger("DF", fretNum, scale[jj]);
-
-					if (D[fretNum][ii] === newScale[0]) {
-						eId("DF" + fretNum).style.backgroundColor = "#005bb1";
-					}
-				} */
-
-				/* if (A[fretNum][ii] === scale[jj]) {
-					showfinger("AF", fretNum, scale[jj]);
-
-					if (A[fretNum][ii] === newScale[0]) {
-						eId("AF" + fretNum).style.backgroundColor = "#005bb1";
-					}
-				} */
-
-				/* if (E2[fretNum][ii] === scale[jj]) {
-					showfinger("E2F", fretNum, scale[jj]);
-
-					if (E2[fretNum][ii] === newScale[0]) {
-						eId("E2F" + fretNum).style.backgroundColor = "#005bb1";
-					}
-				} */
-			}
+			}	
+		
 		}
-	}
+		
 	if (thisIsAMode === true) {
 		eId("scaleTitle").textContent += ` '${scale[0]}'`;
 	}
