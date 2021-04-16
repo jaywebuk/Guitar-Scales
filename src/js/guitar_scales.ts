@@ -387,24 +387,24 @@ const displayScale = () => {
 	const newScale = [...splicedScale,...shiftedScale];
 
 	eId("notes").textContent = newScale.toString().replaceAll(",", " ");
+	console.clear();
 	for (let fretNum = 0; fretNum < 25; fretNum++) {
 		eId("fret" + fretNum).style.backgroundColor = "";
 					
-			for (let ii = 0; ii < 3; ii++) {
-
 				for (const [key, value] of Object.entries(stringArray)) {
+					for (let ii = 0; ii < value[fretNum].length; ii++) {
+						
+						if (scale.includes(value[fretNum][ii])) {
+							showfinger(key+"F", fretNum, value[fretNum][ii]);
 
-					if (scale.includes(value[fretNum][ii])) {
-						showfinger(key+"F", fretNum, value[fretNum][ii]);
+							if (value[fretNum][ii] === newScale[0]) 
+								eId(key+"F" + fretNum).style.backgroundColor = "#005bb1";
 
-						if (value[fretNum][ii] === newScale[0]) 
-							eId(key+"F" + fretNum).style.backgroundColor = "#005bb1";
+							break;
+						}
 
-					}
-
+					}	
 				}
-
-			}	
 		
 		}
 
