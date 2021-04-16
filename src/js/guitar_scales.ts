@@ -387,7 +387,7 @@ const displayScale = () => {
 	const newScale = [...splicedScale,...shiftedScale];
 
 	eId("notes").textContent = newScale.toString().replaceAll(",", " ");
-	console.clear();
+
 	for (let fretNum = 0; fretNum < 25; fretNum++) {
 		eId("fret" + fretNum).style.backgroundColor = "";
 					
