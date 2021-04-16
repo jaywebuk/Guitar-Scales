@@ -31,7 +31,6 @@ HarmonicMinorChords = ["Minor", "Dim", "Aug", "Minor", "Major", "Major", "Dim", 
 MinorPentatonicChords = ["Power-5", "Power-5", "Power-5", "Power-5", "Power-5", ],
 BluesChords: string[] = [];
 
-
 const neckWood: {
 	[name: string]: {
 		[key: string]: string
@@ -58,15 +57,13 @@ let scaleData: {
 	[property: string]: string[]
 }
 
-// let scaleData: scaleData;
-
 let showNotes = true,
 	showFrets = true,
 	key = "E",
 	majorScale,
 	scale: string[],
 	scaleMode = "Major",
-	tuning = "standardE";
+	tuning = "Standard E";
 
 let chordNums: {
 	[key: string]: number;
@@ -282,7 +279,7 @@ const displayScale = () => {
 
 
 	switch (tuning) {
-		case "standardE":
+		case "Standard E":
 			E2 = eString;
 			A = aString;
 			D = dString;
@@ -290,7 +287,7 @@ const displayScale = () => {
 			B = bString;
 			E = eString;
 			break;
-		case "dropD":
+		case "Drop D":
 			E2 = dString;
 			A = aString;
 			D = dString;
@@ -298,7 +295,7 @@ const displayScale = () => {
 			B = bString;
 			E = eString;
 			break;
-		case "openD":
+		case "Open D":
 			E2 = dString;
 			A = aString;
 			D = dString;
@@ -306,7 +303,7 @@ const displayScale = () => {
 			B = aString;
 			E = dString;
 			break;
-		case "dropC":
+		case "Drop C":
 			E2 = cString;
 			A = gString;
 			D = cString;
@@ -391,42 +388,27 @@ const displayScale = () => {
 	for (let fretNum = 0; fretNum < 25; fretNum++) {
 		eId("fret" + fretNum).style.backgroundColor = "";
 					
-				for (const [key, value] of Object.entries(stringArray)) {
-					for (let ii = 0; ii < value[fretNum].length; ii++) {
-						
-						if (scale.includes(value[fretNum][ii])) {
-							showfinger(key+"F", fretNum, value[fretNum][ii]);
+		for (const [key, value] of Object.entries(stringArray)) {
+			for (let ii = 0; ii < value[fretNum].length; ii++) {
+				
+				if (scale.includes(value[fretNum][ii])) {
+					showfinger(key+"F", fretNum, value[fretNum][ii]);
 
-							if (value[fretNum][ii] === newScale[0]) 
-								eId(key+"F" + fretNum).style.backgroundColor = "#005bb1";
+					if (value[fretNum][ii] === newScale[0]) 
+						eId(key+"F" + fretNum).style.backgroundColor = "#005bb1";
 
-							break;
-						}
-
-					}	
+					break;
 				}
-		
+
+			}	
 		}
+		
+	}
 
 	if (thisIsAMode === true) 
 		eId("scaleTitle").textContent += ` '${scale[0]}'`;
 
-	switch (tuning) {
-		case "dropD":
-			eId("notes").textContent += ' "Drop D"';
-			break;
-		case "openD":
-			eId("notes").textContent += ' "Open D"';
-			break;
-		case "dropC":
-			eId("notes").textContent += ' "Drop C"';
-			break;
-		case "DADGAD":
-			eId("notes").textContent += ' "DADGAD"';
-			break;
-		default:
-			eId("notes").textContent += ' "Standard E"';
-	}
+	eId("notes").textContent += ` "${tuning}"`;
 
 	if (scaleMode === "Blues")
 		eId("chords-body").textContent = "CHORDS COMING SOON";

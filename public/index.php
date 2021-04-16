@@ -684,10 +684,10 @@
 				<label for="tuningSelect">Tuning</label><br>
 					<select name="tuning" id="tuningSelect" size=""
 						onChange="javascript:changeTuning(this.value)">
-						<option id="standardE" value="standardE" class="tuning" selected="selected">Standard E</option>
-						<option value="dropD" class="tuning">Drop D</option>
-						<option value="openD" class="tuning">Open D</option>
-						<option value="dropC" class="tuning">Drop C</option>
+						<option id="standardE" value="Standard E" class="tuning" selected="selected">Standard E</option>
+						<option value="Drop D" class="tuning">Drop D</option>
+						<option value="Open D" class="tuning">Open D</option>
+						<option value="Drop C" class="tuning">Drop C</option>
 						<option value="DADGAD" class="tuning">DADGAD</option>
 					</select>
 				</form>
