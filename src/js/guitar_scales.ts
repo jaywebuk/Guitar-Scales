@@ -233,14 +233,19 @@ async function getScale(thisKey: string) {
 	}
 
 	const url = `php/get_scale.php?key=${key.replace("#", "sharp")}`;
-	
+
 	try {
 		const data = await http<fretString>(url);
 		scaleData = data;
 		eId("loading").style.display = "none";
 		displayScale();
 	} catch(error) {
-		console.error("Error", error);
+		if (scaleData.error !== null) {
+			console.error(scaleData.error);
+		}
+		else {
+			console.error("Error:", error);
+		}
 	}
 
 }

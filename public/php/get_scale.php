@@ -3,11 +3,15 @@
 // include "ChromePhp.php";
 
 if(filter_has_var(INPUT_GET, 'key')) {
-  $url = '../js/scales.json';
-  $data = file_get_contents($url);
-  $scale = json_decode($data);
+  
+  $scale = json_decode(file_get_contents('../js/scales.json'));
   $key = filter_input(INPUT_GET, 'key', FILTER_SANITIZE_STRING);
-  echo json_encode($scale->$key);
+  if (isset($scale) && isset($key)) {
+    echo json_encode($scale->$key);
+  }
+  else {
+    echo json_encode(['error' => 'Error retrieving scale data']);
+  }
 }
 else {
   header("Location: ./");
