@@ -2,9 +2,9 @@
 
 if (filter_has_var(INPUT_GET, 'key')) {
 
-  $key = filter_input(INPUT_GET, 'key', FILTER_SANITIZE_STRING);
+  $key = htmlspecialchars($_GET['key']);
   if(filter_has_var(INPUT_GET, 'mode')) :
-    $mode = filter_input(INPUT_GET, 'mode', FILTER_SANITIZE_STRING);
+    $mode = htmlspecialchars($_GET['mode']);
     $folderPath = "../images/Chords/$key/$mode/";
 
   else :
